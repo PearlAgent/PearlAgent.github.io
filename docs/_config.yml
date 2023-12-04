@@ -21,14 +21,19 @@
 title: Pearl - A Production-ready Reinforcement Learning AI Agent Library
 email: billzhu@meta.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Pearl - A Production-ready Reinforcement Learning AI Agent Library
+  [TO BE Filled]
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://pearlagent.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "github.com/facebookresearch/pearl/" # the base hostname & protocol for your site, e.g. http://example.com
+logo: "assets/img/pearl.jpg"
 
 # Build settings
-theme: jekyll-theme-minimal
+remote_theme: pages-themes/minimal@v0.2.0
 plugins:
-  - jekyll-feed
+- jekyll-remote-theme
+
+github:
+  repository_url: "https://github.com/facebookresearch/pearl/"
+  repository_nwo: "facebookresearch/pearl"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
