@@ -27,7 +27,7 @@ description: | # this means to ignore newlines until "baseurl:"
   <img src="assets/img/team_logo.png">
   <p> Please find our paper at: xxx </p>
   <p> Cite us: </p> 
-  <pre style="white-space: pre-wrap; word-break: keep-all;"><code> @misc{pearl2023paper,
+  <pre style="white-space: pre-wrap; word-break: keep-all;"><code>@misc{pearl2023paper,
   title = {Pearl - A Production-ready Reinforcement Learning AI Agent Library},
 
   author = {Zheqing Zhu, Rodrigo de Salvo Braz, Jalaj Bhandari, Daniel Jiang, Yi Wan, Yonathan Efroni, Ruiyang Xu, Liyuan Wang, Hongbo Guo, Alex Nikulkov, Dmytro Korenkevych, Urun Dogan, Frank Cheng, Zheng Wu, Wanqiao Xu},
