@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Pearl - A Production-ready Reinforcement Learning AI Agent Library
+title: Welcome to the official website for Pearl!
 email: billzhu@meta.com
 description: | # this means to ignore newlines until "baseurl:"
   <p> Proudly brought by 
@@ -38,7 +38,6 @@ description: | # this means to ignore newlines until "baseurl:"
   </code></pre>
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "github.com/facebookresearch/pearl/" # the base hostname & protocol for your site, e.g. http://example.com
-logo: "assets/img/pearl.jpg"
 
 # Build settings
 remote_theme: pages-themes/minimal@v0.2.0
@@ -48,6 +47,7 @@ plugins:
 github:
   repository_url: "https://github.com/facebookresearch/pearl/"
   repository_nwo: "facebookresearch/pearl"
+  is_project_page: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
