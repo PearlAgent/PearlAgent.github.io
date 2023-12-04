@@ -20,8 +20,21 @@
 
 title: Pearl - A Production-ready Reinforcement Learning AI Agent Library
 email: billzhu@meta.com
-description: >- # this means to ignore newlines until "baseurl:"
-  [TO BE Filled]
+description: | # this means to ignore newlines until "baseurl:"
+  <p> Proudly brought by 
+  <b>the Applied Reinforcement Learning team, Meta AI.</b> 
+  </p>
+  <img src="assets/img/team_logo.png">
+  <p> Please find our paper at: xxx </p>
+  <p> Cite us: </p> 
+  <pre style="white-space: pre-wrap; word-break: keep-all;"><code> 
+  @misc{pearl2023paper,
+   title = {Pearl - A Production-ready Reinforcement Learning AI Agent Library},
+   author = {Zheqing Zhu, Rodrigo de Salvo Braz, Jalaj Bhandari, Daniel Jiang, Yi Wan, Yonathan Efroni, Ruiyang Xu, Liyuan Wang, Hongbo Guo, Alex Nikulkov, Dmytro Korenkevych, Urun Dogan, Frank Cheng, Zheng Wu, Wanqiao Xu},
+   year = 2023,
+   eprint = {arXiv:test}
+  } 
+  </code></pre>
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "github.com/facebookresearch/pearl/" # the base hostname & protocol for your site, e.g. http://example.com
 logo: "assets/img/pearl.jpg"
@@ -34,6 +47,7 @@ plugins:
 github:
   repository_url: "https://github.com/facebookresearch/pearl/"
   repository_nwo: "facebookresearch/pearl"
+  is_project_page: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
