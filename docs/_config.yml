@@ -48,7 +48,6 @@ plugins:
 github:
   repository_url: "https://github.com/facebookresearch/pearl/"
   repository_nwo: "facebookresearch/pearl"
-  is_project_page: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
