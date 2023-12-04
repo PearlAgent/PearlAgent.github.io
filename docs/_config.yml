@@ -26,7 +26,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://pearlagent.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
-theme: minimal
+theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
 
