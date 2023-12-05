@@ -1,11 +1,6 @@
----
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+# Welcome to Pearl's official website!
+<center><img src="assets/img/pearl_long.png" style="width:500px"/></center>
 
-layout: default
----
-# Pearl - A Production-ready Reinforcement Learning AI Agent Library
-<center><img src="assets/img/pearl.png" style="width:500px"/></center>
 
 Pearl is a production-ready reinforcement learning AI agent library. Pearl enables researchers and practitioners to develop Reinforcement Learning AI agents. These AI agents prioritize cumulative long-term feedback over immediate feedback and can adapt to environments with limited observability, sparse feedback, and high stochasticity. We hope that Pearl offers the community a means to build state-of-the-art Reinforcement Learning AI agents that can adapt to a wide range of complex production environments. 
 
@@ -16,7 +11,7 @@ TO BE FILLED
 Prior to Pearl, Reinforcement Learning libraries focused on AI agents with a single objective: optimizing for cumulative reward. However, real-world applications require much more than this, particularly in systems that have the potential to cause repercussions (e.g. regress user sentiment, or surface an Ad that may be repetitive or have lower longer term value to the people causing user churn) and in environments where user feedback is limited. The capabilities include offline pre-training, intelligent exploration, safe decision making, history behavior summarization, data augmentation and dynamic action spaces. 
 
 ## Pearl Design
-<center><img src="assets/img/agent_interface.png" style="width:500px"/></center>
+<center><img src="assets/img/agent_interface.png" style="width:750px"/></center>
 Pearl was built with a modular design so that industry practitioners or academic researchers can select any subset and flexibly combine features below to construct a Pearl agent customized for their specific use cases:
 * Cumulative reward optimization: Pearl excels in this fundamental aspect of Reinforcement Learning, offering diverse optimization strategies suitable for various applications ranging from recommendation systems to robotics. 
 * Offline pre-training: Utilizing offline data in decision making is critical for ensuring a positive long-term user experience without relying heavily on direct interactions with people (or the environment). Incorporating offline learning into an AI agent, enables us to create personalized AI systems with minimal environmental interactions. For example, we can predict the right sequence of recommendations for people given their past interactions with the system.
@@ -29,4 +24,4 @@ Pearl was built with a modular design so that industry practitioners or academic
 ## Comparison to Other Libraries
 ReAgent, our previous generation of Reinforcement Learning library, garnered over 3,500 Github stars with more than 500 project forks. Building on Reagent’s success, Pearl offers a much richer feature set of advanced capabilities pushing the state of the art AI innovation in Reinforcement Learning. Below we compare Pearl with the key open source alternatives.
 
-<center><img src="assets/img/comparison.png" style="width:500px"/></center>
+<center><img src="assets/img/comparison.png" style="width:750px"/></center>

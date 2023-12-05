@@ -1,0 +1,8 @@
+site_name: Pearl - A Production-ready Reinforcement Learning AI Agent Library
+theme: 
+  name: material
+  logo: assets/img/pearl.png
+  palette:
+    primary: custom
+extra_css:
+  - stylesheets/extra.css
