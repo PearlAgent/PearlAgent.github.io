@@ -14,7 +14,5 @@ extra_css:
 nav:
   - Home:
     - index.md
-  - Design:
-    - design.md
   - Documentation: 
     - documentation.html
