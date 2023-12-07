@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.replay_buffers.tensor_based_replay_buffer API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.replay_buffers.tensor_based_replay_buffer</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import random
+
+from collections import deque
+from typing import Deque, List, Optional, Tuple, Union
+
+import torch
+
+from pearl.api.action import Action
+from pearl.api.action_space import ActionSpace
+from pearl.api.reward import Reward
+from pearl.api.state import SubjectiveState
+from pearl.replay_buffers.replay_buffer import ReplayBuffer
+from pearl.replay_buffers.transition import Transition, TransitionBatch
+from pearl.utils.device import get_default_device
+from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
+
+
+class TensorBasedReplayBuffer(ReplayBuffer):
+    def __init__(
+        self,
+        capacity: int,
+        has_next_state: bool = True,
+        has_next_action: bool = True,
+        has_next_available_actions: bool = True,
+        has_cost_available: bool = False,
+    ) -&gt; None:
+        super(TensorBasedReplayBuffer, self).__init__()
+        self.capacity = capacity
+        # TODO: we want a unifying transition type
+        self.memory: Deque[Union[Transition, TransitionBatch]] = deque(
+            [], maxlen=capacity
+        )
+        self._has_next_state = has_next_state
+        self._has_next_action = has_next_action
+        self._has_next_available_actions = has_next_available_actions
+        self.has_cost_available = has_cost_available
+        self._device: torch.device = get_default_device()
+
+    @property
+    def device(self) -&gt; torch.device:
+        return self._device
+
+    @device.setter
+    def device(self, value: torch.device) -&gt; None:
+        self._device = value
+
+    def _process_single_state(self, state: SubjectiveState) -&gt; torch.Tensor:
+        return torch.tensor(state, device=self._device).unsqueeze(0)
+
+    def _process_single_action(self, action: Action) -&gt; torch.Tensor:
+        return torch.tensor(action, device=self._device).unsqueeze(0)
+
+    def _process_single_reward(self, reward: Reward) -&gt; torch.Tensor:
+        return torch.tensor([reward], device=self._device)
+
+    def _process_single_cost(self, cost: Optional[float]) -&gt; Optional[torch.Tensor]:
+        if cost is None:
+            return None
+        return torch.tensor([cost], device=self._device)
+
+    def _process_single_done(self, done: bool) -&gt; torch.Tensor:
+        return torch.tensor([done], device=self._device)  # (1,)
+
+    &#34;&#34;&#34;
+    This function is only used for discrete action space.
+    An example:
+    ----------------------------------------------------------
+    Suppose the environment at every step has a maximum number of 5 actions, and
+    the agent uses a onehot action representation module. At time step t, if the agent offers
+    2 actions, [0, 3], then the result of this function will be:
+    available_actions_tensor_with_padding = [
+        [0],
+        [3],
+        [0],
+        [0],
+        [0],
+    ]
+    unavailable_actions_mask = [0, 0, 1, 1, 1]
+    Note that although the actions and padding can have overlap, the mask will always disable the
+    unavailable actions so won&#39;t impact algorithm.
+
+    The same goes to the case where the agent uses an identity action representation
+    (assuming some random features for action 0 and 3), then it would be
+    available_actions_tensor_with_padding = [
+        [0.1, 0.6, 0.3, 1.8, 2.0],
+        [0.8, -0.3, 0.6, 1.9, 3.0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+    ]
+    unavailable_actions_mask = [0, 0, 1, 1, 1]
+    &#34;&#34;&#34;
+
+    def _create_action_tensor_and_mask(
+        self, max_number_actions: Optional[int], available_action_space: ActionSpace
+    ) -&gt; Tuple[Optional[torch.Tensor], Optional[torch.Tensor]]:
+        if self._is_action_continuous or max_number_actions is None:
+            return (None, None)
+
+        assert isinstance(available_action_space, DiscreteActionSpace)
+
+        available_actions_tensor_with_padding = torch.zeros(
+            (1, max_number_actions, available_action_space.action_dim),
+            device=self._device,
+            dtype=torch.float32,
+        )  # (1 x action_space_size x action_dim)
+        available_actions_tensor = available_action_space.actions_batch
+        available_actions_tensor_with_padding[
+            0, : available_action_space.n, :
+        ] = available_actions_tensor
+
+        unavailable_actions_mask = torch.zeros(
+            (1, max_number_actions), device=self._device
+        )  # (1 x action_space_size)
+        unavailable_actions_mask[0, available_action_space.n :] = 1
+        unavailable_actions_mask = unavailable_actions_mask.bool()
+
+        return (available_actions_tensor_with_padding, unavailable_actions_mask)
+
+    def sample(self, batch_size: int) -&gt; TransitionBatch:
+        &#34;&#34;&#34;
+        The shapes of input and output are:
+        input: batch_size
+
+        output: TransitionBatch(
+          state = tensor(batch_size, state_dim),
+          action = tensor(batch_size, action_dim),
+          reward = tensor(batch_size, ),
+          next_state = tensor(batch_size, state_dim),
+          curr_available_actions = tensor(batch_size, action_dim, action_dim),
+          curr_available_actions_mask = tensor(batch_size, action_dim),
+          next_available_actions = tensor(batch_size, action_dim, action_dim),
+          next_available_actions_mask = tensor(batch_size, action_dim),
+          done = tensor(batch_size, ),
+        )
+        &#34;&#34;&#34;
+        if batch_size &gt; len(self):
+            raise ValueError(
+                f&#34;Can&#39;t get a batch of size {batch_size} from a replay buffer with&#34;
+                f&#34;only {len(self)} elements&#34;
+            )
+        samples = random.sample(self.memory, batch_size)
+        return self._create_transition_batch(
+            transitions=samples,
+            has_next_state=self._has_next_state,
+            has_next_action=self._has_next_action,
+            is_action_continuous=self._is_action_continuous,
+            has_next_available_actions=self._has_next_available_actions,
+            has_cost_available=self.has_cost_available,
+        )
+
+    def __len__(self) -&gt; int:
+        return len(self.memory)
+
+    def clear(self) -&gt; None:
+        self.memory = deque([], maxlen=self.capacity)
+
+    def _create_transition_batch(
+        self,
+        transitions: List[Transition],
+        has_next_state: bool,
+        has_next_action: bool,
+        is_action_continuous: bool,
+        has_next_available_actions: bool,
+        has_cost_available: bool,
+    ) -&gt; TransitionBatch:
+        state_list = []
+        action_list = []
+        reward_list = []
+        cost_list = []
+        done_list = []
+        cum_reward_list = []
+        cum_reward_batch = 0
+        next_state_list = []
+        next_action_list = []
+        curr_available_actions_list = []
+        curr_unavailable_actions_mask_list = []
+        next_available_actions_list = []
+        next_unavailable_actions_mask_list = []
+        has_none_cum_reward = False
+        for x in transitions:
+            state_list.append(x.state)
+            action_list.append(x.action)
+            reward_list.append(x.reward)
+            done_list.append(x.done)
+            if has_cost_available:
+                cost_list.append(x.cost)
+            if x.cum_reward is not None:
+                cum_reward_list.append(x.cum_reward)
+            else:
+                has_none_cum_reward = True
+            if has_next_state:
+                next_state_list.append(x.next_state)
+            if has_next_action:
+                next_action_list.append(x.next_action)
+            if not is_action_continuous:
+                curr_available_actions_list.append(x.curr_available_actions)
+                curr_unavailable_actions_mask_list.append(
+                    x.curr_unavailable_actions_mask
+                )
+
+            if not is_action_continuous and has_next_available_actions:
+                next_available_actions_list.append(x.next_available_actions)
+                next_unavailable_actions_mask_list.append(
+                    x.next_unavailable_actions_mask
+                )
+
+        state_batch = torch.cat(state_list)
+        action_batch = torch.cat(action_list)
+        reward_batch = torch.cat(reward_list)
+        done_batch = torch.cat(done_list)
+        cum_reward_batch = None
+        if has_cost_available:
+            cost_batch = torch.cat(cost_list)
+        else:
+            cost_batch = None
+        if not has_none_cum_reward:
+            cum_reward_batch = torch.cat(cum_reward_list)
+        next_state_batch, next_action_batch = None, None
+        if has_next_state:
+            next_state_batch = torch.cat(next_state_list)
+        if has_next_action:
+            next_action_batch = torch.cat(next_action_list)
+        curr_available_actions_batch, curr_unavailable_actions_mask_batch = None, None
+        if not is_action_continuous:
+            curr_available_actions_batch = torch.cat(curr_available_actions_list)
+            curr_unavailable_actions_mask_batch = torch.cat(
+                curr_unavailable_actions_mask_list
+            )
+
+        next_available_actions_batch, next_unavailable_actions_mask_batch = None, None
+        if not is_action_continuous and has_next_available_actions:
+            next_available_actions_batch = torch.cat(next_available_actions_list)
+            next_unavailable_actions_mask_batch = torch.cat(
+                next_unavailable_actions_mask_list
+            )
+        return TransitionBatch(
+            state=state_batch,
+            action=action_batch,
+            reward=reward_batch,
+            next_state=next_state_batch,
+            next_action=next_action_batch,
+            curr_available_actions=curr_available_actions_batch,
+            curr_unavailable_actions_mask=curr_unavailable_actions_mask_batch,
+            next_available_actions=next_available_actions_batch,
+            next_unavailable_actions_mask=next_unavailable_actions_mask_batch,
+            done=done_batch,
+            cum_reward=cum_reward_batch,
+            cost=cost_batch,
+        ).to(self.device)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer"><code class="flex name class">
+<span>class <span class="ident">TensorBasedReplayBuffer</span></span>
+<span>(</span><span>capacity: int, has_next_state: bool = True, has_next_action: bool = True, has_next_available_actions: bool = True, has_cost_available: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TensorBasedReplayBuffer(ReplayBuffer):
+    def __init__(
+        self,
+        capacity: int,
+        has_next_state: bool = True,
+        has_next_action: bool = True,
+        has_next_available_actions: bool = True,
+        has_cost_available: bool = False,
+    ) -&gt; None:
+        super(TensorBasedReplayBuffer, self).__init__()
+        self.capacity = capacity
+        # TODO: we want a unifying transition type
+        self.memory: Deque[Union[Transition, TransitionBatch]] = deque(
+            [], maxlen=capacity
+        )
+        self._has_next_state = has_next_state
+        self._has_next_action = has_next_action
+        self._has_next_available_actions = has_next_available_actions
+        self.has_cost_available = has_cost_available
+        self._device: torch.device = get_default_device()
+
+    @property
+    def device(self) -&gt; torch.device:
+        return self._device
+
+    @device.setter
+    def device(self, value: torch.device) -&gt; None:
+        self._device = value
+
+    def _process_single_state(self, state: SubjectiveState) -&gt; torch.Tensor:
+        return torch.tensor(state, device=self._device).unsqueeze(0)
+
+    def _process_single_action(self, action: Action) -&gt; torch.Tensor:
+        return torch.tensor(action, device=self._device).unsqueeze(0)
+
+    def _process_single_reward(self, reward: Reward) -&gt; torch.Tensor:
+        return torch.tensor([reward], device=self._device)
+
+    def _process_single_cost(self, cost: Optional[float]) -&gt; Optional[torch.Tensor]:
+        if cost is None:
+            return None
+        return torch.tensor([cost], device=self._device)
+
+    def _process_single_done(self, done: bool) -&gt; torch.Tensor:
+        return torch.tensor([done], device=self._device)  # (1,)
+
+    &#34;&#34;&#34;
+    This function is only used for discrete action space.
+    An example:
+    ----------------------------------------------------------
+    Suppose the environment at every step has a maximum number of 5 actions, and
+    the agent uses a onehot action representation module. At time step t, if the agent offers
+    2 actions, [0, 3], then the result of this function will be:
+    available_actions_tensor_with_padding = [
+        [0],
+        [3],
+        [0],
+        [0],
+        [0],
+    ]
+    unavailable_actions_mask = [0, 0, 1, 1, 1]
+    Note that although the actions and padding can have overlap, the mask will always disable the
+    unavailable actions so won&#39;t impact algorithm.
+
+    The same goes to the case where the agent uses an identity action representation
+    (assuming some random features for action 0 and 3), then it would be
+    available_actions_tensor_with_padding = [
+        [0.1, 0.6, 0.3, 1.8, 2.0],
+        [0.8, -0.3, 0.6, 1.9, 3.0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+    ]
+    unavailable_actions_mask = [0, 0, 1, 1, 1]
+    &#34;&#34;&#34;
+
+    def _create_action_tensor_and_mask(
+        self, max_number_actions: Optional[int], available_action_space: ActionSpace
+    ) -&gt; Tuple[Optional[torch.Tensor], Optional[torch.Tensor]]:
+        if self._is_action_continuous or max_number_actions is None:
+            return (None, None)
+
+        assert isinstance(available_action_space, DiscreteActionSpace)
+
+        available_actions_tensor_with_padding = torch.zeros(
+            (1, max_number_actions, available_action_space.action_dim),
+            device=self._device,
+            dtype=torch.float32,
+        )  # (1 x action_space_size x action_dim)
+        available_actions_tensor = available_action_space.actions_batch
+        available_actions_tensor_with_padding[
+            0, : available_action_space.n, :
+        ] = available_actions_tensor
+
+        unavailable_actions_mask = torch.zeros(
+            (1, max_number_actions), device=self._device
+        )  # (1 x action_space_size)
+        unavailable_actions_mask[0, available_action_space.n :] = 1
+        unavailable_actions_mask = unavailable_actions_mask.bool()
+
+        return (available_actions_tensor_with_padding, unavailable_actions_mask)
+
+    def sample(self, batch_size: int) -&gt; TransitionBatch:
+        &#34;&#34;&#34;
+        The shapes of input and output are:
+        input: batch_size
+
+        output: TransitionBatch(
+          state = tensor(batch_size, state_dim),
+          action = tensor(batch_size, action_dim),
+          reward = tensor(batch_size, ),
+          next_state = tensor(batch_size, state_dim),
+          curr_available_actions = tensor(batch_size, action_dim, action_dim),
+          curr_available_actions_mask = tensor(batch_size, action_dim),
+          next_available_actions = tensor(batch_size, action_dim, action_dim),
+          next_available_actions_mask = tensor(batch_size, action_dim),
+          done = tensor(batch_size, ),
+        )
+        &#34;&#34;&#34;
+        if batch_size &gt; len(self):
+            raise ValueError(
+                f&#34;Can&#39;t get a batch of size {batch_size} from a replay buffer with&#34;
+                f&#34;only {len(self)} elements&#34;
+            )
+        samples = random.sample(self.memory, batch_size)
+        return self._create_transition_batch(
+            transitions=samples,
+            has_next_state=self._has_next_state,
+            has_next_action=self._has_next_action,
+            is_action_continuous=self._is_action_continuous,
+            has_next_available_actions=self._has_next_available_actions,
+            has_cost_available=self.has_cost_available,
+        )
+
+    def __len__(self) -&gt; int:
+        return len(self.memory)
+
+    def clear(self) -&gt; None:
+        self.memory = deque([], maxlen=self.capacity)
+
+    def _create_transition_batch(
+        self,
+        transitions: List[Transition],
+        has_next_state: bool,
+        has_next_action: bool,
+        is_action_continuous: bool,
+        has_next_available_actions: bool,
+        has_cost_available: bool,
+    ) -&gt; TransitionBatch:
+        state_list = []
+        action_list = []
+        reward_list = []
+        cost_list = []
+        done_list = []
+        cum_reward_list = []
+        cum_reward_batch = 0
+        next_state_list = []
+        next_action_list = []
+        curr_available_actions_list = []
+        curr_unavailable_actions_mask_list = []
+        next_available_actions_list = []
+        next_unavailable_actions_mask_list = []
+        has_none_cum_reward = False
+        for x in transitions:
+            state_list.append(x.state)
+            action_list.append(x.action)
+            reward_list.append(x.reward)
+            done_list.append(x.done)
+            if has_cost_available:
+                cost_list.append(x.cost)
+            if x.cum_reward is not None:
+                cum_reward_list.append(x.cum_reward)
+            else:
+                has_none_cum_reward = True
+            if has_next_state:
+                next_state_list.append(x.next_state)
+            if has_next_action:
+                next_action_list.append(x.next_action)
+            if not is_action_continuous:
+                curr_available_actions_list.append(x.curr_available_actions)
+                curr_unavailable_actions_mask_list.append(
+                    x.curr_unavailable_actions_mask
+                )
+
+            if not is_action_continuous and has_next_available_actions:
+                next_available_actions_list.append(x.next_available_actions)
+                next_unavailable_actions_mask_list.append(
+                    x.next_unavailable_actions_mask
+                )
+
+        state_batch = torch.cat(state_list)
+        action_batch = torch.cat(action_list)
+        reward_batch = torch.cat(reward_list)
+        done_batch = torch.cat(done_list)
+        cum_reward_batch = None
+        if has_cost_available:
+            cost_batch = torch.cat(cost_list)
+        else:
+            cost_batch = None
+        if not has_none_cum_reward:
+            cum_reward_batch = torch.cat(cum_reward_list)
+        next_state_batch, next_action_batch = None, None
+        if has_next_state:
+            next_state_batch = torch.cat(next_state_list)
+        if has_next_action:
+            next_action_batch = torch.cat(next_action_list)
+        curr_available_actions_batch, curr_unavailable_actions_mask_batch = None, None
+        if not is_action_continuous:
+            curr_available_actions_batch = torch.cat(curr_available_actions_list)
+            curr_unavailable_actions_mask_batch = torch.cat(
+                curr_unavailable_actions_mask_list
+            )
+
+        next_available_actions_batch, next_unavailable_actions_mask_batch = None, None
+        if not is_action_continuous and has_next_available_actions:
+            next_available_actions_batch = torch.cat(next_available_actions_list)
+            next_unavailable_actions_mask_batch = torch.cat(
+                next_unavailable_actions_mask_list
+            )
+        return TransitionBatch(
+            state=state_batch,
+            action=action_batch,
+            reward=reward_batch,
+            next_state=next_state_batch,
+            next_action=next_action_batch,
+            curr_available_actions=curr_available_actions_batch,
+            curr_unavailable_actions_mask=curr_unavailable_actions_mask_batch,
+            next_available_actions=next_available_actions_batch,
+            next_unavailable_actions_mask=next_unavailable_actions_mask_batch,
+            done=done_batch,
+            cum_reward=cum_reward_batch,
+            cost=cost_batch,
+        ).to(self.device)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.replay_buffers.replay_buffer.ReplayBuffer" href="replay_buffer.html#pearl.replay_buffers.replay_buffer.ReplayBuffer">ReplayBuffer</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.replay_buffers.contextual_bandits.discrete_contextual_bandit_replay_buffer.DiscreteContextualBanditReplayBuffer" href="contextual_bandits/discrete_contextual_bandit_replay_buffer.html#pearl.replay_buffers.contextual_bandits.discrete_contextual_bandit_replay_buffer.DiscreteContextualBanditReplayBuffer">DiscreteContextualBanditReplayBuffer</a></li>
+<li><a title="pearl.replay_buffers.sequential_decision_making.fifo_off_policy_replay_buffer.FIFOOffPolicyReplayBuffer" href="sequential_decision_making/fifo_off_policy_replay_buffer.html#pearl.replay_buffers.sequential_decision_making.fifo_off_policy_replay_buffer.FIFOOffPolicyReplayBuffer">FIFOOffPolicyReplayBuffer</a></li>
+<li><a title="pearl.replay_buffers.sequential_decision_making.fifo_on_policy_replay_buffer.FIFOOnPolicyReplayBuffer" href="sequential_decision_making/fifo_on_policy_replay_buffer.html#pearl.replay_buffers.sequential_decision_making.fifo_on_policy_replay_buffer.FIFOOnPolicyReplayBuffer">FIFOOnPolicyReplayBuffer</a></li>
+<li><a title="pearl.replay_buffers.sequential_decision_making.on_policy_episodic_replay_buffer.OnPolicyEpisodicReplayBuffer" href="sequential_decision_making/on_policy_episodic_replay_buffer.html#pearl.replay_buffers.sequential_decision_making.on_policy_episodic_replay_buffer.OnPolicyEpisodicReplayBuffer">OnPolicyEpisodicReplayBuffer</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer.device"><code class="name">var <span class="ident">device</span> : torch.device</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def device(self) -&gt; torch.device:
+    return self._device</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer.sample"><code class="name flex">
+<span>def <span class="ident">sample</span></span>(<span>self, batch_size: int) ‑> <a title="pearl.replay_buffers.transition.TransitionBatch" href="transition.html#pearl.replay_buffers.transition.TransitionBatch">TransitionBatch</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>The shapes of input and output are:
+input: batch_size</p>
+<p>output: TransitionBatch(
+state = tensor(batch_size, state_dim),
+action = tensor(batch_size, action_dim),
+reward = tensor(batch_size, ),
+next_state = tensor(batch_size, state_dim),
+curr_available_actions = tensor(batch_size, action_dim, action_dim),
+curr_available_actions_mask = tensor(batch_size, action_dim),
+next_available_actions = tensor(batch_size, action_dim, action_dim),
+next_available_actions_mask = tensor(batch_size, action_dim),
+done = tensor(batch_size, ),
+)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample(self, batch_size: int) -&gt; TransitionBatch:
+    &#34;&#34;&#34;
+    The shapes of input and output are:
+    input: batch_size
+
+    output: TransitionBatch(
+      state = tensor(batch_size, state_dim),
+      action = tensor(batch_size, action_dim),
+      reward = tensor(batch_size, ),
+      next_state = tensor(batch_size, state_dim),
+      curr_available_actions = tensor(batch_size, action_dim, action_dim),
+      curr_available_actions_mask = tensor(batch_size, action_dim),
+      next_available_actions = tensor(batch_size, action_dim, action_dim),
+      next_available_actions_mask = tensor(batch_size, action_dim),
+      done = tensor(batch_size, ),
+    )
+    &#34;&#34;&#34;
+    if batch_size &gt; len(self):
+        raise ValueError(
+            f&#34;Can&#39;t get a batch of size {batch_size} from a replay buffer with&#34;
+            f&#34;only {len(self)} elements&#34;
+        )
+    samples = random.sample(self.memory, batch_size)
+    return self._create_transition_batch(
+        transitions=samples,
+        has_next_state=self._has_next_state,
+        has_next_action=self._has_next_action,
+        is_action_continuous=self._is_action_continuous,
+        has_next_available_actions=self._has_next_available_actions,
+        has_cost_available=self.has_cost_available,
+    )</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.replay_buffers.replay_buffer.ReplayBuffer" href="replay_buffer.html#pearl.replay_buffers.replay_buffer.ReplayBuffer">ReplayBuffer</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.replay_buffers.replay_buffer.ReplayBuffer.clear" href="replay_buffer.html#pearl.replay_buffers.replay_buffer.ReplayBuffer.clear">clear</a></code></li>
+<li><code><a title="pearl.replay_buffers.replay_buffer.ReplayBuffer.is_action_continuous" href="replay_buffer.html#pearl.replay_buffers.replay_buffer.ReplayBuffer.is_action_continuous">is_action_continuous</a></code></li>
+<li><code><a title="pearl.replay_buffers.replay_buffer.ReplayBuffer.push" href="replay_buffer.html#pearl.replay_buffers.replay_buffer.ReplayBuffer.push">push</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.replay_buffers" href="index.html">pearl.replay_buffers</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer" href="#pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer">TensorBasedReplayBuffer</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer.device" href="#pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer.device">device</a></code></li>
+<li><code><a title="pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer.sample" href="#pearl.replay_buffers.tensor_based_replay_buffer.TensorBasedReplayBuffer.sample">sample</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

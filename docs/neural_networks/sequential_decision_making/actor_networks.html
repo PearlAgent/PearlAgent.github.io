@@ -1,0 +1,1751 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.neural_networks.sequential_decision_making.actor_networks API documentation</title>
+<meta name="description" content="This module defines several types of actor neural networks." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.neural_networks.sequential_decision_making.actor_networks</code></h1>
+</header>
+<section id="section-intro">
+<p>This module defines several types of actor neural networks.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+This module defines several types of actor neural networks.
+&#34;&#34;&#34;
+
+
+from typing import List, Optional, Tuple, Union
+
+import torch
+import torch.nn as nn
+
+from pearl.api.action_space import ActionSpace
+from pearl.neural_networks.common.utils import mlp_block
+from pearl.utils.instantiations.spaces.box_action import BoxActionSpace
+
+from torch import Tensor
+from torch.distributions import Normal
+
+
+def action_scaling(
+    action_space: ActionSpace, input_action: torch.Tensor
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Center and scale input action from [-1, 1]^{action_dim} to [low, high]^{action_dim}.
+    Use cases:
+        - For continuous action spaces, actor networks output &#34;normalized_actions&#34;,
+            i.e. actions in the range [-1, 1]^{action_dim}.
+
+    Note: the action space is not assumed to be symmetric (low = -high).
+
+    Args:
+        action_space: the action space
+        input_action: the input action vector to be scaled
+    Returns:
+        scaled_action: centered and scaled input action vector, according to the action space
+    &#34;&#34;&#34;
+    assert isinstance(action_space, BoxActionSpace)
+    device = input_action.device
+    low = action_space.low.clone().detach().to(device)
+    high = action_space.high.clone().detach().to(device)
+    centered_and_scaled_action = (((high - low) * (input_action + 1.0)) / 2) + low
+    return centered_and_scaled_action
+
+
+def noise_scaling(action_space: ActionSpace, input_noise: torch.Tensor) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    This function rescales any input vector from [-1, 1]^{action_dim} to [low, high]^{action_dim}.
+    Use case:
+        - For noise based exploration, we need to scale the noise (for example, from the standard
+            normal distribution) according to the action space.
+
+    Args:
+        action_space: the action space
+        input_vector: the input vector to be scaled
+    Returns:
+        torch.Tensor: scaled input vector, according to the action space
+    &#34;&#34;&#34;
+    assert isinstance(action_space, BoxActionSpace)
+    device = input_noise.device
+    low = torch.tensor(action_space.low).to(device)
+    high = torch.tensor(action_space.high).to(device)
+    scaled_noise = ((high - low) / 2) * input_noise
+    return scaled_noise
+
+
+class ActorNetwork(nn.Module):
+    &#34;&#34;&#34;
+    An interface for actor networks.
+    IMPORTANT: the __init__ method specifies parameters for type-checking purposes only.
+    It does NOT store them in attributes.
+    Dealing with these parameters is left to subclasses.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int,
+        action_space: Optional[ActionSpace] = None,
+    ) -&gt; None:
+        super(ActorNetwork, self).__init__()
+
+
+class VanillaActorNetwork(ActorNetwork):
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int,
+        action_space: Optional[ActionSpace] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;A Vanilla Actor Network is meant to be used with discrete action spaces.
+           For an input state (batch of states), it outputs a probability distribution over
+           all the actions.
+
+        Args:
+            input_dim: input state dimension (or dim of the state representation)
+            hidden_dims: list of hidden layer dimensions
+            output_dim: number of actions (action_space.n when used with the DiscreteActionSpace
+                        class)
+        &#34;&#34;&#34;
+        super(VanillaActorNetwork, self).__init__(
+            input_dim, hidden_dims, output_dim, action_space
+        )
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            last_activation=&#34;softmax&#34;,
+        )
+
+    def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+        return self._model(x)
+
+    def get_policy_distribution(
+        self,
+        state_batch: torch.Tensor,
+        available_actions: Optional[torch.Tensor] = None,
+        unavailable_actions_mask: Optional[torch.Tensor] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Gets a policy distribution from a discrete actor network.
+        The policy distribution is defined by the softmax of the output of the network.
+
+        Args:
+            state_batch: batch of states with shape (batch_size, state_dim) or (state_dim)
+            available_actions and unavailable_actions_mask are not used in this parent class.
+        &#34;&#34;&#34;
+        policy_distribution = self.forward(
+            state_batch
+        )  # shape (batch_size, available_actions) or (available_actions)
+        return policy_distribution
+
+    def get_action_prob(
+        self,
+        state_batch: torch.Tensor,
+        action_batch: torch.Tensor,
+        available_actions: Optional[torch.Tensor] = None,
+        unavailable_actions_mask: Optional[torch.Tensor] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Gets probabilities of different actions from a discrete actor network.
+        Assumes that the input batch of actions is one-hot encoded
+            (generalize it later).
+
+        Args:
+            state_batch: batch of states with shape (batch_size, input_dim)
+            action_batch: batch of actions with shape (batch_size, output_dim)
+        Returns:
+            action_probs: probabilities of each action in the batch with shape (batch_size)
+        &#34;&#34;&#34;
+        all_action_probs = self.forward(state_batch)  # shape: (batch_size, output_dim)
+        action_probs = torch.sum(all_action_probs * action_batch, dim=1, keepdim=True)
+
+        return action_probs.view(-1)
+
+
+class DynamicActionActorNetwork(VanillaActorNetwork):
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int = 1,
+        action_space: Optional[ActionSpace] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;A DynamicActionActorNetwork is meant to be used with discrete dynamic action spaces.
+           For an input state (batch of states), and a batch of actions, it outputs a probability of
+           each action.
+
+        Args:
+            input_dim: input state + action (representation) dimension
+            hidden_dims: list of hidden layer dimensions
+            output_dim: expect to be 1
+        &#34;&#34;&#34;
+        super(DynamicActionActorNetwork, self).__init__(
+            input_dim, hidden_dims, output_dim, action_space
+        )
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            last_activation=&#34;linear&#34;,
+        )
+
+    def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+        return self._model(x)
+
+    def get_policy_distribution(
+        self,
+        state_batch: torch.Tensor,
+        available_actions: Optional[torch.Tensor] = None,
+        unavailable_actions_mask: Optional[torch.Tensor] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Gets a policy distribution from a dynamic action space discrete actor network.
+        This function takes in a mask that identifies the unavailable actions.
+        Each action is parameterized by a vector.
+        The policy distribution is defined by the softmax of the output of the network.
+
+        Args:
+            state_batch: batch of states with shape (batch_size, state_dim) or (state_dim)
+            available_actions: optional tensor containing the indices of available actions
+                with shape (batch_size, max_number_actions, action_dim)
+                or (max_number_actions, action_dim)
+            unavailable_actions_mask: optional tensor containing the mask of unavailable actions
+                with shape (batch_size, max_number_actions) or (max_number_actions)
+        &#34;&#34;&#34;
+        assert available_actions is not None
+        if len(state_batch.shape) == 1:
+            state_batch = state_batch.unsqueeze(0)
+            available_actions = available_actions.unsqueeze(0)
+
+        batch_size = state_batch.shape[0]
+        state_batch_repeated = state_batch.unsqueeze(-2).repeat(
+            1, available_actions.shape[1], 1
+        )  # shape (batch_size, max_number_actions, state_dim)
+        state_actions_batch = torch.cat(
+            [state_batch_repeated, available_actions], dim=-1
+        )  # shape (batch_size, max_number_actions, state_dim+action_dim)
+        policy_dist = self.forward(
+            state_actions_batch
+        )  # shape (batch_size, max_number_actions, 1)
+        if unavailable_actions_mask is not None:
+            policy_dist[unavailable_actions_mask] = -float(&#34;inf&#34;)
+
+        policy_dist = torch.softmax(
+            policy_dist.view((batch_size, -1)), dim=-1
+        )  # shape (batch_size, max_number_actions)
+        if batch_size == 1:
+            policy_dist = policy_dist.view((-1))
+        return policy_dist  # shape (batch_size, max_number_actions) or (max_number_actions)
+
+    def get_action_prob(
+        self,
+        state_batch: torch.Tensor,
+        action_batch: torch.Tensor,
+        available_actions: Optional[torch.Tensor] = None,
+        unavailable_actions_mask: Optional[torch.Tensor] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Gets probabilities of different actions from a discrete actor network in a dynamic action
+        space. This function takes in a mask that identifies the unavailable actions.
+        Each action is parameterized by a vector.
+
+        Args:
+            state_batch: batch of states with shape (batch_size, state_dim)
+            action_batch: batch of actions with shape (batch_size, action_dim)
+            available_action_spaces_batch: batch of actions with shape
+                (batch_size, max_number_actions, action_dim) or (max_number_actions, action_dim)
+            unavailable_action_spaces_mask: mask of unavailable action spaces with shape
+                (batch_size, max_number_actions) or (max_number_actions)
+        Returns:
+            action_probs: probabilities of each action in the batch with shape (batch_size)
+        &#34;&#34;&#34;
+        assert available_actions is not None
+
+        batch_size = action_batch.shape[0]
+        if state_batch.shape[0] != batch_size:
+            state_batch = state_batch.repeat(batch_size, 1)
+        available_actions_batch = (
+            available_actions.unsqueeze(0).repeat(batch_size, 1, 1)
+            if len(available_actions.shape) == 2
+            else available_actions
+        )  # shape (batch_size, max_number_actions, action_dim)
+        # Find the corresponding action index from available_action_spaces_batch
+        # Note that we need to find the idx here because action indices are not permanent
+        actions_expanded = action_batch.unsqueeze(
+            1
+        )  # shape (batch_size, 1, action_dim)
+        comparison = (
+            actions_expanded == available_actions_batch
+        )  # shape (batch_size, max_number_actions, action_dim)
+        all_equal = comparison.all(dim=2)  # shape (batch_size, max_number_actions)
+        if unavailable_actions_mask is not None:
+            all_equal = torch.logical_and(
+                all_equal, torch.logical_not(unavailable_actions_mask)
+            )  # shape (batch_size, max_number_actions)
+
+        action_idx = all_equal.nonzero(as_tuple=True)[1].reshape(
+            -1, 1
+        )  # shape (batch_size)
+
+        state_repeated = state_batch.unsqueeze(1).repeat(
+            1, available_actions_batch.shape[1], 1
+        )  # shape (batch_size, max_number_actions, state_dim)
+        input_batch = torch.cat((state_repeated, available_actions_batch), dim=-1)
+        all_action_probs = self.forward(input_batch).view(
+            (batch_size, -1)
+        )  # shape: (batch_size, max_number_actions)
+        if unavailable_actions_mask is not None:
+            all_action_probs[unavailable_actions_mask] = -float(&#34;inf&#34;)
+
+        action_probs_for_all = torch.softmax(
+            all_action_probs, dim=-1
+        )  # shape: (batch_size, max_number_actions)
+        action_probs = action_probs_for_all.gather(
+            1, action_idx
+        )  # shape: (batch_size, 1)
+
+        return action_probs.view(-1)
+
+
+class VanillaContinuousActorNetwork(ActorNetwork):
+    &#34;&#34;&#34;
+    This is vanilla version of deterministic actor network
+    Given input state, output an action vector
+    Args
+        output_dim: action dimension
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int,
+        action_space: ActionSpace,
+    ) -&gt; None:
+        super(VanillaContinuousActorNetwork, self).__init__(
+            input_dim, hidden_dims, output_dim, action_space
+        )
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            last_activation=&#34;tanh&#34;,
+        )
+        self._action_space = action_space
+
+    def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+        return self._model(x)
+
+    def sample_action(self, x: torch.Tensor) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Sample an action from the actor network.
+        Args:
+            x: input state
+        Returns:
+            action: sampled action, scaled to the action space bounds
+        &#34;&#34;&#34;
+        normalized_action = self._model(x)
+        action = action_scaling(self._action_space, normalized_action)
+        return action
+
+
+class GaussianActorNetwork(ActorNetwork):
+    &#34;&#34;&#34;
+    A multivariate gaussian actor network: parameterize the policy (action distirbution)
+    as a multivariate gaussian. Given input state, the network outputs a pair of
+    (mu, sigma), where mu is the mean of the Gaussian distribution, and sigma is its
+    standard deviation along different dimensions.
+       - Note: action distribution is assumed to be independent across different
+         dimensions
+    Args:
+        input_dim: input state dimension
+        hidden_dims: list of hidden layer dimensions; cannot pass an empty list
+        output_dim: action dimension
+        action_space: action space
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: List[int],
+        output_dim: int,
+        action_space: ActionSpace,
+    ) -&gt; None:
+        super(GaussianActorNetwork, self).__init__(
+            input_dim, hidden_dims, output_dim, action_space
+        )
+        if len(hidden_dims) &lt; 1:
+            raise ValueError(
+                &#34;The hidden dims cannot be empty for a gaussian actor network.&#34;
+            )
+
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims[:-1],
+            output_dim=hidden_dims[-1],
+            last_activation=&#34;relu&#34;,
+        )
+        self.fc_mu = torch.nn.Linear(hidden_dims[-1], output_dim)
+        self.fc_std = torch.nn.Linear(hidden_dims[-1], output_dim)
+        self._action_space = action_space
+        # check this for multi-dimensional spaces
+        assert isinstance(action_space, BoxActionSpace)
+        self.register_buffer(
+            &#34;_action_bound&#34;,
+            (action_space.high.clone().detach() - action_space.low.clone().detach())
+            / 2,
+        )
+
+        # preventing the actor network from learning a flat or a point mass distribution
+        self._log_std_min = -5
+        self._log_std_max = 2
+
+    def forward(self, x: torch.Tensor) -&gt; Tuple[torch.Tensor, torch.Tensor]:
+        x = self._model(x)
+        mean = self.fc_mu(x)
+        log_std = self.fc_std(x)
+        # log_std = torch.clamp(log_std, min=self._log_std_min, max=self._log_std_max)
+
+        # alternate to standard clamping; not sure if it makes a difference but still
+        # trying out
+        log_std = torch.tanh(log_std)
+        log_std = self._log_std_min + 0.5 * (self._log_std_max - self._log_std_min) * (
+            log_std + 1
+        )
+        return mean, log_std
+
+    def sample_action(
+        self, state_batch: Tensor, get_log_prob: bool = False
+    ) -&gt; Union[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]]:
+        &#34;&#34;&#34;
+        Sample an action from the actor network.
+
+        Args:
+            state_batch: A tensor of states.  # TODO: Enforce batch shape?
+            get_log_prob: If True, also return the log probability of the sampled actions.
+
+        Returns:
+            action: Sampled action, scaled to the action space bounds.
+        &#34;&#34;&#34;
+        epsilon = 1e-6
+        mean, log_std = self.forward(state_batch)
+        std = log_std.exp()
+        normal = Normal(mean, std)
+        sample = normal.rsample()  # reparameterization trick
+
+        # ensure sampled action is within [-1, 1]^{action_dim}
+        normalized_action = torch.tanh(sample)
+
+        # clamp each action dimension to prevent numerical issues in tanh
+        # normalized_action.clamp(-1 + epsilon, 1 - epsilon)
+        action = action_scaling(self._action_space, normalized_action)
+
+        log_prob = normal.log_prob(sample)
+        log_prob -= torch.log(
+            self._action_bound * (1 - normalized_action.pow(2)) + epsilon
+        )
+
+        # for multi-dimensional action space, sum log probabilities over individual
+        # action dimension
+        if log_prob.dim() == 2:
+            log_prob = log_prob.sum(dim=1, keepdim=True)
+
+        if get_log_prob:
+            return action, log_prob
+        else:
+            return action
+
+    def get_log_probability(
+        self, state_batch: torch.Tensor, action_batch: torch.Tensor
+    ) -&gt; Tensor:
+        &#34;&#34;&#34;
+        Compute log probability of actions, pi(a|s) under the policy parameterized by
+        the actor network.
+        Args:
+            state_batch: batch of states
+            action_batch: batch of actions
+        Returns:
+            log_prob: log probability of each action in the batch
+        &#34;&#34;&#34;
+        epsilon = 1e-6
+        mean, log_std = self.forward(state_batch)
+        std = log_std.exp()
+        normal = Normal(mean, std)
+
+        # assume that input actions are in [-1, 1]^d
+        # TODO: change this to add a transform for unscaling and uncentering depending on the
+        # action space
+        unscaled_action_batch = torch.clip(action_batch, -1 + epsilon, 1 - epsilon)
+
+        # transform actions from [-1, 1]^d to [-inf, inf]^d
+        unnormalized_action_batch = torch.atanh(unscaled_action_batch)
+        log_prob = normal.log_prob(unnormalized_action_batch)
+        log_prob -= torch.log(
+            self._action_bound * (1 - unscaled_action_batch.pow(2)) + epsilon
+        )
+
+        # for multi-dimensional action space, sum log probabilities over individual
+        # action dimension
+        if log_prob.dim() == 2:
+            log_prob = log_prob.sum(dim=1, keepdim=True)
+
+        return log_prob</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.action_scaling"><code class="name flex">
+<span>def <span class="ident">action_scaling</span></span>(<span>action_space: <a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>, input_action: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Center and scale input action from [-1, 1]^{action_dim} to [low, high]^{action_dim}.
+Use cases:
+- For continuous action spaces, actor networks output "normalized_actions",
+i.e. actions in the range [-1, 1]^{action_dim}.</p>
+<p>Note: the action space is not assumed to be symmetric (low = -high).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>action_space</code></strong></dt>
+<dd>the action space</dd>
+<dt><strong><code>input_action</code></strong></dt>
+<dd>the input action vector to be scaled</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>scaled_action</code></dt>
+<dd>centered and scaled input action vector, according to the action space</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def action_scaling(
+    action_space: ActionSpace, input_action: torch.Tensor
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Center and scale input action from [-1, 1]^{action_dim} to [low, high]^{action_dim}.
+    Use cases:
+        - For continuous action spaces, actor networks output &#34;normalized_actions&#34;,
+            i.e. actions in the range [-1, 1]^{action_dim}.
+
+    Note: the action space is not assumed to be symmetric (low = -high).
+
+    Args:
+        action_space: the action space
+        input_action: the input action vector to be scaled
+    Returns:
+        scaled_action: centered and scaled input action vector, according to the action space
+    &#34;&#34;&#34;
+    assert isinstance(action_space, BoxActionSpace)
+    device = input_action.device
+    low = action_space.low.clone().detach().to(device)
+    high = action_space.high.clone().detach().to(device)
+    centered_and_scaled_action = (((high - low) * (input_action + 1.0)) / 2) + low
+    return centered_and_scaled_action</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.noise_scaling"><code class="name flex">
+<span>def <span class="ident">noise_scaling</span></span>(<span>action_space: <a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>, input_noise: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function rescales any input vector from [-1, 1]^{action_dim} to [low, high]^{action_dim}.
+Use case:
+- For noise based exploration, we need to scale the noise (for example, from the standard
+normal distribution) according to the action space.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>action_space</code></strong></dt>
+<dd>the action space</dd>
+<dt><strong><code>input_vector</code></strong></dt>
+<dd>the input vector to be scaled</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>torch.Tensor</code></dt>
+<dd>scaled input vector, according to the action space</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def noise_scaling(action_space: ActionSpace, input_noise: torch.Tensor) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    This function rescales any input vector from [-1, 1]^{action_dim} to [low, high]^{action_dim}.
+    Use case:
+        - For noise based exploration, we need to scale the noise (for example, from the standard
+            normal distribution) according to the action space.
+
+    Args:
+        action_space: the action space
+        input_vector: the input vector to be scaled
+    Returns:
+        torch.Tensor: scaled input vector, according to the action space
+    &#34;&#34;&#34;
+    assert isinstance(action_space, BoxActionSpace)
+    device = input_noise.device
+    low = torch.tensor(action_space.low).to(device)
+    high = torch.tensor(action_space.high).to(device)
+    scaled_noise = ((high - low) / 2) * input_noise
+    return scaled_noise</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork"><code class="flex name class">
+<span>class <span class="ident">ActorNetwork</span></span>
+<span>(</span><span>input_dim: int, hidden_dims: Optional[List[int]], output_dim: int, action_space: Optional[<a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An interface for actor networks.
+IMPORTANT: the <strong>init</strong> method specifies parameters for type-checking purposes only.
+It does NOT store them in attributes.
+Dealing with these parameters is left to subclasses.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ActorNetwork(nn.Module):
+    &#34;&#34;&#34;
+    An interface for actor networks.
+    IMPORTANT: the __init__ method specifies parameters for type-checking purposes only.
+    It does NOT store them in attributes.
+    Dealing with these parameters is left to subclasses.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int,
+        action_space: Optional[ActionSpace] = None,
+    ) -&gt; None:
+        super(ActorNetwork, self).__init__()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork">GaussianActorNetwork</a></li>
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork">VanillaActorNetwork</a></li>
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork">VanillaContinuousActorNetwork</a></li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork"><code class="flex name class">
+<span>class <span class="ident">DynamicActionActorNetwork</span></span>
+<span>(</span><span>input_dim: int, hidden_dims: Optional[List[int]], output_dim: int = 1, action_space: Optional[<a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An interface for actor networks.
+IMPORTANT: the <strong>init</strong> method specifies parameters for type-checking purposes only.
+It does NOT store them in attributes.
+Dealing with these parameters is left to subclasses.</p>
+<p>A DynamicActionActorNetwork is meant to be used with discrete dynamic action spaces.
+For an input state (batch of states), and a batch of actions, it outputs a probability of
+each action.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>input_dim</code></strong></dt>
+<dd>input state + action (representation) dimension</dd>
+<dt><strong><code>hidden_dims</code></strong></dt>
+<dd>list of hidden layer dimensions</dd>
+<dt><strong><code>output_dim</code></strong></dt>
+<dd>expect to be 1</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DynamicActionActorNetwork(VanillaActorNetwork):
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int = 1,
+        action_space: Optional[ActionSpace] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;A DynamicActionActorNetwork is meant to be used with discrete dynamic action spaces.
+           For an input state (batch of states), and a batch of actions, it outputs a probability of
+           each action.
+
+        Args:
+            input_dim: input state + action (representation) dimension
+            hidden_dims: list of hidden layer dimensions
+            output_dim: expect to be 1
+        &#34;&#34;&#34;
+        super(DynamicActionActorNetwork, self).__init__(
+            input_dim, hidden_dims, output_dim, action_space
+        )
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            last_activation=&#34;linear&#34;,
+        )
+
+    def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+        return self._model(x)
+
+    def get_policy_distribution(
+        self,
+        state_batch: torch.Tensor,
+        available_actions: Optional[torch.Tensor] = None,
+        unavailable_actions_mask: Optional[torch.Tensor] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Gets a policy distribution from a dynamic action space discrete actor network.
+        This function takes in a mask that identifies the unavailable actions.
+        Each action is parameterized by a vector.
+        The policy distribution is defined by the softmax of the output of the network.
+
+        Args:
+            state_batch: batch of states with shape (batch_size, state_dim) or (state_dim)
+            available_actions: optional tensor containing the indices of available actions
+                with shape (batch_size, max_number_actions, action_dim)
+                or (max_number_actions, action_dim)
+            unavailable_actions_mask: optional tensor containing the mask of unavailable actions
+                with shape (batch_size, max_number_actions) or (max_number_actions)
+        &#34;&#34;&#34;
+        assert available_actions is not None
+        if len(state_batch.shape) == 1:
+            state_batch = state_batch.unsqueeze(0)
+            available_actions = available_actions.unsqueeze(0)
+
+        batch_size = state_batch.shape[0]
+        state_batch_repeated = state_batch.unsqueeze(-2).repeat(
+            1, available_actions.shape[1], 1
+        )  # shape (batch_size, max_number_actions, state_dim)
+        state_actions_batch = torch.cat(
+            [state_batch_repeated, available_actions], dim=-1
+        )  # shape (batch_size, max_number_actions, state_dim+action_dim)
+        policy_dist = self.forward(
+            state_actions_batch
+        )  # shape (batch_size, max_number_actions, 1)
+        if unavailable_actions_mask is not None:
+            policy_dist[unavailable_actions_mask] = -float(&#34;inf&#34;)
+
+        policy_dist = torch.softmax(
+            policy_dist.view((batch_size, -1)), dim=-1
+        )  # shape (batch_size, max_number_actions)
+        if batch_size == 1:
+            policy_dist = policy_dist.view((-1))
+        return policy_dist  # shape (batch_size, max_number_actions) or (max_number_actions)
+
+    def get_action_prob(
+        self,
+        state_batch: torch.Tensor,
+        action_batch: torch.Tensor,
+        available_actions: Optional[torch.Tensor] = None,
+        unavailable_actions_mask: Optional[torch.Tensor] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Gets probabilities of different actions from a discrete actor network in a dynamic action
+        space. This function takes in a mask that identifies the unavailable actions.
+        Each action is parameterized by a vector.
+
+        Args:
+            state_batch: batch of states with shape (batch_size, state_dim)
+            action_batch: batch of actions with shape (batch_size, action_dim)
+            available_action_spaces_batch: batch of actions with shape
+                (batch_size, max_number_actions, action_dim) or (max_number_actions, action_dim)
+            unavailable_action_spaces_mask: mask of unavailable action spaces with shape
+                (batch_size, max_number_actions) or (max_number_actions)
+        Returns:
+            action_probs: probabilities of each action in the batch with shape (batch_size)
+        &#34;&#34;&#34;
+        assert available_actions is not None
+
+        batch_size = action_batch.shape[0]
+        if state_batch.shape[0] != batch_size:
+            state_batch = state_batch.repeat(batch_size, 1)
+        available_actions_batch = (
+            available_actions.unsqueeze(0).repeat(batch_size, 1, 1)
+            if len(available_actions.shape) == 2
+            else available_actions
+        )  # shape (batch_size, max_number_actions, action_dim)
+        # Find the corresponding action index from available_action_spaces_batch
+        # Note that we need to find the idx here because action indices are not permanent
+        actions_expanded = action_batch.unsqueeze(
+            1
+        )  # shape (batch_size, 1, action_dim)
+        comparison = (
+            actions_expanded == available_actions_batch
+        )  # shape (batch_size, max_number_actions, action_dim)
+        all_equal = comparison.all(dim=2)  # shape (batch_size, max_number_actions)
+        if unavailable_actions_mask is not None:
+            all_equal = torch.logical_and(
+                all_equal, torch.logical_not(unavailable_actions_mask)
+            )  # shape (batch_size, max_number_actions)
+
+        action_idx = all_equal.nonzero(as_tuple=True)[1].reshape(
+            -1, 1
+        )  # shape (batch_size)
+
+        state_repeated = state_batch.unsqueeze(1).repeat(
+            1, available_actions_batch.shape[1], 1
+        )  # shape (batch_size, max_number_actions, state_dim)
+        input_batch = torch.cat((state_repeated, available_actions_batch), dim=-1)
+        all_action_probs = self.forward(input_batch).view(
+            (batch_size, -1)
+        )  # shape: (batch_size, max_number_actions)
+        if unavailable_actions_mask is not None:
+            all_action_probs[unavailable_actions_mask] = -float(&#34;inf&#34;)
+
+        action_probs_for_all = torch.softmax(
+            all_action_probs, dim=-1
+        )  # shape: (batch_size, max_number_actions)
+        action_probs = action_probs_for_all.gather(
+            1, action_idx
+        )  # shape: (batch_size, 1)
+
+        return action_probs.view(-1)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork">VanillaActorNetwork</a></li>
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork">ActorNetwork</a></li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork.get_action_prob"><code class="name flex">
+<span>def <span class="ident">get_action_prob</span></span>(<span>self, state_batch: torch.Tensor, action_batch: torch.Tensor, available_actions: Optional[torch.Tensor] = None, unavailable_actions_mask: Optional[torch.Tensor] = None) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets probabilities of different actions from a discrete actor network in a dynamic action
+space. This function takes in a mask that identifies the unavailable actions.
+Each action is parameterized by a vector.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state_batch</code></strong></dt>
+<dd>batch of states with shape (batch_size, state_dim)</dd>
+<dt><strong><code>action_batch</code></strong></dt>
+<dd>batch of actions with shape (batch_size, action_dim)</dd>
+<dt><strong><code>available_action_spaces_batch</code></strong></dt>
+<dd>batch of actions with shape
+(batch_size, max_number_actions, action_dim) or (max_number_actions, action_dim)</dd>
+<dt><strong><code>unavailable_action_spaces_mask</code></strong></dt>
+<dd>mask of unavailable action spaces with shape
+(batch_size, max_number_actions) or (max_number_actions)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>action_probs</code></dt>
+<dd>probabilities of each action in the batch with shape (batch_size)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_action_prob(
+    self,
+    state_batch: torch.Tensor,
+    action_batch: torch.Tensor,
+    available_actions: Optional[torch.Tensor] = None,
+    unavailable_actions_mask: Optional[torch.Tensor] = None,
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Gets probabilities of different actions from a discrete actor network in a dynamic action
+    space. This function takes in a mask that identifies the unavailable actions.
+    Each action is parameterized by a vector.
+
+    Args:
+        state_batch: batch of states with shape (batch_size, state_dim)
+        action_batch: batch of actions with shape (batch_size, action_dim)
+        available_action_spaces_batch: batch of actions with shape
+            (batch_size, max_number_actions, action_dim) or (max_number_actions, action_dim)
+        unavailable_action_spaces_mask: mask of unavailable action spaces with shape
+            (batch_size, max_number_actions) or (max_number_actions)
+    Returns:
+        action_probs: probabilities of each action in the batch with shape (batch_size)
+    &#34;&#34;&#34;
+    assert available_actions is not None
+
+    batch_size = action_batch.shape[0]
+    if state_batch.shape[0] != batch_size:
+        state_batch = state_batch.repeat(batch_size, 1)
+    available_actions_batch = (
+        available_actions.unsqueeze(0).repeat(batch_size, 1, 1)
+        if len(available_actions.shape) == 2
+        else available_actions
+    )  # shape (batch_size, max_number_actions, action_dim)
+    # Find the corresponding action index from available_action_spaces_batch
+    # Note that we need to find the idx here because action indices are not permanent
+    actions_expanded = action_batch.unsqueeze(
+        1
+    )  # shape (batch_size, 1, action_dim)
+    comparison = (
+        actions_expanded == available_actions_batch
+    )  # shape (batch_size, max_number_actions, action_dim)
+    all_equal = comparison.all(dim=2)  # shape (batch_size, max_number_actions)
+    if unavailable_actions_mask is not None:
+        all_equal = torch.logical_and(
+            all_equal, torch.logical_not(unavailable_actions_mask)
+        )  # shape (batch_size, max_number_actions)
+
+    action_idx = all_equal.nonzero(as_tuple=True)[1].reshape(
+        -1, 1
+    )  # shape (batch_size)
+
+    state_repeated = state_batch.unsqueeze(1).repeat(
+        1, available_actions_batch.shape[1], 1
+    )  # shape (batch_size, max_number_actions, state_dim)
+    input_batch = torch.cat((state_repeated, available_actions_batch), dim=-1)
+    all_action_probs = self.forward(input_batch).view(
+        (batch_size, -1)
+    )  # shape: (batch_size, max_number_actions)
+    if unavailable_actions_mask is not None:
+        all_action_probs[unavailable_actions_mask] = -float(&#34;inf&#34;)
+
+    action_probs_for_all = torch.softmax(
+        all_action_probs, dim=-1
+    )  # shape: (batch_size, max_number_actions)
+    action_probs = action_probs_for_all.gather(
+        1, action_idx
+    )  # shape: (batch_size, 1)
+
+    return action_probs.view(-1)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork.get_policy_distribution"><code class="name flex">
+<span>def <span class="ident">get_policy_distribution</span></span>(<span>self, state_batch: torch.Tensor, available_actions: Optional[torch.Tensor] = None, unavailable_actions_mask: Optional[torch.Tensor] = None) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets a policy distribution from a dynamic action space discrete actor network.
+This function takes in a mask that identifies the unavailable actions.
+Each action is parameterized by a vector.
+The policy distribution is defined by the softmax of the output of the network.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state_batch</code></strong></dt>
+<dd>batch of states with shape (batch_size, state_dim) or (state_dim)</dd>
+<dt><strong><code>available_actions</code></strong></dt>
+<dd>optional tensor containing the indices of available actions
+with shape (batch_size, max_number_actions, action_dim)
+or (max_number_actions, action_dim)</dd>
+<dt><strong><code>unavailable_actions_mask</code></strong></dt>
+<dd>optional tensor containing the mask of unavailable actions
+with shape (batch_size, max_number_actions) or (max_number_actions)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_policy_distribution(
+    self,
+    state_batch: torch.Tensor,
+    available_actions: Optional[torch.Tensor] = None,
+    unavailable_actions_mask: Optional[torch.Tensor] = None,
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Gets a policy distribution from a dynamic action space discrete actor network.
+    This function takes in a mask that identifies the unavailable actions.
+    Each action is parameterized by a vector.
+    The policy distribution is defined by the softmax of the output of the network.
+
+    Args:
+        state_batch: batch of states with shape (batch_size, state_dim) or (state_dim)
+        available_actions: optional tensor containing the indices of available actions
+            with shape (batch_size, max_number_actions, action_dim)
+            or (max_number_actions, action_dim)
+        unavailable_actions_mask: optional tensor containing the mask of unavailable actions
+            with shape (batch_size, max_number_actions) or (max_number_actions)
+    &#34;&#34;&#34;
+    assert available_actions is not None
+    if len(state_batch.shape) == 1:
+        state_batch = state_batch.unsqueeze(0)
+        available_actions = available_actions.unsqueeze(0)
+
+    batch_size = state_batch.shape[0]
+    state_batch_repeated = state_batch.unsqueeze(-2).repeat(
+        1, available_actions.shape[1], 1
+    )  # shape (batch_size, max_number_actions, state_dim)
+    state_actions_batch = torch.cat(
+        [state_batch_repeated, available_actions], dim=-1
+    )  # shape (batch_size, max_number_actions, state_dim+action_dim)
+    policy_dist = self.forward(
+        state_actions_batch
+    )  # shape (batch_size, max_number_actions, 1)
+    if unavailable_actions_mask is not None:
+        policy_dist[unavailable_actions_mask] = -float(&#34;inf&#34;)
+
+    policy_dist = torch.softmax(
+        policy_dist.view((batch_size, -1)), dim=-1
+    )  # shape (batch_size, max_number_actions)
+    if batch_size == 1:
+        policy_dist = policy_dist.view((-1))
+    return policy_dist  # shape (batch_size, max_number_actions) or (max_number_actions)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork">VanillaActorNetwork</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.forward" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.forward">forward</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork"><code class="flex name class">
+<span>class <span class="ident">GaussianActorNetwork</span></span>
+<span>(</span><span>input_dim: int, hidden_dims: List[int], output_dim: int, action_space: <a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A multivariate gaussian actor network: parameterize the policy (action distirbution)
+as a multivariate gaussian. Given input state, the network outputs a pair of
+(mu, sigma), where mu is the mean of the Gaussian distribution, and sigma is its
+standard deviation along different dimensions.
+- Note: action distribution is assumed to be independent across different
+dimensions</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>input_dim</code></strong></dt>
+<dd>input state dimension</dd>
+<dt><strong><code>hidden_dims</code></strong></dt>
+<dd>list of hidden layer dimensions; cannot pass an empty list</dd>
+<dt><strong><code>output_dim</code></strong></dt>
+<dd>action dimension</dd>
+<dt><strong><code>action_space</code></strong></dt>
+<dd>action space</dd>
+</dl>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GaussianActorNetwork(ActorNetwork):
+    &#34;&#34;&#34;
+    A multivariate gaussian actor network: parameterize the policy (action distirbution)
+    as a multivariate gaussian. Given input state, the network outputs a pair of
+    (mu, sigma), where mu is the mean of the Gaussian distribution, and sigma is its
+    standard deviation along different dimensions.
+       - Note: action distribution is assumed to be independent across different
+         dimensions
+    Args:
+        input_dim: input state dimension
+        hidden_dims: list of hidden layer dimensions; cannot pass an empty list
+        output_dim: action dimension
+        action_space: action space
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: List[int],
+        output_dim: int,
+        action_space: ActionSpace,
+    ) -&gt; None:
+        super(GaussianActorNetwork, self).__init__(
+            input_dim, hidden_dims, output_dim, action_space
+        )
+        if len(hidden_dims) &lt; 1:
+            raise ValueError(
+                &#34;The hidden dims cannot be empty for a gaussian actor network.&#34;
+            )
+
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims[:-1],
+            output_dim=hidden_dims[-1],
+            last_activation=&#34;relu&#34;,
+        )
+        self.fc_mu = torch.nn.Linear(hidden_dims[-1], output_dim)
+        self.fc_std = torch.nn.Linear(hidden_dims[-1], output_dim)
+        self._action_space = action_space
+        # check this for multi-dimensional spaces
+        assert isinstance(action_space, BoxActionSpace)
+        self.register_buffer(
+            &#34;_action_bound&#34;,
+            (action_space.high.clone().detach() - action_space.low.clone().detach())
+            / 2,
+        )
+
+        # preventing the actor network from learning a flat or a point mass distribution
+        self._log_std_min = -5
+        self._log_std_max = 2
+
+    def forward(self, x: torch.Tensor) -&gt; Tuple[torch.Tensor, torch.Tensor]:
+        x = self._model(x)
+        mean = self.fc_mu(x)
+        log_std = self.fc_std(x)
+        # log_std = torch.clamp(log_std, min=self._log_std_min, max=self._log_std_max)
+
+        # alternate to standard clamping; not sure if it makes a difference but still
+        # trying out
+        log_std = torch.tanh(log_std)
+        log_std = self._log_std_min + 0.5 * (self._log_std_max - self._log_std_min) * (
+            log_std + 1
+        )
+        return mean, log_std
+
+    def sample_action(
+        self, state_batch: Tensor, get_log_prob: bool = False
+    ) -&gt; Union[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]]:
+        &#34;&#34;&#34;
+        Sample an action from the actor network.
+
+        Args:
+            state_batch: A tensor of states.  # TODO: Enforce batch shape?
+            get_log_prob: If True, also return the log probability of the sampled actions.
+
+        Returns:
+            action: Sampled action, scaled to the action space bounds.
+        &#34;&#34;&#34;
+        epsilon = 1e-6
+        mean, log_std = self.forward(state_batch)
+        std = log_std.exp()
+        normal = Normal(mean, std)
+        sample = normal.rsample()  # reparameterization trick
+
+        # ensure sampled action is within [-1, 1]^{action_dim}
+        normalized_action = torch.tanh(sample)
+
+        # clamp each action dimension to prevent numerical issues in tanh
+        # normalized_action.clamp(-1 + epsilon, 1 - epsilon)
+        action = action_scaling(self._action_space, normalized_action)
+
+        log_prob = normal.log_prob(sample)
+        log_prob -= torch.log(
+            self._action_bound * (1 - normalized_action.pow(2)) + epsilon
+        )
+
+        # for multi-dimensional action space, sum log probabilities over individual
+        # action dimension
+        if log_prob.dim() == 2:
+            log_prob = log_prob.sum(dim=1, keepdim=True)
+
+        if get_log_prob:
+            return action, log_prob
+        else:
+            return action
+
+    def get_log_probability(
+        self, state_batch: torch.Tensor, action_batch: torch.Tensor
+    ) -&gt; Tensor:
+        &#34;&#34;&#34;
+        Compute log probability of actions, pi(a|s) under the policy parameterized by
+        the actor network.
+        Args:
+            state_batch: batch of states
+            action_batch: batch of actions
+        Returns:
+            log_prob: log probability of each action in the batch
+        &#34;&#34;&#34;
+        epsilon = 1e-6
+        mean, log_std = self.forward(state_batch)
+        std = log_std.exp()
+        normal = Normal(mean, std)
+
+        # assume that input actions are in [-1, 1]^d
+        # TODO: change this to add a transform for unscaling and uncentering depending on the
+        # action space
+        unscaled_action_batch = torch.clip(action_batch, -1 + epsilon, 1 - epsilon)
+
+        # transform actions from [-1, 1]^d to [-inf, inf]^d
+        unnormalized_action_batch = torch.atanh(unscaled_action_batch)
+        log_prob = normal.log_prob(unnormalized_action_batch)
+        log_prob -= torch.log(
+            self._action_bound * (1 - unscaled_action_batch.pow(2)) + epsilon
+        )
+
+        # for multi-dimensional action space, sum log probabilities over individual
+        # action dimension
+        if log_prob.dim() == 2:
+            log_prob = log_prob.sum(dim=1, keepdim=True)
+
+        return log_prob</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork">ActorNetwork</a></li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> Tuple[torch.Tensor, torch.Tensor]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: torch.Tensor) -&gt; Tuple[torch.Tensor, torch.Tensor]:
+    x = self._model(x)
+    mean = self.fc_mu(x)
+    log_std = self.fc_std(x)
+    # log_std = torch.clamp(log_std, min=self._log_std_min, max=self._log_std_max)
+
+    # alternate to standard clamping; not sure if it makes a difference but still
+    # trying out
+    log_std = torch.tanh(log_std)
+    log_std = self._log_std_min + 0.5 * (self._log_std_max - self._log_std_min) * (
+        log_std + 1
+    )
+    return mean, log_std</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.get_log_probability"><code class="name flex">
+<span>def <span class="ident">get_log_probability</span></span>(<span>self, state_batch: torch.Tensor, action_batch: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute log probability of actions, pi(a|s) under the policy parameterized by
+the actor network.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state_batch</code></strong></dt>
+<dd>batch of states</dd>
+<dt><strong><code>action_batch</code></strong></dt>
+<dd>batch of actions</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>log_prob</code></dt>
+<dd>log probability of each action in the batch</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_log_probability(
+    self, state_batch: torch.Tensor, action_batch: torch.Tensor
+) -&gt; Tensor:
+    &#34;&#34;&#34;
+    Compute log probability of actions, pi(a|s) under the policy parameterized by
+    the actor network.
+    Args:
+        state_batch: batch of states
+        action_batch: batch of actions
+    Returns:
+        log_prob: log probability of each action in the batch
+    &#34;&#34;&#34;
+    epsilon = 1e-6
+    mean, log_std = self.forward(state_batch)
+    std = log_std.exp()
+    normal = Normal(mean, std)
+
+    # assume that input actions are in [-1, 1]^d
+    # TODO: change this to add a transform for unscaling and uncentering depending on the
+    # action space
+    unscaled_action_batch = torch.clip(action_batch, -1 + epsilon, 1 - epsilon)
+
+    # transform actions from [-1, 1]^d to [-inf, inf]^d
+    unnormalized_action_batch = torch.atanh(unscaled_action_batch)
+    log_prob = normal.log_prob(unnormalized_action_batch)
+    log_prob -= torch.log(
+        self._action_bound * (1 - unscaled_action_batch.pow(2)) + epsilon
+    )
+
+    # for multi-dimensional action space, sum log probabilities over individual
+    # action dimension
+    if log_prob.dim() == 2:
+        log_prob = log_prob.sum(dim=1, keepdim=True)
+
+    return log_prob</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.sample_action"><code class="name flex">
+<span>def <span class="ident">sample_action</span></span>(<span>self, state_batch: torch.Tensor, get_log_prob: bool = False) ‑> Union[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sample an action from the actor network.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state_batch</code></strong></dt>
+<dd>A tensor of states.
+# TODO: Enforce batch shape?</dd>
+<dt><strong><code>get_log_prob</code></strong></dt>
+<dd>If True, also return the log probability of the sampled actions.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>action</code></dt>
+<dd>Sampled action, scaled to the action space bounds.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample_action(
+    self, state_batch: Tensor, get_log_prob: bool = False
+) -&gt; Union[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]]:
+    &#34;&#34;&#34;
+    Sample an action from the actor network.
+
+    Args:
+        state_batch: A tensor of states.  # TODO: Enforce batch shape?
+        get_log_prob: If True, also return the log probability of the sampled actions.
+
+    Returns:
+        action: Sampled action, scaled to the action space bounds.
+    &#34;&#34;&#34;
+    epsilon = 1e-6
+    mean, log_std = self.forward(state_batch)
+    std = log_std.exp()
+    normal = Normal(mean, std)
+    sample = normal.rsample()  # reparameterization trick
+
+    # ensure sampled action is within [-1, 1]^{action_dim}
+    normalized_action = torch.tanh(sample)
+
+    # clamp each action dimension to prevent numerical issues in tanh
+    # normalized_action.clamp(-1 + epsilon, 1 - epsilon)
+    action = action_scaling(self._action_space, normalized_action)
+
+    log_prob = normal.log_prob(sample)
+    log_prob -= torch.log(
+        self._action_bound * (1 - normalized_action.pow(2)) + epsilon
+    )
+
+    # for multi-dimensional action space, sum log probabilities over individual
+    # action dimension
+    if log_prob.dim() == 2:
+        log_prob = log_prob.sum(dim=1, keepdim=True)
+
+    if get_log_prob:
+        return action, log_prob
+    else:
+        return action</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork"><code class="flex name class">
+<span>class <span class="ident">VanillaActorNetwork</span></span>
+<span>(</span><span>input_dim: int, hidden_dims: Optional[List[int]], output_dim: int, action_space: Optional[<a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An interface for actor networks.
+IMPORTANT: the <strong>init</strong> method specifies parameters for type-checking purposes only.
+It does NOT store them in attributes.
+Dealing with these parameters is left to subclasses.</p>
+<p>A Vanilla Actor Network is meant to be used with discrete action spaces.
+For an input state (batch of states), it outputs a probability distribution over
+all the actions.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>input_dim</code></strong></dt>
+<dd>input state dimension (or dim of the state representation)</dd>
+<dt><strong><code>hidden_dims</code></strong></dt>
+<dd>list of hidden layer dimensions</dd>
+<dt><strong><code>output_dim</code></strong></dt>
+<dd>number of actions (action_space.n when used with the DiscreteActionSpace
+class)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VanillaActorNetwork(ActorNetwork):
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int,
+        action_space: Optional[ActionSpace] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;A Vanilla Actor Network is meant to be used with discrete action spaces.
+           For an input state (batch of states), it outputs a probability distribution over
+           all the actions.
+
+        Args:
+            input_dim: input state dimension (or dim of the state representation)
+            hidden_dims: list of hidden layer dimensions
+            output_dim: number of actions (action_space.n when used with the DiscreteActionSpace
+                        class)
+        &#34;&#34;&#34;
+        super(VanillaActorNetwork, self).__init__(
+            input_dim, hidden_dims, output_dim, action_space
+        )
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            last_activation=&#34;softmax&#34;,
+        )
+
+    def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+        return self._model(x)
+
+    def get_policy_distribution(
+        self,
+        state_batch: torch.Tensor,
+        available_actions: Optional[torch.Tensor] = None,
+        unavailable_actions_mask: Optional[torch.Tensor] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Gets a policy distribution from a discrete actor network.
+        The policy distribution is defined by the softmax of the output of the network.
+
+        Args:
+            state_batch: batch of states with shape (batch_size, state_dim) or (state_dim)
+            available_actions and unavailable_actions_mask are not used in this parent class.
+        &#34;&#34;&#34;
+        policy_distribution = self.forward(
+            state_batch
+        )  # shape (batch_size, available_actions) or (available_actions)
+        return policy_distribution
+
+    def get_action_prob(
+        self,
+        state_batch: torch.Tensor,
+        action_batch: torch.Tensor,
+        available_actions: Optional[torch.Tensor] = None,
+        unavailable_actions_mask: Optional[torch.Tensor] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Gets probabilities of different actions from a discrete actor network.
+        Assumes that the input batch of actions is one-hot encoded
+            (generalize it later).
+
+        Args:
+            state_batch: batch of states with shape (batch_size, input_dim)
+            action_batch: batch of actions with shape (batch_size, output_dim)
+        Returns:
+            action_probs: probabilities of each action in the batch with shape (batch_size)
+        &#34;&#34;&#34;
+        all_action_probs = self.forward(state_batch)  # shape: (batch_size, output_dim)
+        action_probs = torch.sum(all_action_probs * action_batch, dim=1, keepdim=True)
+
+        return action_probs.view(-1)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork">ActorNetwork</a></li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork">DynamicActionActorNetwork</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+    return self._model(x)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.get_action_prob"><code class="name flex">
+<span>def <span class="ident">get_action_prob</span></span>(<span>self, state_batch: torch.Tensor, action_batch: torch.Tensor, available_actions: Optional[torch.Tensor] = None, unavailable_actions_mask: Optional[torch.Tensor] = None) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets probabilities of different actions from a discrete actor network.
+Assumes that the input batch of actions is one-hot encoded
+(generalize it later).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state_batch</code></strong></dt>
+<dd>batch of states with shape (batch_size, input_dim)</dd>
+<dt><strong><code>action_batch</code></strong></dt>
+<dd>batch of actions with shape (batch_size, output_dim)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>action_probs</code></dt>
+<dd>probabilities of each action in the batch with shape (batch_size)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_action_prob(
+    self,
+    state_batch: torch.Tensor,
+    action_batch: torch.Tensor,
+    available_actions: Optional[torch.Tensor] = None,
+    unavailable_actions_mask: Optional[torch.Tensor] = None,
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Gets probabilities of different actions from a discrete actor network.
+    Assumes that the input batch of actions is one-hot encoded
+        (generalize it later).
+
+    Args:
+        state_batch: batch of states with shape (batch_size, input_dim)
+        action_batch: batch of actions with shape (batch_size, output_dim)
+    Returns:
+        action_probs: probabilities of each action in the batch with shape (batch_size)
+    &#34;&#34;&#34;
+    all_action_probs = self.forward(state_batch)  # shape: (batch_size, output_dim)
+    action_probs = torch.sum(all_action_probs * action_batch, dim=1, keepdim=True)
+
+    return action_probs.view(-1)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.get_policy_distribution"><code class="name flex">
+<span>def <span class="ident">get_policy_distribution</span></span>(<span>self, state_batch: torch.Tensor, available_actions: Optional[torch.Tensor] = None, unavailable_actions_mask: Optional[torch.Tensor] = None) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets a policy distribution from a discrete actor network.
+The policy distribution is defined by the softmax of the output of the network.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state_batch</code></strong></dt>
+<dd>batch of states with shape (batch_size, state_dim) or (state_dim)</dd>
+</dl>
+<p>available_actions and unavailable_actions_mask are not used in this parent class.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_policy_distribution(
+    self,
+    state_batch: torch.Tensor,
+    available_actions: Optional[torch.Tensor] = None,
+    unavailable_actions_mask: Optional[torch.Tensor] = None,
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Gets a policy distribution from a discrete actor network.
+    The policy distribution is defined by the softmax of the output of the network.
+
+    Args:
+        state_batch: batch of states with shape (batch_size, state_dim) or (state_dim)
+        available_actions and unavailable_actions_mask are not used in this parent class.
+    &#34;&#34;&#34;
+    policy_distribution = self.forward(
+        state_batch
+    )  # shape (batch_size, available_actions) or (available_actions)
+    return policy_distribution</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork"><code class="flex name class">
+<span>class <span class="ident">VanillaContinuousActorNetwork</span></span>
+<span>(</span><span>input_dim: int, hidden_dims: Optional[List[int]], output_dim: int, action_space: <a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is vanilla version of deterministic actor network
+Given input state, output an action vector
+Args
+output_dim: action dimension</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VanillaContinuousActorNetwork(ActorNetwork):
+    &#34;&#34;&#34;
+    This is vanilla version of deterministic actor network
+    Given input state, output an action vector
+    Args
+        output_dim: action dimension
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int,
+        action_space: ActionSpace,
+    ) -&gt; None:
+        super(VanillaContinuousActorNetwork, self).__init__(
+            input_dim, hidden_dims, output_dim, action_space
+        )
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            last_activation=&#34;tanh&#34;,
+        )
+        self._action_space = action_space
+
+    def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+        return self._model(x)
+
+    def sample_action(self, x: torch.Tensor) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Sample an action from the actor network.
+        Args:
+            x: input state
+        Returns:
+            action: sampled action, scaled to the action space bounds
+        &#34;&#34;&#34;
+        normalized_action = self._model(x)
+        action = action_scaling(self._action_space, normalized_action)
+        return action</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork">ActorNetwork</a></li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+    return self._model(x)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork.sample_action"><code class="name flex">
+<span>def <span class="ident">sample_action</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sample an action from the actor network.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>x</code></strong></dt>
+<dd>input state</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>action</code></dt>
+<dd>sampled action, scaled to the action space bounds</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample_action(self, x: torch.Tensor) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Sample an action from the actor network.
+    Args:
+        x: input state
+    Returns:
+        action: sampled action, scaled to the action space bounds
+    &#34;&#34;&#34;
+    normalized_action = self._model(x)
+    action = action_scaling(self._action_space, normalized_action)
+    return action</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.neural_networks.sequential_decision_making" href="index.html">pearl.neural_networks.sequential_decision_making</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.action_scaling" href="#pearl.neural_networks.sequential_decision_making.actor_networks.action_scaling">action_scaling</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.noise_scaling" href="#pearl.neural_networks.sequential_decision_making.actor_networks.noise_scaling">noise_scaling</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork">ActorNetwork</a></code></h4>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork">DynamicActionActorNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork.get_action_prob" href="#pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork.get_action_prob">get_action_prob</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork.get_policy_distribution" href="#pearl.neural_networks.sequential_decision_making.actor_networks.DynamicActionActorNetwork.get_policy_distribution">get_policy_distribution</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork">GaussianActorNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.forward" href="#pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.forward">forward</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.get_log_probability" href="#pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.get_log_probability">get_log_probability</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.sample_action" href="#pearl.neural_networks.sequential_decision_making.actor_networks.GaussianActorNetwork.sample_action">sample_action</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork">VanillaActorNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.forward" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.forward">forward</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.get_action_prob" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.get_action_prob">get_action_prob</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.get_policy_distribution" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork.get_policy_distribution">get_policy_distribution</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork">VanillaContinuousActorNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork.forward" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork.forward">forward</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork.sample_action" href="#pearl.neural_networks.sequential_decision_making.actor_networks.VanillaContinuousActorNetwork.sample_action">sample_action</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

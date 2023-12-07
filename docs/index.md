@@ -1,27 +1,122 @@
 # Welcome to Pearl's official website!
-<center><img src="assets/img/pearl_long.png" style="width:500px"/></center>
+![alt](./assets/img/pearl_long.png)
+# Pearl - A Production-ready Reinforcement Learning AI Agent Library
+### Proudly brought by Applied Reinforcement Learning @ Meta
 
+- v0.1 - Pearl beta-version is now released!
 
-Pearl is a production-ready reinforcement learning AI agent library. Pearl enables researchers and practitioners to develop Reinforcement Learning AI agents. These AI agents prioritize cumulative long-term feedback over immediate feedback and can adapt to environments with limited observability, sparse feedback, and high stochasticity. We hope that Pearl offers the community a means to build state-of-the-art Reinforcement Learning AI agents that can adapt to a wide range of complex production environments. 
+[![Support Ukraine](https://img.shields.io/badge/Support-Ukraine-FFD500?style=flat&labelColor=005BBB)](https://opensource.fb.com/support-ukraine)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Pearl in a nut shell and installation guide
-TO BE FILLED
+More details of the library at our official website: [Link](pearlagent.github.io)
 
-## Why Pearl?
-Prior to Pearl, Reinforcement Learning libraries focused on AI agents with a single objective: optimizing for cumulative reward. However, real-world applications require much more than this, particularly in systems that have the potential to cause repercussions (e.g. regress user sentiment, or surface an Ad that may be repetitive or have lower longer term value to the people causing user churn) and in environments where user feedback is limited. The capabilities include offline pre-training, intelligent exploration, safe decision making, history behavior summarization, data augmentation and dynamic action spaces. 
+Our paper is ArXived at: [Link](https://arxiv.org/submit/5279090/view)
 
-## Pearl Design
-<center><img src="assets/img/agent_interface.png" style="width:750px"/></center>
-Pearl was built with a modular design so that industry practitioners or academic researchers can select any subset and flexibly combine features below to construct a Pearl agent customized for their specific use cases:
-* Cumulative reward optimization: Pearl excels in this fundamental aspect of Reinforcement Learning, offering diverse optimization strategies suitable for various applications ranging from recommendation systems to robotics. 
-* Offline pre-training: Utilizing offline data in decision making is critical for ensuring a positive long-term user experience without relying heavily on direct interactions with people (or the environment). Incorporating offline learning into an AI agent, enables us to create personalized AI systems with minimal environmental interactions. For example, we can predict the right sequence of recommendations for people given their past interactions with the system.
-* Intelligent exploration: Pearl’s intelligent exploration module allows researchers and engineers to apply state-of-the-art exploration strategies for contextual bandit and other such Reinforcement Learning problems. These strategies can be used to help people efficiently discover new topics and preferences.
-* Safe decision making: Production environments require AI agents to make decisions that minimize risks and avoid inadvertent repercussions. Pearl offers a risk and control module that enables decision-making while avoiding high-risk or undesired consequences. A Pearl agent equipped with the risk and control module can significantly reduce recommendations or actions that have a high probability of regressing user experience or advertiser outcomes. 
-* History behavior summarization: Many industry and research problems involve people and environments that are only partially observable by the AI agent. Pearl incorporates a history summarization module that uses past observations to accurately estimate the user’s and environment’s current state. As people’s expectations of how their data is used continue to evolve, regulations and policies from governments and industry players are also changing. Evolving data use regulations and platform practices may change the type and amount of data available to machine learning models. Pearl enables informed decision making in these limited observability scenarios so we can provide better services to people while supporting their need for privacy. 
-* Data augmentation: Data collected from agent interactions offer more insights by revealing the state and context of the underlying environment in which the users interact with Ads. Pearl’s data augmentation capabilities enable faster learning and generalization in complex environments.
-* Dynamic action spaces: In many industry applications, AI agents are often offered different sets of available actions, e.g. in recommendation systems the most popular content or the most effective ads creatives change frequently in a matter of a few hours. Unlike existing Reinforcement Learning libraries, Pearl can adapt to a dynamic set of available actions at every decision-making step. 
+## Overview
+Pearl is a new production-ready Reinforcement Learning AI agent library open-sourced by the Applied Reinforcement Learning team at Meta. Furthering our efforts on open AI innovation, Pearl enables researchers and practitioners to develop Reinforcement Learning AI agents. These AI agents prioritize cumulative long-term feedback over immediate feedback and can adapt to environments with limited observability, sparse feedback, and high stochasticity. We hope that Pearl offers the community a means to build state-of-the-art Reinforcement Learning AI agents that can adapt to a wide range of complex production environments.
+
+## Getting Started
+
+### Installation
+To install Pearl, you can simply clone this repo and pip install
+```
+git clone https://github.com/facebookresearch/Pearl.git
+cd Pearl
+pip install -e .
+```
+
+### Quick Start
+To kick off a Pearl agent with a classic reinforcement learning environment, here's a quick example.
+```
+from pearl.pearl_agent import PearlAgent
+from pearl.action_representation_modules.one_hot_action_representation_module import (
+    OneHotActionTensorRepresentationModule,
+)
+from pearl.policy_learners.sequential_decision_making.deep_q_learning import (
+    DeepQLearning,
+)
+from pearl.replay_buffers.sequential_decision_making.fifo_off_policy_replay_buffer import (
+    FIFOOffPolicyReplayBuffer,
+)
+from pearl.utils.instantiations.environments.gym_environment import GymEnvironment
+
+env = GymEnvironment("CartPole-v1")
+
+num_actions = env.action_space.n
+agent = PearlAgent(
+    policy_learner=DeepQLearning(
+        state_dim=env.observation_space.shape[0],
+        action_space=env.action_space,
+        hidden_dims=[64, 64],
+        training_rounds=20,
+        action_representation_module=OneHotActionTensorRepresentationModule(
+            max_number_actions=num_actions
+        ),
+    ),
+    replay_buffer=FIFOOffPolicyReplayBuffer(10_000),
+)
+
+observation, action_space = env.reset()
+agent.reset(observation, action_space)
+done = False
+while not done:
+    action = agent.act(exploit=False)
+    action_result = env.step(action)
+    agent.observe(action_result)
+    agent.learn()
+    done = action_result.done
+```
+More detailed tutorial will be presented at NeurIPS 2023 EXPO presentation (12/10/2023, 2 pm to 4 pm). Users can replace the environment with any real-world problems.
+
+## Design and Features
+![alt](./logo/agent_interface.png)
+Pearl was built with a modular design so that industry practitioners or academic researchers can select any subset and flexibly combine features below to construct a Pearl agent customized for their specific use cases. Pearl offers a diverse set of unique features for production environments, including dynamic action spaces, offline learning, intelligent neural exploration, safe decision making, history summarization, and data augmentation.
+
+You can find many Pearl agent candidates with mix-and-match set of reinforcement learning features in utils/scripts/benchmark_config.py
+
+## Adoption in Real-world Applications
+Pearl is in progress supporting real-world applications, including recommender systems, auction bidding system and creative selection. Each of them requires a subset of features offered by Pearl. To visualize the subset of features used by each of the applications above, see the table below.
+<center>
+
+|Pearl Features | Recommender Systems | Auction Bidding | Creative Selection |
+|:-------------:|:-------------------:|:---------------:|:------------------:|
+|Policy Learning| ✅ |✅|✅|
+|Intelligent Exploration|✅|✅ |✅|
+|Safety| | ✅ | |
+|History Summarization| | ✅ | |
+|Replay Buffer| ✅ |✅ |✅ |
+|Contextual Bandit| | |✅|
+|Offline RL|✅|✅||
+|Dynamic Action Space|✅||✅|
+|Large-scale Neural Network|✅|||
+
+</center>
 
 ## Comparison to Other Libraries
-ReAgent, our previous generation of Reinforcement Learning library, garnered over 3,500 Github stars with more than 500 project forks. Building on Reagent’s success, Pearl offers a much richer feature set of advanced capabilities pushing the state of the art AI innovation in Reinforcement Learning. Below we compare Pearl with the key open source alternatives.
+<center>
 
-<center><img src="assets/img/comparison.png" style="width:750px"/></center>
+|Pearl Features | Pearl  | ReAgent (Superseded by Pearl) | RLLib | SB3|Tianshou | Dopamine |
+|:-------------:|:------:|:-----------------------------:|:-----:|:--:|:-----:|:-----|
+|Modularity|✅|❌|❌|❌|❌|❌|
+|Dynamic Action Space|✅|✅|❌|❌|❌|❌|
+|Offline RL|✅|✅|✅|✅|✅|❌|
+|Intelligent Exploration|✅|❌|❌|❌|⚪ (limited support)|❌|
+|Contextual Bandit|✅|✅|⚪ (only linear support)|❌|❌|❌|
+|Safe Decision Making|✅|❌|❌|❌|❌|❌|
+|History Summarization|✅|❌|✅|❌|⚪ (requires modifying environment state)|❌|
+|Data Augmented Replay Buffer|✅|❌|✅|✅|✅|❌|
+
+</center>
+
+## Cite Us
+```
+@misc{pearl2023paper,
+    title = {Pearl - A Production-ready Reinforcement Learning AI Agent Library},
+    author = {Zheqing Zhu, Rodrigo de Salvo Braz, Jalaj Bhandari, Daniel Jiang, Yi Wan, Yonathan Efroni, Ruiyang Xu, Liyuan Wang, Hongbo Guo, Alex Nikulkov, Dmytro Korenkevych, Urun Dogan, Frank Cheng, Zheng Wu, Wanqiao Xu},
+    year = 2023,
+    eprint = {arXiv}
+}
+```
+
+## License
+Pearl is MIT licensed, as found in the LICENSE file.

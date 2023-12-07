@@ -4,5 +4,17 @@ theme:
   logo: assets/img/pearl.png
   palette:
     primary: custom
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
 extra_css:
   - stylesheets/extra.css
+nav:
+  - Home:
+    - index.md
+  - Design:
+    - design.md
+  - Documentation: 
+    - documentation.html
