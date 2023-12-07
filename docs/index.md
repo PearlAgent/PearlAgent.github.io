@@ -1,12 +1,12 @@
 # Welcome to Pearl's official website!
 ![alt](./assets/img/pearl_long.png)
 # Pearl - A Production-ready Reinforcement Learning AI Agent Library
-### Proudly brought by Applied Reinforcement Learning @ Meta
+### Proudly brought by the Applied Reinforcement Learning team @ <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" width="70" height="45">
 
 - v0.1 - Pearl beta-version is now released!
 
-[![Support Ukraine](https://img.shields.io/badge/Support-Ukraine-FFD500?style=flat&labelColor=005BBB)](https://opensource.fb.com/support-ukraine)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Support Ukraine](https://img.shields.io/badge/Support-Ukraine-FFD500?style=flat&labelColor=005BBB)](https://opensource.fb.com/support-ukraine)
 
 Github Repo: <span style="color:blue">[Link](https://github.com/facebookresearch/pearl/)</span>
 
