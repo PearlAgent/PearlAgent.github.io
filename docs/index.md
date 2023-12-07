@@ -8,9 +8,9 @@
 [![Support Ukraine](https://img.shields.io/badge/Support-Ukraine-FFD500?style=flat&labelColor=005BBB)](https://opensource.fb.com/support-ukraine)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-More details of the library at our official website: [Link](pearlagent.github.io)
+Github Repo: <span style="color:blue">[Link](https://github.com/facebookresearch/pearl/)</span>
 
-Our paper is ArXived at: [Link](https://arxiv.org/submit/5279090/view)
+Our paper is ArXived at: <span style="color:blue">[Link](https://arxiv.org/submit/5279090/view)</span>
 
 ## Overview
 Pearl is a new production-ready Reinforcement Learning AI agent library open-sourced by the Applied Reinforcement Learning team at Meta. Furthering our efforts on open AI innovation, Pearl enables researchers and practitioners to develop Reinforcement Learning AI agents. These AI agents prioritize cumulative long-term feedback over immediate feedback and can adapt to environments with limited observability, sparse feedback, and high stochasticity. We hope that Pearl offers the community a means to build state-of-the-art Reinforcement Learning AI agents that can adapt to a wide range of complex production environments.
