@@ -16,3 +16,5 @@ nav:
     - index.md
   - Documentation: 
     - documentation.html
+  - Paper:
+    - pearl_submission.pdf

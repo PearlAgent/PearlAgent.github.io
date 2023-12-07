@@ -1,7 +1,7 @@
 # Welcome to Pearl's official website!
 ![alt](./assets/img/pearl_long.png)
 # Pearl - A Production-ready Reinforcement Learning AI Agent Library
-### Proudly brought by the Applied Reinforcement Learning team @ <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" width="70" height="45">
+### Proudly brought by the Applied Reinforcement Learning team @ <img src="https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png" width="50" height="30"> Meta
 
 - v0.1 - Pearl beta-version is now released!
 
@@ -10,7 +10,7 @@
 
 Github Repo: <span style="color:blue">[Link](https://github.com/facebookresearch/pearl/)</span>
 
-Our paper is ArXived at: <span style="color:blue">[Link](https://arxiv.org/submit/5279090/view)</span>
+Our paper is ArXived at: <span style="color:blue">[Link](https://chs6.short.gy/pearl_paper)</span>
 
 ## Overview
 Pearl is a new production-ready Reinforcement Learning AI agent library open-sourced by the Applied Reinforcement Learning team at Meta. Furthering our efforts on open AI innovation, Pearl enables researchers and practitioners to develop Reinforcement Learning AI agents. These AI agents prioritize cumulative long-term feedback over immediate feedback and can adapt to environments with limited observability, sparse feedback, and high stochasticity. We hope that Pearl offers the community a means to build state-of-the-art Reinforcement Learning AI agents that can adapt to a wide range of complex production environments.
