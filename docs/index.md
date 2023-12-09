@@ -97,7 +97,7 @@ Pearl is in progress supporting real-world applications, including recommender s
 
 |Pearl Features | Pearl  | ReAgent (Superseded by Pearl) | RLLib | SB3|Tianshou | Dopamine |
 |:-------------:|:------:|:-----------------------------:|:-----:|:--:|:-----:|:-----|
-|Modularity|✅|❌|❌|❌|❌|❌|
+|Agent Modularity|✅|❌|❌|❌|❌|❌|
 |Dynamic Action Space|✅|✅|❌|❌|❌|❌|
 |Offline RL|✅|✅|✅|✅|✅|❌|
 |Intelligent Exploration|✅|❌|❌|❌|⚪ (limited support)|❌|
