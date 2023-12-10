@@ -67,7 +67,7 @@ while not done:
     agent.learn()
     done = action_result.done
 ```
-More detailed tutorial will be presented at NeurIPS 2023 EXPO presentation (12/10/2023, 2 pm to 4 pm). Users can replace the environment with any real-world problems.
+More detailed tutorial will be presented at NeurIPS 2023 EXPO presentation (12/10/2023, 4 pm to 6 pm). Users can replace the environment with any real-world problems.
 
 ## Design and Features
 ![alt](./assets/img/agent_interface.png)
