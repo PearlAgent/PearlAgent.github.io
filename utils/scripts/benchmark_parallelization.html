@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.utils.scripts.benchmark_parallelization API documentation</title>
+<meta name="description" content="The code in this file provides a way to run multiple pearl experiments in different
+processes using torch.multiprocessing.
+Outputs of the code are …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.utils.scripts.benchmark_parallelization</code></h1>
+</header>
+<section id="section-intro">
+<p>The code in this file provides a way to run multiple pearl experiments in different
+processes using torch.multiprocessing.
+Outputs of the code are saved in the folder ~/pearl_execution/outputs/.
+To run the code, enter the pearl directory, then run
+./utils/scripts/meta_only/run_pearl.sh utils/scripts/benchmark_parallelization.py
+(make sure conda and related packages have been installed with
+./utils/scripts/meta_only/setup_conda_pearl_on_devserver.sh)</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env fbpython
+# (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+# pyre-ignore-all-errors
+
+&#34;&#34;&#34;
+The code in this file provides a way to run multiple pearl experiments in different
+processes using torch.multiprocessing.
+Outputs of the code are saved in the folder ~/pearl_execution/outputs/.
+To run the code, enter the pearl directory, then run
+./utils/scripts/meta_only/run_pearl.sh utils/scripts/benchmark_parallelization.py
+(make sure conda and related packages have been installed with
+./utils/scripts/meta_only/setup_conda_pearl_on_devserver.sh)
+&#34;&#34;&#34;
+import os
+import warnings
+from typing import List
+
+import matplotlib.pyplot as plt
+import numpy as np
+import torch.multiprocessing as mp
+from pearl.pearl_agent import PearlAgent
+from pearl.utils.functional_utils.experimentation.set_seed import set_seed
+
+from pearl.utils.functional_utils.train_and_eval.online_learning import online_learning
+from pearl.utils.scripts.benchmark_config import (
+    benchmark_acrobot_v1_part_1,
+    benchmark_acrobot_v1_part_2,
+    benchmark_ant_v4,
+    benchmark_cartpole_v1_part_1,
+    benchmark_cartpole_v1_part_2,
+    benchmark_halfcheetah_v4,
+    benchmark_hopper_v4,
+    benchmark_walker2d_v4,
+    generate_rctd3_ant,
+    generate_rctd3_half_cheetah_v1,
+    generate_rctd3_hopper,
+    generate_rctd3_walker,
+    get_env,
+    num_runs,
+    print_every_x_steps,
+    rctd3_ant_part_1,
+    rctd3_ant_part_2,
+    rctd3_ant_part_3,
+    rctd3_ant_part_4,
+    rctd3_half_cheetah_v1_part_1,
+    rctd3_half_cheetah_v1_part_2,
+    rctd3_hopper_part_1,
+    rctd3_hopper_part_2,
+    rctd3_walker_part_1,
+    rctd3_walker_part_2,
+    test_dynamic_action_space,
+)
+
+warnings.filterwarnings(&#34;ignore&#34;)
+
+
+def run(experiments) -&gt; None:
+    &#34;&#34;&#34;Assign one run to one process.&#34;&#34;&#34;
+    assert len(experiments) &gt; 0
+    all_processes = []
+
+    for e in experiments:
+        evaluate(e, all_processes)
+
+    for p in all_processes:
+        p.start()
+    for p in all_processes:
+        p.join()
+
+
+def evaluate(experiment, all_processes: List[mp.Process]) -&gt; None:
+    &#34;&#34;&#34;Running multiple methods and multiple runs in the given gym environment.&#34;&#34;&#34;
+    env_name = experiment[&#34;env_name&#34;]
+    num_runs = experiment[&#34;num_runs&#34;]
+    num_episodes = experiment.get(&#34;num_episodes&#34;)
+    num_steps = experiment.get(&#34;num_steps&#34;)
+    record_period = experiment[&#34;record_period&#34;]
+    print_every_x_episodes = experiment.get(&#34;print_every_x_episodes&#34;)
+    print_every_x_steps = experiment.get(&#34;print_every_x_steps&#34;)
+    methods = experiment[&#34;methods&#34;]
+    processes = []
+    for method in methods:
+        method[&#34;agent_args&#34;] = {&#34;device_id&#34;: experiment[&#34;device_id&#34;]}
+        for run_idx in range(num_runs):
+            p = mp.Process(
+                target=evaluate_single,
+                args=(
+                    env_name,
+                    method,
+                    run_idx,
+                    num_episodes,
+                    num_steps,
+                    print_every_x_episodes,
+                    print_every_x_steps,
+                    record_period,
+                ),
+            )
+            processes.append(p)
+
+    all_processes.extend(processes)
+
+
+def evaluate_single(
+    env_name,
+    method,
+    run_idx,
+    num_episodes,
+    num_steps,
+    print_every_x_episodes,
+    print_every_x_steps,
+    record_period,
+):
+    &#34;&#34;&#34;Performing one run of experiment.&#34;&#34;&#34;
+    set_seed(run_idx)
+    policy_learner = method[&#34;policy_learner&#34;]
+    policy_learner_args = method[&#34;policy_learner_args&#34;]
+    agent_args = method[&#34;agent_args&#34;]
+    env = get_env(env_name)
+    policy_learner_args[&#34;state_dim&#34;] = env.observation_space.shape[0]
+
+    if &#34;exploration_module&#34; in method and &#34;exploration_module_args&#34; in method:
+        policy_learner_args[&#34;exploration_module&#34;] = method[&#34;exploration_module&#34;](
+            **method[&#34;exploration_module_args&#34;]
+        )
+    if &#34;replay_buffer&#34; in method and &#34;replay_buffer_args&#34; in method:
+        agent_args[&#34;replay_buffer&#34;] = method[&#34;replay_buffer&#34;](
+            **method[&#34;replay_buffer_args&#34;]
+        )
+    if &#34;safety_module&#34; in method and &#34;safety_module_args&#34; in method:
+        agent_args[&#34;safety_module&#34;] = method[&#34;safety_module&#34;](
+            **method[&#34;safety_module_args&#34;]
+        )
+    if (
+        &#34;action_representation_module&#34; in method
+        and &#34;action_representation_module_args&#34; in method
+    ):
+        if (
+            method[&#34;action_representation_module&#34;].__name__
+            == &#34;OneHotActionTensorRepresentationModule&#34;
+        ):
+            method[&#34;action_representation_module_args&#34;][
+                &#34;max_number_actions&#34;
+            ] = env.action_space.n
+        policy_learner_args[&#34;action_representation_module&#34;] = method[
+            &#34;action_representation_module&#34;
+        ](**method[&#34;action_representation_module_args&#34;])
+
+    if (
+        &#34;history_summarization_module&#34; in method
+        and &#34;history_summarization_module_args&#34; in method
+    ):
+        if (
+            method[&#34;history_summarization_module&#34;].__name__
+            == &#34;StackHistorySummarizationModule&#34;
+        ):
+            policy_learner_args[&#34;state_dim&#34;] = (
+                env.observation_space.shape[0] + env.action_space.n
+            ) * method[&#34;history_summarization_module_args&#34;][&#34;history_length&#34;]
+        elif (
+            method[&#34;history_summarization_module&#34;].__name__
+            == &#34;LSTMHistorySummarizationModule&#34;
+        ):
+            method[&#34;history_summarization_module_args&#34;][
+                &#34;observation_dim&#34;
+            ] = env.observation_space.shape[0]
+            method[&#34;history_summarization_module_args&#34;][
+                &#34;action_dim&#34;
+            ] = env.action_space.n
+            policy_learner_args[&#34;state_dim&#34;] = method[
+                &#34;history_summarization_module_args&#34;
+            ][&#34;hidden_dim&#34;]
+
+        agent_args[&#34;history_summarization_module&#34;] = method[
+            &#34;history_summarization_module&#34;
+        ](**method[&#34;history_summarization_module_args&#34;])
+
+    if method[&#34;name&#34;] == &#34;DuelingDQN&#34;:  # only for Dueling DQN
+        assert &#34;network_module&#34; in method and &#34;network_args&#34; in method
+        policy_learner_args[&#34;network_instance&#34;] = method[&#34;network_module&#34;](
+            state_dim=env.observation_space.shape[0],
+            action_dim=env.action_space.n,
+            **method[&#34;network_args&#34;],
+        )
+    if method[&#34;name&#34;] == &#34;BootstrappedDQN&#34;:  # only for Bootstrapped DQN
+        assert &#34;network_module&#34; in method and &#34;network_args&#34; in method
+        policy_learner_args[&#34;q_ensemble_network&#34;] = method[&#34;network_module&#34;](
+            state_dim=env.observation_space.shape[0],
+            action_dim=env.action_space.n,
+            **method[&#34;network_args&#34;],
+        )
+        del policy_learner_args[&#34;state_dim&#34;]
+
+    if &#34;dynamic&#34; in method[&#34;name&#34;]:
+        policy_learner_args[&#34;actor_network_type&#34;] = method[&#34;actor_network_type&#34;]
+
+    policy_learner_args[&#34;action_space&#34;] = env.action_space
+    agent = PearlAgent(
+        policy_learner=policy_learner(
+            **policy_learner_args,
+        ),
+        **agent_args,
+    )
+    method_name = method[&#34;name&#34;]
+    print(f&#34;Run #{run_idx + 1} for {method_name} in {env_name}&#34;)
+    if (
+        method[&#34;name&#34;] == &#34;REINFORCE&#34; or method[&#34;name&#34;] == &#34;PPO&#34;
+    ):  # REINFORCE only performs learning at the end of each episode
+        learn_after_episode = True
+    else:
+        learn_after_episode = False
+
+    info = online_learning(
+        agent,
+        env,
+        number_of_episodes=num_episodes,
+        number_of_steps=num_steps,
+        print_every_x_episodes=print_every_x_episodes,
+        print_every_x_steps=print_every_x_steps,
+        learn_after_episode=learn_after_episode,
+        seed=run_idx,
+        record_period=record_period,
+    )
+    dir = f&#34;outputs/{env_name}/{method_name}&#34;
+    os.makedirs(dir, exist_ok=True)
+    for key in info:
+        np.save(dir + f&#34;/{run_idx}_{key}.npy&#34;, info[key])
+
+
+def generate_plots(experiments, attributes) -&gt; None:
+    for e in experiments:
+        generate_one_plot(e, attributes)
+
+
+def generate_one_plot(experiment, attributes):
+    &#34;&#34;&#34;Generating learning curves for all tested methods in one environment.&#34;&#34;&#34;
+    env_name = experiment[&#34;env_name&#34;]
+    exp_name = experiment[&#34;exp_name&#34;]
+    num_runs = experiment[&#34;num_runs&#34;]
+    record_period = experiment[&#34;record_period&#34;]
+    methods = experiment[&#34;methods&#34;]
+    for attr in attributes:
+        for method in methods:
+            data = []
+            for run in range(num_runs):
+                try:
+                    d = np.load(f&#34;outputs/{env_name}/{method[&#39;name&#39;]}/{run}_{attr}.npy&#34;)
+                except FileNotFoundError:
+                    print(
+                        f&#34;File not found for outputs/{env_name}/{method[&#39;name&#39;]}/{run}_{attr}.npy&#34;
+                    )
+                    continue
+                data.append(d)
+            data = np.array(data)
+            mean = data.mean(axis=0)
+            std_error = data.std(axis=0) / np.sqrt(num_runs)
+            x_list = record_period * np.arange(mean.shape[0])
+            if &#34;num_steps&#34; in experiment:
+                plt.plot(x_list, mean, label=method[&#34;name&#34;])
+                plt.fill_between(x_list, mean - std_error, mean + std_error, alpha=0.2)
+            else:
+                plt.plot(x_list, mean, label=method[&#34;name&#34;])
+                plt.fill_between(
+                    x_list,
+                    mean - std_error,
+                    mean + std_error,
+                    alpha=0.2,
+                )
+        plt.title(env_name)
+        if &#34;num_steps&#34; in experiment:
+            plt.xlabel(&#34;Steps&#34;)
+        else:
+            plt.xlabel(&#34;Episodes&#34;)
+        plt.ylabel(attr)
+        plt.legend()
+        plt.savefig(f&#34;outputs/{exp_name}_{env_name}_{attr}.png&#34;)
+        plt.close()
+
+
+if __name__ == &#34;__main__&#34;:
+    # run(benchmark_cartpole_v1_part_1)
+    # generate_plots(benchmark_cartpole_v1_part_1, [&#34;return&#34;])
+    # run(benchmark_cartpole_v1_part_2)
+    # generate_plots(benchmark_cartpole_v1_part_2, [&#34;return&#34;])
+    # run(benchmark_acrobot_v1_part_1)
+    # generate_plots(benchmark_acrobot_v1_part_1, [&#34;return&#34;])
+    # run(benchmark_acrobot_v1_part_2)
+    # generate_plots(benchmark_acrobot_v1_part_2, [&#34;return&#34;])
+    # run(benchmark_halfcheetah_v4)
+    # generate_plots(benchmark_halfcheetah_v4, [&#34;return&#34;])
+    # run(benchmark_ant_v4)
+    # generate_plots(benchmark_ant_v4, [&#34;return&#34;])
+    # run(benchmark_hopper_v4)
+    # generate_plots(benchmark_hopper_v4, [&#34;return&#34;])
+    # run(benchmark_walker2d_v4)
+    # generate_plots(benchmark_walker2d_v4, [&#34;return&#34;])
+    # test rctd3
+    # run(rctd3_ant_part_1)
+    # run(rctd3_ant_part_2)
+    # generate_plots(generate_rctd3_ant, [&#34;return&#34;, &#34;return_cost&#34;])
+    # test dynamic action spaces
+    run(test_dynamic_action_space)
+    generate_plots(test_dynamic_action_space, [&#34;return&#34;])</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pearl.utils.scripts.benchmark_parallelization.evaluate"><code class="name flex">
+<span>def <span class="ident">evaluate</span></span>(<span>experiment, all_processes: List[multiprocessing.context.Process]) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Running multiple methods and multiple runs in the given gym environment.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def evaluate(experiment, all_processes: List[mp.Process]) -&gt; None:
+    &#34;&#34;&#34;Running multiple methods and multiple runs in the given gym environment.&#34;&#34;&#34;
+    env_name = experiment[&#34;env_name&#34;]
+    num_runs = experiment[&#34;num_runs&#34;]
+    num_episodes = experiment.get(&#34;num_episodes&#34;)
+    num_steps = experiment.get(&#34;num_steps&#34;)
+    record_period = experiment[&#34;record_period&#34;]
+    print_every_x_episodes = experiment.get(&#34;print_every_x_episodes&#34;)
+    print_every_x_steps = experiment.get(&#34;print_every_x_steps&#34;)
+    methods = experiment[&#34;methods&#34;]
+    processes = []
+    for method in methods:
+        method[&#34;agent_args&#34;] = {&#34;device_id&#34;: experiment[&#34;device_id&#34;]}
+        for run_idx in range(num_runs):
+            p = mp.Process(
+                target=evaluate_single,
+                args=(
+                    env_name,
+                    method,
+                    run_idx,
+                    num_episodes,
+                    num_steps,
+                    print_every_x_episodes,
+                    print_every_x_steps,
+                    record_period,
+                ),
+            )
+            processes.append(p)
+
+    all_processes.extend(processes)</code></pre>
+</details>
+</dd>
+<dt id="pearl.utils.scripts.benchmark_parallelization.evaluate_single"><code class="name flex">
+<span>def <span class="ident">evaluate_single</span></span>(<span>env_name, method, run_idx, num_episodes, num_steps, print_every_x_episodes, print_every_x_steps, record_period)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Performing one run of experiment.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def evaluate_single(
+    env_name,
+    method,
+    run_idx,
+    num_episodes,
+    num_steps,
+    print_every_x_episodes,
+    print_every_x_steps,
+    record_period,
+):
+    &#34;&#34;&#34;Performing one run of experiment.&#34;&#34;&#34;
+    set_seed(run_idx)
+    policy_learner = method[&#34;policy_learner&#34;]
+    policy_learner_args = method[&#34;policy_learner_args&#34;]
+    agent_args = method[&#34;agent_args&#34;]
+    env = get_env(env_name)
+    policy_learner_args[&#34;state_dim&#34;] = env.observation_space.shape[0]
+
+    if &#34;exploration_module&#34; in method and &#34;exploration_module_args&#34; in method:
+        policy_learner_args[&#34;exploration_module&#34;] = method[&#34;exploration_module&#34;](
+            **method[&#34;exploration_module_args&#34;]
+        )
+    if &#34;replay_buffer&#34; in method and &#34;replay_buffer_args&#34; in method:
+        agent_args[&#34;replay_buffer&#34;] = method[&#34;replay_buffer&#34;](
+            **method[&#34;replay_buffer_args&#34;]
+        )
+    if &#34;safety_module&#34; in method and &#34;safety_module_args&#34; in method:
+        agent_args[&#34;safety_module&#34;] = method[&#34;safety_module&#34;](
+            **method[&#34;safety_module_args&#34;]
+        )
+    if (
+        &#34;action_representation_module&#34; in method
+        and &#34;action_representation_module_args&#34; in method
+    ):
+        if (
+            method[&#34;action_representation_module&#34;].__name__
+            == &#34;OneHotActionTensorRepresentationModule&#34;
+        ):
+            method[&#34;action_representation_module_args&#34;][
+                &#34;max_number_actions&#34;
+            ] = env.action_space.n
+        policy_learner_args[&#34;action_representation_module&#34;] = method[
+            &#34;action_representation_module&#34;
+        ](**method[&#34;action_representation_module_args&#34;])
+
+    if (
+        &#34;history_summarization_module&#34; in method
+        and &#34;history_summarization_module_args&#34; in method
+    ):
+        if (
+            method[&#34;history_summarization_module&#34;].__name__
+            == &#34;StackHistorySummarizationModule&#34;
+        ):
+            policy_learner_args[&#34;state_dim&#34;] = (
+                env.observation_space.shape[0] + env.action_space.n
+            ) * method[&#34;history_summarization_module_args&#34;][&#34;history_length&#34;]
+        elif (
+            method[&#34;history_summarization_module&#34;].__name__
+            == &#34;LSTMHistorySummarizationModule&#34;
+        ):
+            method[&#34;history_summarization_module_args&#34;][
+                &#34;observation_dim&#34;
+            ] = env.observation_space.shape[0]
+            method[&#34;history_summarization_module_args&#34;][
+                &#34;action_dim&#34;
+            ] = env.action_space.n
+            policy_learner_args[&#34;state_dim&#34;] = method[
+                &#34;history_summarization_module_args&#34;
+            ][&#34;hidden_dim&#34;]
+
+        agent_args[&#34;history_summarization_module&#34;] = method[
+            &#34;history_summarization_module&#34;
+        ](**method[&#34;history_summarization_module_args&#34;])
+
+    if method[&#34;name&#34;] == &#34;DuelingDQN&#34;:  # only for Dueling DQN
+        assert &#34;network_module&#34; in method and &#34;network_args&#34; in method
+        policy_learner_args[&#34;network_instance&#34;] = method[&#34;network_module&#34;](
+            state_dim=env.observation_space.shape[0],
+            action_dim=env.action_space.n,
+            **method[&#34;network_args&#34;],
+        )
+    if method[&#34;name&#34;] == &#34;BootstrappedDQN&#34;:  # only for Bootstrapped DQN
+        assert &#34;network_module&#34; in method and &#34;network_args&#34; in method
+        policy_learner_args[&#34;q_ensemble_network&#34;] = method[&#34;network_module&#34;](
+            state_dim=env.observation_space.shape[0],
+            action_dim=env.action_space.n,
+            **method[&#34;network_args&#34;],
+        )
+        del policy_learner_args[&#34;state_dim&#34;]
+
+    if &#34;dynamic&#34; in method[&#34;name&#34;]:
+        policy_learner_args[&#34;actor_network_type&#34;] = method[&#34;actor_network_type&#34;]
+
+    policy_learner_args[&#34;action_space&#34;] = env.action_space
+    agent = PearlAgent(
+        policy_learner=policy_learner(
+            **policy_learner_args,
+        ),
+        **agent_args,
+    )
+    method_name = method[&#34;name&#34;]
+    print(f&#34;Run #{run_idx + 1} for {method_name} in {env_name}&#34;)
+    if (
+        method[&#34;name&#34;] == &#34;REINFORCE&#34; or method[&#34;name&#34;] == &#34;PPO&#34;
+    ):  # REINFORCE only performs learning at the end of each episode
+        learn_after_episode = True
+    else:
+        learn_after_episode = False
+
+    info = online_learning(
+        agent,
+        env,
+        number_of_episodes=num_episodes,
+        number_of_steps=num_steps,
+        print_every_x_episodes=print_every_x_episodes,
+        print_every_x_steps=print_every_x_steps,
+        learn_after_episode=learn_after_episode,
+        seed=run_idx,
+        record_period=record_period,
+    )
+    dir = f&#34;outputs/{env_name}/{method_name}&#34;
+    os.makedirs(dir, exist_ok=True)
+    for key in info:
+        np.save(dir + f&#34;/{run_idx}_{key}.npy&#34;, info[key])</code></pre>
+</details>
+</dd>
+<dt id="pearl.utils.scripts.benchmark_parallelization.generate_one_plot"><code class="name flex">
+<span>def <span class="ident">generate_one_plot</span></span>(<span>experiment, attributes)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generating learning curves for all tested methods in one environment.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_one_plot(experiment, attributes):
+    &#34;&#34;&#34;Generating learning curves for all tested methods in one environment.&#34;&#34;&#34;
+    env_name = experiment[&#34;env_name&#34;]
+    exp_name = experiment[&#34;exp_name&#34;]
+    num_runs = experiment[&#34;num_runs&#34;]
+    record_period = experiment[&#34;record_period&#34;]
+    methods = experiment[&#34;methods&#34;]
+    for attr in attributes:
+        for method in methods:
+            data = []
+            for run in range(num_runs):
+                try:
+                    d = np.load(f&#34;outputs/{env_name}/{method[&#39;name&#39;]}/{run}_{attr}.npy&#34;)
+                except FileNotFoundError:
+                    print(
+                        f&#34;File not found for outputs/{env_name}/{method[&#39;name&#39;]}/{run}_{attr}.npy&#34;
+                    )
+                    continue
+                data.append(d)
+            data = np.array(data)
+            mean = data.mean(axis=0)
+            std_error = data.std(axis=0) / np.sqrt(num_runs)
+            x_list = record_period * np.arange(mean.shape[0])
+            if &#34;num_steps&#34; in experiment:
+                plt.plot(x_list, mean, label=method[&#34;name&#34;])
+                plt.fill_between(x_list, mean - std_error, mean + std_error, alpha=0.2)
+            else:
+                plt.plot(x_list, mean, label=method[&#34;name&#34;])
+                plt.fill_between(
+                    x_list,
+                    mean - std_error,
+                    mean + std_error,
+                    alpha=0.2,
+                )
+        plt.title(env_name)
+        if &#34;num_steps&#34; in experiment:
+            plt.xlabel(&#34;Steps&#34;)
+        else:
+            plt.xlabel(&#34;Episodes&#34;)
+        plt.ylabel(attr)
+        plt.legend()
+        plt.savefig(f&#34;outputs/{exp_name}_{env_name}_{attr}.png&#34;)
+        plt.close()</code></pre>
+</details>
+</dd>
+<dt id="pearl.utils.scripts.benchmark_parallelization.generate_plots"><code class="name flex">
+<span>def <span class="ident">generate_plots</span></span>(<span>experiments, attributes) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_plots(experiments, attributes) -&gt; None:
+    for e in experiments:
+        generate_one_plot(e, attributes)</code></pre>
+</details>
+</dd>
+<dt id="pearl.utils.scripts.benchmark_parallelization.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>experiments) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Assign one run to one process.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(experiments) -&gt; None:
+    &#34;&#34;&#34;Assign one run to one process.&#34;&#34;&#34;
+    assert len(experiments) &gt; 0
+    all_processes = []
+
+    for e in experiments:
+        evaluate(e, all_processes)
+
+    for p in all_processes:
+        p.start()
+    for p in all_processes:
+        p.join()</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.utils.scripts" href="index.html">pearl.utils.scripts</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pearl.utils.scripts.benchmark_parallelization.evaluate" href="#pearl.utils.scripts.benchmark_parallelization.evaluate">evaluate</a></code></li>
+<li><code><a title="pearl.utils.scripts.benchmark_parallelization.evaluate_single" href="#pearl.utils.scripts.benchmark_parallelization.evaluate_single">evaluate_single</a></code></li>
+<li><code><a title="pearl.utils.scripts.benchmark_parallelization.generate_one_plot" href="#pearl.utils.scripts.benchmark_parallelization.generate_one_plot">generate_one_plot</a></code></li>
+<li><code><a title="pearl.utils.scripts.benchmark_parallelization.generate_plots" href="#pearl.utils.scripts.benchmark_parallelization.generate_plots">generate_plots</a></code></li>
+<li><code><a title="pearl.utils.scripts.benchmark_parallelization.run" href="#pearl.utils.scripts.benchmark_parallelization.run">run</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

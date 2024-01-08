@@ -1,0 +1,2097 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.neural_networks.common.value_networks API documentation</title>
+<meta name="description" content="This module defines several types of value neural networks." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.neural_networks.common.value_networks</code></h1>
+</header>
+<section id="section-intro">
+<p>This module defines several types of value neural networks.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+This module defines several types of value neural networks.
+&#34;&#34;&#34;
+
+
+from abc import ABC
+from typing import Any, List, Optional
+
+import torch
+import torch.nn as nn
+from pearl.neural_networks.common.epistemic_neural_networks import Ensemble
+
+from pearl.neural_networks.sequential_decision_making.q_value_network import (
+    DistributionalQValueNetwork,
+    QValueNetwork,
+)
+from pearl.utils.functional_utils.learning.extend_state_feature import (
+    extend_state_feature_by_available_action_space,
+)
+from torch import Tensor
+
+from .utils import conv_block, mlp_block
+
+
+class ValueNetwork(nn.Module, ABC):
+    &#34;&#34;&#34;
+    An interface for value neural networks.
+    It does not add any required methods to those already present in
+    its super classes.
+    Its purpose instead is just to serve as an umbrella type for all value networks.
+    &#34;&#34;&#34;
+
+
+class VanillaValueNetwork(ValueNetwork):
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int = 1,
+        **kwargs: Any,
+    ) -&gt; None:
+        super(VanillaValueNetwork, self).__init__()
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            **kwargs,
+        )
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        return self._model(x)
+
+    # default initialization in linear and conv layers of a F.sequential model is Kaiming
+    def xavier_init(self) -&gt; None:
+        for layer in self._model:
+            if isinstance(layer, nn.Linear):
+                nn.init.xavier_normal_(layer.weight)
+
+
+class VanillaCNN(ValueNetwork):
+    &#34;&#34;&#34;
+    Vanilla CNN with a convolutional block followed by an mlp block.
+    Args:
+        input_width: width of the input
+        input_height: height of the input
+        input_channels_count: number of input channels
+        kernel_sizes: list of kernel sizes for the convolutional layers
+        output_channels_list: list of number of output channels for each convolutional layer
+        strides: list of strides for each layer
+        paddings: list of paddings for each layer
+        hidden_dims_fully_connected: a list of dimensions of the hidden layers in the mlp
+        use_batch_norm_conv: whether to use batch_norm in the convolutional layers
+        use_batch_norm_fully_connected: whether to use batch_norm in the fully connected layers
+        output_dim: dimension of the output layer
+    Returns:
+        An nn.Sequential module consisting of a convolutional block followed by an mlp.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_width: int,
+        input_height: int,
+        input_channels_count: int,
+        kernel_sizes: List[int],
+        output_channels_list: List[int],
+        strides: List[int],
+        paddings: List[int],
+        hidden_dims_fully_connected: Optional[
+            List[int]
+        ] = None,  # hidden dims for fully connected layers
+        use_batch_norm_conv: bool = False,
+        use_batch_norm_fully_connected: bool = False,
+        output_dim: int = 1,  # dimension of the final output
+    ) -&gt; None:
+
+        assert (
+            len(kernel_sizes)
+            == len(output_channels_list)
+            == len(strides)
+            == len(paddings)
+        )
+        super(VanillaCNN, self).__init__()
+
+        self._input_channels = input_channels_count
+        self._input_height = input_height
+        self._input_width = input_width
+        self._output_channels = output_channels_list
+        self._kernel_sizes = kernel_sizes
+        self._strides = strides
+        self._paddings = paddings
+        if hidden_dims_fully_connected is None:
+            self._hidden_dims_fully_connected: List[int] = []
+        else:
+            self._hidden_dims_fully_connected: List[int] = hidden_dims_fully_connected
+
+        self._use_batch_norm_conv = use_batch_norm_conv
+        self._use_batch_norm_fully_connected = use_batch_norm_fully_connected
+        self._output_dim = output_dim
+
+        self._model_cnn: nn.Module = conv_block(
+            input_channels_count=self._input_channels,
+            output_channels_list=self._output_channels,
+            kernel_sizes=self._kernel_sizes,
+            strides=self._strides,
+            paddings=self._paddings,
+            use_batch_norm=self._use_batch_norm_conv,
+        )
+
+        self._mlp_input_dims: int = self.compute_output_dim_model_cnn()
+        self._model_fc: nn.Module = mlp_block(
+            input_dim=self._mlp_input_dims,
+            hidden_dims=self._hidden_dims_fully_connected,
+            output_dim=self._output_dim,
+            use_batch_norm=self._use_batch_norm_fully_connected,
+        )
+
+    def compute_output_dim_model_cnn(self) -&gt; int:
+        dummy_input = torch.zeros(
+            1, self._input_channels, self._input_width, self._input_height
+        )
+        dummy_output_flattened = torch.flatten(
+            self._model_cnn(dummy_input), start_dim=1, end_dim=-1
+        )
+        return dummy_output_flattened.shape[1]
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        out_cnn = self._model_cnn(x)
+        out_flattened = torch.flatten(out_cnn, start_dim=1, end_dim=-1)
+        out_fc = self._model_fc(out_flattened)
+        return out_fc
+
+
+class CNNQValueNetwork(VanillaCNN):
+    &#34;&#34;&#34;
+    A CNN version of state-action value (Q-value) network.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_width: int,
+        input_height: int,
+        input_channels_count: int,
+        kernel_sizes: List[int],
+        output_channels_list: List[int],
+        strides: List[int],
+        paddings: List[int],
+        action_dim: int,
+        hidden_dims_fully_connected: Optional[List[int]] = None,
+        output_dim: int = 1,
+        use_batch_norm_conv: bool = False,
+        use_batch_norm_fully_connected: bool = False,
+    ) -&gt; None:
+        super(CNNQValueNetwork, self).__init__(
+            input_width=input_width,
+            input_height=input_height,
+            input_channels_count=input_channels_count,
+            kernel_sizes=kernel_sizes,
+            output_channels_list=output_channels_list,
+            strides=strides,
+            paddings=paddings,
+            hidden_dims_fully_connected=hidden_dims_fully_connected,
+            use_batch_norm_conv=use_batch_norm_conv,
+            use_batch_norm_fully_connected=use_batch_norm_fully_connected,
+            output_dim=output_dim,
+        )
+        # we concatenate actions to state representations in the mlp block of the Q-value network
+        self._mlp_input_dims: int = self.compute_output_dim_model_cnn() + action_dim
+        self._model_fc: nn.Module = mlp_block(
+            input_dim=self._mlp_input_dims,
+            hidden_dims=self._hidden_dims_fully_connected,
+            output_dim=self._output_dim,
+            use_batch_norm=self._use_batch_norm_fully_connected,
+        )
+        self._action_dim = action_dim
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        return self._model(x)
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+    ) -&gt; Tensor:
+        batch_size = state_batch.shape[0]
+        state_representation_batch = self._model_cnn(state_batch)
+        state_embedding_batch = torch.flatten(
+            state_representation_batch, start_dim=1, end_dim=-1
+        ).view(batch_size, -1)
+
+        # concatenate actions to state representations and do a forward pass through the mlp_block
+        x = torch.cat([state_embedding_batch, action_batch], dim=-1)
+        q_values_batch = self._model_fc(x)
+        return q_values_batch.view(-1)
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_dim
+
+
+class VanillaQValueNetwork(QValueNetwork):
+    &#34;&#34;&#34;
+    A vanilla version of state-action value (Q-value) network.
+    It leverages the vanilla implementation of value networks by
+    using the state-action pair as the input for the value network.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: List[int],
+        output_dim: int,
+        use_layer_norm: bool = False,
+    ) -&gt; None:
+        super(VanillaQValueNetwork, self).__init__()
+        self._state_dim: int = state_dim
+        self._action_dim: int = action_dim
+        self._model: nn.Module = mlp_block(
+            input_dim=state_dim + action_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            use_layer_norm=use_layer_norm,
+        )
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        return self._model(x)
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+    ) -&gt; Tensor:
+        x = torch.cat([state_batch, action_batch], dim=-1)
+        return self.forward(x).view(-1)
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_dim
+
+
+class QuantileQValueNetwork(DistributionalQValueNetwork):
+    &#34;&#34;&#34;
+    A quantile version of state-action value (Q-value) network.
+    For each (state, action) input pairs,
+    it returns theta(s,a), the locations of quantiles which parameterize the Q value distribution.
+
+    See the parameterization in QR DQN paper: https://arxiv.org/pdf/1710.10044.pdf for more details.
+
+    Assume N is the number of quantiles.
+    1) For this parameterization, the quantiles are fixed (1/N),
+       while the quantile locations, theta(s,a), are learned.
+    2) The return distribution is represented as: Z(s, a) = (1/N) * sum_{i=1}^N theta_i (s,a),
+       where (theta_1(s,a), .. , theta_N(s,a)),
+    which represent the quantile locations, are outouts of the QuantileQValueNetwork.
+
+    Args:
+        num_quantiles: the number of quantiles N, used to approximate the value distribution.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: List[int],
+        num_quantiles: int,
+        use_layer_norm: bool = False,
+    ) -&gt; None:
+        super(QuantileQValueNetwork, self).__init__()
+
+        self._model: nn.Module = mlp_block(
+            input_dim=state_dim + action_dim,
+            hidden_dims=hidden_dims,
+            output_dim=num_quantiles,
+            use_layer_norm=use_layer_norm,
+        )
+
+        self._state_dim: int = state_dim
+        self._action_dim: int = action_dim
+        self._num_quantiles: int = num_quantiles
+        self.register_buffer(
+            &#34;_quantiles&#34;, torch.arange(0, self._num_quantiles + 1) / self._num_quantiles
+        )
+        self.register_buffer(
+            &#34;_quantile_midpoints&#34;,
+            ((self._quantiles[1:] + self._quantiles[:-1]) / 2)
+            .unsqueeze(0)
+            .unsqueeze(0),
+        )
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        return self._model(x)
+
+    def get_q_value_distribution(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+    ) -&gt; Tensor:
+
+        x = torch.cat([state_batch, action_batch], dim=-1)
+        return self.forward(x)
+
+    @property
+    def quantiles(self) -&gt; Tensor:
+        return self._quantiles
+
+    @property
+    def quantile_midpoints(self) -&gt; Tensor:
+        return self._quantile_midpoints
+
+    @property
+    def num_quantiles(self) -&gt; int:
+        return self._num_quantiles
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_dim
+
+
+class DuelingQValueNetwork(QValueNetwork):
+    &#34;&#34;&#34;
+    Dueling architecture consists of state architecture, value architecture,
+    and advantage architecture.
+
+    The architecture is as follows:
+    state --&gt; state_arch -----&gt; value_arch --&gt; value(s)-----------------------\
+                                |                                              ---&gt; add --&gt; Q(s,a)
+    action ------------concat-&gt; advantage_arch --&gt; advantage(s, a)--- -mean --/
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: List[int],
+        output_dim: int,
+        value_hidden_dims: Optional[List[int]] = None,
+        advantage_hidden_dims: Optional[List[int]] = None,
+        state_hidden_dims: Optional[List[int]] = None,
+    ) -&gt; None:
+        super(DuelingQValueNetwork, self).__init__()
+        self._state_dim: int = state_dim
+        self._action_dim: int = action_dim
+
+        # state architecture
+        self.state_arch = VanillaValueNetwork(
+            input_dim=state_dim,
+            hidden_dims=hidden_dims if state_hidden_dims is None else state_hidden_dims,
+            output_dim=hidden_dims[-1],
+        )
+
+        # value architecture
+        self.value_arch = VanillaValueNetwork(
+            input_dim=hidden_dims[-1],  # same as state_arch output dim
+            hidden_dims=hidden_dims if value_hidden_dims is None else value_hidden_dims,
+            output_dim=output_dim,  # output_dim=1
+        )
+
+        # advantage architecture
+        self.advantage_arch = VanillaValueNetwork(
+            input_dim=hidden_dims[-1] + action_dim,  # state_arch out dim + action_dim
+            hidden_dims=hidden_dims
+            if advantage_hidden_dims is None
+            else advantage_hidden_dims,
+            output_dim=output_dim,  # output_dim=1
+        )
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_dim
+
+    def forward(self, state: Tensor, action: Tensor) -&gt; Tensor:
+        assert state.shape[-1] == self.state_dim
+        assert action.shape[-1] == self.action_dim
+
+        # state feature architecture : state --&gt; feature
+        state_features = self.state_arch(
+            state
+        )  # shape: (?, state_dim); state_dim is the output dimension of state_arch mlp
+
+        # value architecture : feature --&gt; value
+        state_value = self.value_arch(state_features)  # shape: (batch_size)
+
+        # advantage architecture : [state feature, actions] --&gt; advantage
+        state_action_features = torch.cat(
+            (state_features, action), dim=-1
+        )  # shape: (?, state_dim + action_dim)
+
+        advantage = self.advantage_arch(state_action_features)
+        advantage_mean = torch.mean(
+            advantage, dim=-2, keepdim=True
+        )  # -2 is dimension denoting number of actions
+        return state_value + advantage - advantage_mean
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+    ) -&gt; Tensor:
+        &#34;&#34;&#34;
+        Args:
+            batch of states: (batch_size, state_dim)
+            batch of actions: (batch_size, action_dim)
+            (Optional) batch of available actions (one set of available actions per state):
+                    (batch_size, available_action_space_size, action_dim)
+
+            In DUELING_DQN, logic for use with td learning (deep_td_learning)
+            a) when curr_available_actions_batch is None, we do a forward pass from Q network
+               in this case, the action batch will be the batch of all available actions
+               doing a forward pass with mean subtraction is correct
+
+            b) when curr_available_actions_batch is not None,
+               extend the state_batch tensor to include available actions,
+               that is, state_batch: (batch_size, state_dim)
+               --&gt; (batch_size, available_action_space_size, state_dim)
+               then, do a forward pass from Q network to calculate
+               q-values for (state, all available actions),
+               followed by q values for given (state, action) pair in the batch
+
+        TODO: assumes a gym environment interface with fixed action space, change it with masking
+        &#34;&#34;&#34;
+
+        if curr_available_actions_batch is None:
+            return self.forward(state_batch, action_batch).view(-1)
+        else:
+            # calculate the q value of all available actions
+            state_repeated_batch = extend_state_feature_by_available_action_space(
+                state_batch=state_batch,
+                curr_available_actions_batch=curr_available_actions_batch,
+            )  # shape: (batch_size, available_action_space_size, state_dim)
+
+            # collect Q values of a state and all available actions
+            values_state_available_actions = self.forward(
+                state_repeated_batch, curr_available_actions_batch
+            )  # shape: (batch_size, available_action_space_size, action_dim)
+
+            # gather only the q value of the action that we are interested in.
+            action_idx = (
+                torch.argmax(action_batch, dim=1).unsqueeze(-1).unsqueeze(-1)
+            )  # one_hot to decimal
+
+            # q value of (state, action) pair of interest
+            state_action_values = torch.gather(
+                values_state_available_actions, 1, action_idx
+            ).view(
+                -1
+            )  # shape: (batch_size)
+        return state_action_values
+
+
+&#34;&#34;&#34;
+One can make VanillaValueNetwork to be a special case of TwoTowerQValueNetwork by initializing
+linear layers to be an identity map and stopping gradients. This however would be too complex.
+&#34;&#34;&#34;
+
+
+class TwoTowerNetwork(QValueNetwork):
+    def __init__(
+        self,
+        state_input_dim: int,
+        action_input_dim: int,
+        state_output_dim: int,
+        action_output_dim: int,
+        state_hidden_dims: Optional[List[int]],
+        action_hidden_dims: Optional[List[int]],
+        hidden_dims: Optional[List[int]],
+        output_dim: int = 1,
+    ) -&gt; None:
+
+        super(TwoTowerNetwork, self).__init__()
+
+        &#34;&#34;&#34;
+        Input: batch of state, batch of action. Output: batch of Q-values for (s,a) pairs
+        The two tower archtecture is as follows:
+        state ----&gt; state_feature
+                            | concat ----&gt; Q(s,a)
+        action ----&gt; action_feature
+        &#34;&#34;&#34;
+        self._state_input_dim = state_input_dim
+        self._action_input_dim = action_input_dim
+        self._state_features = VanillaValueNetwork(
+            input_dim=state_input_dim,
+            hidden_dims=state_hidden_dims,
+            output_dim=state_output_dim,
+        )
+        self._state_features.xavier_init()
+        self._action_features = VanillaValueNetwork(
+            input_dim=action_input_dim,
+            hidden_dims=action_hidden_dims,
+            output_dim=action_output_dim,
+        )
+        self._action_features.xavier_init()
+        self._interaction_features = VanillaValueNetwork(
+            input_dim=state_output_dim + action_output_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+        )
+        self._interaction_features.xavier_init()
+
+    def forward(self, state_action: Tensor) -&gt; Tensor:
+        state = state_action[..., : self._state_input_dim]
+        action = state_action[..., self._state_input_dim :]
+        output = self.get_q_values(state_batch=state, action_batch=action)
+        return output
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+    ) -&gt; Tensor:
+        state_batch_features = self._state_features.forward(state_batch)
+        &#34;&#34;&#34; this might need to be done in tensor_based_replay_buffer &#34;&#34;&#34;
+        action_batch_features = self._action_features.forward(
+            action_batch.to(torch.get_default_dtype())
+        )
+
+        x = torch.cat([state_batch_features, action_batch_features], dim=-1)
+        return self._interaction_features.forward(x).view(-1)  # (batch_size)
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_input_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_input_dim
+
+
+&#34;&#34;&#34;
+With the same initialization parameters as the VanillaQValue Network, i.e. without
+specifying the state_output_dims and/or action_outout_dims, we still add a linear layer to
+extract state and/or action features.
+&#34;&#34;&#34;
+
+
+class TwoTowerQValueNetwork(TwoTowerNetwork):
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: List[int],
+        output_dim: int = 1,
+        state_output_dim: Optional[int] = None,
+        action_output_dim: Optional[int] = None,
+        state_hidden_dims: Optional[List[int]] = None,
+        action_hidden_dims: Optional[List[int]] = None,
+    ) -&gt; None:
+
+        super().__init__(
+            state_input_dim=state_dim,
+            action_input_dim=action_dim,
+            state_output_dim=state_dim
+            if state_output_dim is None
+            else state_output_dim,
+            action_output_dim=action_dim
+            if action_output_dim is None
+            else action_output_dim,
+            state_hidden_dims=[] if state_hidden_dims is None else state_hidden_dims,
+            action_hidden_dims=[] if action_hidden_dims is None else action_hidden_dims,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+        )
+
+
+class EnsembleQValueNetwork(QValueNetwork):
+    r&#34;&#34;&#34;A Q-value network that uses the `Ensemble` model.&#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int,
+        ensemble_size: int,
+        prior_scale: float = 1.0,
+    ) -&gt; None:
+        super(EnsembleQValueNetwork, self).__init__()
+        self._state_dim = state_dim
+        self._action_dim = action_dim
+        self._model = Ensemble(
+            input_dim=state_dim + action_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            ensemble_size=ensemble_size,
+            prior_scale=prior_scale,
+        )
+
+    @property
+    def ensemble_size(self) -&gt; int:
+        return self._model.ensemble_size
+
+    def resample_epistemic_index(self) -&gt; None:
+        r&#34;&#34;&#34;Resamples the epistemic index of the underlying model.&#34;&#34;&#34;
+        self._model._resample_epistemic_index()
+
+    def forward(
+        self, x: Tensor, z: Optional[Tensor] = None, persistent: bool = False
+    ) -&gt; Tensor:
+        return self._model(x, z=z, persistent=persistent)
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+        z: Optional[Tensor] = None,
+        persistent: bool = False,
+    ) -&gt; Tensor:
+        x = torch.cat([state_batch, action_batch], dim=-1)
+        return self.forward(x, z=z, persistent=persistent).view(-1)
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_input_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_input_dim</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.CNNQValueNetwork"><code class="flex name class">
+<span>class <span class="ident">CNNQValueNetwork</span></span>
+<span>(</span><span>input_width: int, input_height: int, input_channels_count: int, kernel_sizes: List[int], output_channels_list: List[int], strides: List[int], paddings: List[int], action_dim: int, hidden_dims_fully_connected: Optional[List[int]] = None, output_dim: int = 1, use_batch_norm_conv: bool = False, use_batch_norm_fully_connected: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A CNN version of state-action value (Q-value) network.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CNNQValueNetwork(VanillaCNN):
+    &#34;&#34;&#34;
+    A CNN version of state-action value (Q-value) network.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_width: int,
+        input_height: int,
+        input_channels_count: int,
+        kernel_sizes: List[int],
+        output_channels_list: List[int],
+        strides: List[int],
+        paddings: List[int],
+        action_dim: int,
+        hidden_dims_fully_connected: Optional[List[int]] = None,
+        output_dim: int = 1,
+        use_batch_norm_conv: bool = False,
+        use_batch_norm_fully_connected: bool = False,
+    ) -&gt; None:
+        super(CNNQValueNetwork, self).__init__(
+            input_width=input_width,
+            input_height=input_height,
+            input_channels_count=input_channels_count,
+            kernel_sizes=kernel_sizes,
+            output_channels_list=output_channels_list,
+            strides=strides,
+            paddings=paddings,
+            hidden_dims_fully_connected=hidden_dims_fully_connected,
+            use_batch_norm_conv=use_batch_norm_conv,
+            use_batch_norm_fully_connected=use_batch_norm_fully_connected,
+            output_dim=output_dim,
+        )
+        # we concatenate actions to state representations in the mlp block of the Q-value network
+        self._mlp_input_dims: int = self.compute_output_dim_model_cnn() + action_dim
+        self._model_fc: nn.Module = mlp_block(
+            input_dim=self._mlp_input_dims,
+            hidden_dims=self._hidden_dims_fully_connected,
+            output_dim=self._output_dim,
+            use_batch_norm=self._use_batch_norm_fully_connected,
+        )
+        self._action_dim = action_dim
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        return self._model(x)
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+    ) -&gt; Tensor:
+        batch_size = state_batch.shape[0]
+        state_representation_batch = self._model_cnn(state_batch)
+        state_embedding_batch = torch.flatten(
+            state_representation_batch, start_dim=1, end_dim=-1
+        ).view(batch_size, -1)
+
+        # concatenate actions to state representations and do a forward pass through the mlp_block
+        x = torch.cat([state_embedding_batch, action_batch], dim=-1)
+        q_values_batch = self._model_fc(x)
+        return q_values_batch.view(-1)
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_dim</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.common.value_networks.VanillaCNN" href="#pearl.neural_networks.common.value_networks.VanillaCNN">VanillaCNN</a></li>
+<li><a title="pearl.neural_networks.common.value_networks.ValueNetwork" href="#pearl.neural_networks.common.value_networks.ValueNetwork">ValueNetwork</a></li>
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.CNNQValueNetwork.action_dim"><code class="name">var <span class="ident">action_dim</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def action_dim(self) -&gt; int:
+    return self._action_dim</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.CNNQValueNetwork.get_q_values"><code class="name flex">
+<span>def <span class="ident">get_q_values</span></span>(<span>self, state_batch: torch.Tensor, action_batch: torch.Tensor, curr_available_actions_batch: Optional[torch.Tensor] = None) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_q_values(
+    self,
+    state_batch: Tensor,
+    action_batch: Tensor,
+    curr_available_actions_batch: Optional[Tensor] = None,
+) -&gt; Tensor:
+    batch_size = state_batch.shape[0]
+    state_representation_batch = self._model_cnn(state_batch)
+    state_embedding_batch = torch.flatten(
+        state_representation_batch, start_dim=1, end_dim=-1
+    ).view(batch_size, -1)
+
+    # concatenate actions to state representations and do a forward pass through the mlp_block
+    x = torch.cat([state_embedding_batch, action_batch], dim=-1)
+    q_values_batch = self._model_fc(x)
+    return q_values_batch.view(-1)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.neural_networks.common.value_networks.VanillaCNN" href="#pearl.neural_networks.common.value_networks.VanillaCNN">VanillaCNN</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.neural_networks.common.value_networks.VanillaCNN.forward" href="#pearl.neural_networks.common.value_networks.VanillaCNN.forward">forward</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.DuelingQValueNetwork"><code class="flex name class">
+<span>class <span class="ident">DuelingQValueNetwork</span></span>
+<span>(</span><span>state_dim: int, action_dim: int, hidden_dims: List[int], output_dim: int, value_hidden_dims: Optional[List[int]] = None, advantage_hidden_dims: Optional[List[int]] = None, state_hidden_dims: Optional[List[int]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Dueling architecture consists of state architecture, value architecture,
+and advantage architecture.</p>
+<p>The architecture is as follows:
+state &ndash;&gt; state_arch -----&gt; value_arch &ndash;&gt; value(s)-----------------------
+|
+&mdash;&gt; add &ndash;&gt; Q(s,a)
+action ------------concat-&gt; advantage_arch &ndash;&gt; advantage(s, a)&mdash; -mean &ndash;/</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DuelingQValueNetwork(QValueNetwork):
+    &#34;&#34;&#34;
+    Dueling architecture consists of state architecture, value architecture,
+    and advantage architecture.
+
+    The architecture is as follows:
+    state --&gt; state_arch -----&gt; value_arch --&gt; value(s)-----------------------\
+                                |                                              ---&gt; add --&gt; Q(s,a)
+    action ------------concat-&gt; advantage_arch --&gt; advantage(s, a)--- -mean --/
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: List[int],
+        output_dim: int,
+        value_hidden_dims: Optional[List[int]] = None,
+        advantage_hidden_dims: Optional[List[int]] = None,
+        state_hidden_dims: Optional[List[int]] = None,
+    ) -&gt; None:
+        super(DuelingQValueNetwork, self).__init__()
+        self._state_dim: int = state_dim
+        self._action_dim: int = action_dim
+
+        # state architecture
+        self.state_arch = VanillaValueNetwork(
+            input_dim=state_dim,
+            hidden_dims=hidden_dims if state_hidden_dims is None else state_hidden_dims,
+            output_dim=hidden_dims[-1],
+        )
+
+        # value architecture
+        self.value_arch = VanillaValueNetwork(
+            input_dim=hidden_dims[-1],  # same as state_arch output dim
+            hidden_dims=hidden_dims if value_hidden_dims is None else value_hidden_dims,
+            output_dim=output_dim,  # output_dim=1
+        )
+
+        # advantage architecture
+        self.advantage_arch = VanillaValueNetwork(
+            input_dim=hidden_dims[-1] + action_dim,  # state_arch out dim + action_dim
+            hidden_dims=hidden_dims
+            if advantage_hidden_dims is None
+            else advantage_hidden_dims,
+            output_dim=output_dim,  # output_dim=1
+        )
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_dim
+
+    def forward(self, state: Tensor, action: Tensor) -&gt; Tensor:
+        assert state.shape[-1] == self.state_dim
+        assert action.shape[-1] == self.action_dim
+
+        # state feature architecture : state --&gt; feature
+        state_features = self.state_arch(
+            state
+        )  # shape: (?, state_dim); state_dim is the output dimension of state_arch mlp
+
+        # value architecture : feature --&gt; value
+        state_value = self.value_arch(state_features)  # shape: (batch_size)
+
+        # advantage architecture : [state feature, actions] --&gt; advantage
+        state_action_features = torch.cat(
+            (state_features, action), dim=-1
+        )  # shape: (?, state_dim + action_dim)
+
+        advantage = self.advantage_arch(state_action_features)
+        advantage_mean = torch.mean(
+            advantage, dim=-2, keepdim=True
+        )  # -2 is dimension denoting number of actions
+        return state_value + advantage - advantage_mean
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+    ) -&gt; Tensor:
+        &#34;&#34;&#34;
+        Args:
+            batch of states: (batch_size, state_dim)
+            batch of actions: (batch_size, action_dim)
+            (Optional) batch of available actions (one set of available actions per state):
+                    (batch_size, available_action_space_size, action_dim)
+
+            In DUELING_DQN, logic for use with td learning (deep_td_learning)
+            a) when curr_available_actions_batch is None, we do a forward pass from Q network
+               in this case, the action batch will be the batch of all available actions
+               doing a forward pass with mean subtraction is correct
+
+            b) when curr_available_actions_batch is not None,
+               extend the state_batch tensor to include available actions,
+               that is, state_batch: (batch_size, state_dim)
+               --&gt; (batch_size, available_action_space_size, state_dim)
+               then, do a forward pass from Q network to calculate
+               q-values for (state, all available actions),
+               followed by q values for given (state, action) pair in the batch
+
+        TODO: assumes a gym environment interface with fixed action space, change it with masking
+        &#34;&#34;&#34;
+
+        if curr_available_actions_batch is None:
+            return self.forward(state_batch, action_batch).view(-1)
+        else:
+            # calculate the q value of all available actions
+            state_repeated_batch = extend_state_feature_by_available_action_space(
+                state_batch=state_batch,
+                curr_available_actions_batch=curr_available_actions_batch,
+            )  # shape: (batch_size, available_action_space_size, state_dim)
+
+            # collect Q values of a state and all available actions
+            values_state_available_actions = self.forward(
+                state_repeated_batch, curr_available_actions_batch
+            )  # shape: (batch_size, available_action_space_size, action_dim)
+
+            # gather only the q value of the action that we are interested in.
+            action_idx = (
+                torch.argmax(action_batch, dim=1).unsqueeze(-1).unsqueeze(-1)
+            )  # one_hot to decimal
+
+            # q value of (state, action) pair of interest
+            state_action_values = torch.gather(
+                values_state_available_actions, 1, action_idx
+            ).view(
+                -1
+            )  # shape: (batch_size)
+        return state_action_values</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></li>
+<li>abc.ABC</li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.DuelingQValueNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, state: torch.Tensor, action: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, state: Tensor, action: Tensor) -&gt; Tensor:
+    assert state.shape[-1] == self.state_dim
+    assert action.shape[-1] == self.action_dim
+
+    # state feature architecture : state --&gt; feature
+    state_features = self.state_arch(
+        state
+    )  # shape: (?, state_dim); state_dim is the output dimension of state_arch mlp
+
+    # value architecture : feature --&gt; value
+    state_value = self.value_arch(state_features)  # shape: (batch_size)
+
+    # advantage architecture : [state feature, actions] --&gt; advantage
+    state_action_features = torch.cat(
+        (state_features, action), dim=-1
+    )  # shape: (?, state_dim + action_dim)
+
+    advantage = self.advantage_arch(state_action_features)
+    advantage_mean = torch.mean(
+        advantage, dim=-2, keepdim=True
+    )  # -2 is dimension denoting number of actions
+    return state_value + advantage - advantage_mean</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.DuelingQValueNetwork.get_q_values"><code class="name flex">
+<span>def <span class="ident">get_q_values</span></span>(<span>self, state_batch: torch.Tensor, action_batch: torch.Tensor, curr_available_actions_batch: Optional[torch.Tensor] = None) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="args">Args</h2>
+<p>batch of states: (batch_size, state_dim)
+batch of actions: (batch_size, action_dim)
+(Optional) batch of available actions (one set of available actions per state):
+(batch_size, available_action_space_size, action_dim)</p>
+<p>In DUELING_DQN, logic for use with td learning (deep_td_learning)
+a) when curr_available_actions_batch is None, we do a forward pass from Q network
+in this case, the action batch will be the batch of all available actions
+doing a forward pass with mean subtraction is correct</p>
+<p>b) when curr_available_actions_batch is not None,
+extend the state_batch tensor to include available actions,
+that is, state_batch: (batch_size, state_dim)
+&ndash;&gt; (batch_size, available_action_space_size, state_dim)
+then, do a forward pass from Q network to calculate
+q-values for (state, all available actions),
+followed by q values for given (state, action) pair in the batch
+TODO: assumes a gym environment interface with fixed action space, change it with masking</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_q_values(
+    self,
+    state_batch: Tensor,
+    action_batch: Tensor,
+    curr_available_actions_batch: Optional[Tensor] = None,
+) -&gt; Tensor:
+    &#34;&#34;&#34;
+    Args:
+        batch of states: (batch_size, state_dim)
+        batch of actions: (batch_size, action_dim)
+        (Optional) batch of available actions (one set of available actions per state):
+                (batch_size, available_action_space_size, action_dim)
+
+        In DUELING_DQN, logic for use with td learning (deep_td_learning)
+        a) when curr_available_actions_batch is None, we do a forward pass from Q network
+           in this case, the action batch will be the batch of all available actions
+           doing a forward pass with mean subtraction is correct
+
+        b) when curr_available_actions_batch is not None,
+           extend the state_batch tensor to include available actions,
+           that is, state_batch: (batch_size, state_dim)
+           --&gt; (batch_size, available_action_space_size, state_dim)
+           then, do a forward pass from Q network to calculate
+           q-values for (state, all available actions),
+           followed by q values for given (state, action) pair in the batch
+
+    TODO: assumes a gym environment interface with fixed action space, change it with masking
+    &#34;&#34;&#34;
+
+    if curr_available_actions_batch is None:
+        return self.forward(state_batch, action_batch).view(-1)
+    else:
+        # calculate the q value of all available actions
+        state_repeated_batch = extend_state_feature_by_available_action_space(
+            state_batch=state_batch,
+            curr_available_actions_batch=curr_available_actions_batch,
+        )  # shape: (batch_size, available_action_space_size, state_dim)
+
+        # collect Q values of a state and all available actions
+        values_state_available_actions = self.forward(
+            state_repeated_batch, curr_available_actions_batch
+        )  # shape: (batch_size, available_action_space_size, action_dim)
+
+        # gather only the q value of the action that we are interested in.
+        action_idx = (
+            torch.argmax(action_batch, dim=1).unsqueeze(-1).unsqueeze(-1)
+        )  # one_hot to decimal
+
+        # q value of (state, action) pair of interest
+        state_action_values = torch.gather(
+            values_state_available_actions, 1, action_idx
+        ).view(
+            -1
+        )  # shape: (batch_size)
+    return state_action_values</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim">action_dim</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim">state_dim</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.EnsembleQValueNetwork"><code class="flex name class">
+<span>class <span class="ident">EnsembleQValueNetwork</span></span>
+<span>(</span><span>state_dim: int, action_dim: int, hidden_dims: Optional[List[int]], output_dim: int, ensemble_size: int, prior_scale: float = 1.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A Q-value network that uses the <code>Ensemble</code> model.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class EnsembleQValueNetwork(QValueNetwork):
+    r&#34;&#34;&#34;A Q-value network that uses the `Ensemble` model.&#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int,
+        ensemble_size: int,
+        prior_scale: float = 1.0,
+    ) -&gt; None:
+        super(EnsembleQValueNetwork, self).__init__()
+        self._state_dim = state_dim
+        self._action_dim = action_dim
+        self._model = Ensemble(
+            input_dim=state_dim + action_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            ensemble_size=ensemble_size,
+            prior_scale=prior_scale,
+        )
+
+    @property
+    def ensemble_size(self) -&gt; int:
+        return self._model.ensemble_size
+
+    def resample_epistemic_index(self) -&gt; None:
+        r&#34;&#34;&#34;Resamples the epistemic index of the underlying model.&#34;&#34;&#34;
+        self._model._resample_epistemic_index()
+
+    def forward(
+        self, x: Tensor, z: Optional[Tensor] = None, persistent: bool = False
+    ) -&gt; Tensor:
+        return self._model(x, z=z, persistent=persistent)
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+        z: Optional[Tensor] = None,
+        persistent: bool = False,
+    ) -&gt; Tensor:
+        x = torch.cat([state_batch, action_batch], dim=-1)
+        return self.forward(x, z=z, persistent=persistent).view(-1)
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_input_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_input_dim</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></li>
+<li>abc.ABC</li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.ensemble_size"><code class="name">var <span class="ident">ensemble_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def ensemble_size(self) -&gt; int:
+    return self._model.ensemble_size</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor, z: Optional[torch.Tensor] = None, persistent: bool = False) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(
+    self, x: Tensor, z: Optional[Tensor] = None, persistent: bool = False
+) -&gt; Tensor:
+    return self._model(x, z=z, persistent=persistent)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.resample_epistemic_index"><code class="name flex">
+<span>def <span class="ident">resample_epistemic_index</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resamples the epistemic index of the underlying model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def resample_epistemic_index(self) -&gt; None:
+    r&#34;&#34;&#34;Resamples the epistemic index of the underlying model.&#34;&#34;&#34;
+    self._model._resample_epistemic_index()</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim">action_dim</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.get_q_values" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.get_q_values">get_q_values</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim">state_dim</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.QuantileQValueNetwork"><code class="flex name class">
+<span>class <span class="ident">QuantileQValueNetwork</span></span>
+<span>(</span><span>state_dim: int, action_dim: int, hidden_dims: List[int], num_quantiles: int, use_layer_norm: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A quantile version of state-action value (Q-value) network.
+For each (state, action) input pairs,
+it returns theta(s,a), the locations of quantiles which parameterize the Q value distribution.</p>
+<p>See the parameterization in QR DQN paper: <a href="https://arxiv.org/pdf/1710.10044.pdf">https://arxiv.org/pdf/1710.10044.pdf</a> for more details.</p>
+<p>Assume N is the number of quantiles.
+1) For this parameterization, the quantiles are fixed (1/N),
+while the quantile locations, theta(s,a), are learned.
+2) The return distribution is represented as: Z(s, a) = (1/N) * sum_{i=1}^N theta_i (s,a),
+where (theta_1(s,a), .. , theta_N(s,a)),
+which represent the quantile locations, are outouts of the QuantileQValueNetwork.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>num_quantiles</code></strong></dt>
+<dd>the number of quantiles N, used to approximate the value distribution.</dd>
+</dl>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class QuantileQValueNetwork(DistributionalQValueNetwork):
+    &#34;&#34;&#34;
+    A quantile version of state-action value (Q-value) network.
+    For each (state, action) input pairs,
+    it returns theta(s,a), the locations of quantiles which parameterize the Q value distribution.
+
+    See the parameterization in QR DQN paper: https://arxiv.org/pdf/1710.10044.pdf for more details.
+
+    Assume N is the number of quantiles.
+    1) For this parameterization, the quantiles are fixed (1/N),
+       while the quantile locations, theta(s,a), are learned.
+    2) The return distribution is represented as: Z(s, a) = (1/N) * sum_{i=1}^N theta_i (s,a),
+       where (theta_1(s,a), .. , theta_N(s,a)),
+    which represent the quantile locations, are outouts of the QuantileQValueNetwork.
+
+    Args:
+        num_quantiles: the number of quantiles N, used to approximate the value distribution.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: List[int],
+        num_quantiles: int,
+        use_layer_norm: bool = False,
+    ) -&gt; None:
+        super(QuantileQValueNetwork, self).__init__()
+
+        self._model: nn.Module = mlp_block(
+            input_dim=state_dim + action_dim,
+            hidden_dims=hidden_dims,
+            output_dim=num_quantiles,
+            use_layer_norm=use_layer_norm,
+        )
+
+        self._state_dim: int = state_dim
+        self._action_dim: int = action_dim
+        self._num_quantiles: int = num_quantiles
+        self.register_buffer(
+            &#34;_quantiles&#34;, torch.arange(0, self._num_quantiles + 1) / self._num_quantiles
+        )
+        self.register_buffer(
+            &#34;_quantile_midpoints&#34;,
+            ((self._quantiles[1:] + self._quantiles[:-1]) / 2)
+            .unsqueeze(0)
+            .unsqueeze(0),
+        )
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        return self._model(x)
+
+    def get_q_value_distribution(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+    ) -&gt; Tensor:
+
+        x = torch.cat([state_batch, action_batch], dim=-1)
+        return self.forward(x)
+
+    @property
+    def quantiles(self) -&gt; Tensor:
+        return self._quantiles
+
+    @property
+    def quantile_midpoints(self) -&gt; Tensor:
+        return self._quantile_midpoints
+
+    @property
+    def num_quantiles(self) -&gt; int:
+        return self._num_quantiles
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_dim</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork">DistributionalQValueNetwork</a></li>
+<li>abc.ABC</li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.QuantileQValueNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: Tensor) -&gt; Tensor:
+    return self._model(x)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork">DistributionalQValueNetwork</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.action_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.action_dim">action_dim</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.get_q_value_distribution" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.get_q_value_distribution">get_q_value_distribution</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.num_quantiles" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.num_quantiles">num_quantiles</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.quantile_midpoints" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.quantile_midpoints">quantile_midpoints</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.quantiles" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.quantiles">quantiles</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.state_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.DistributionalQValueNetwork.state_dim">state_dim</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.TwoTowerNetwork"><code class="flex name class">
+<span>class <span class="ident">TwoTowerNetwork</span></span>
+<span>(</span><span>state_input_dim: int, action_input_dim: int, state_output_dim: int, action_output_dim: int, state_hidden_dims: Optional[List[int]], action_hidden_dims: Optional[List[int]], hidden_dims: Optional[List[int]], output_dim: int = 1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An interface for state-action value (Q-value) estimators (typically, neural networks).
+These are value neural networks with a special method
+for computing the Q-value for a state-action pair.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TwoTowerNetwork(QValueNetwork):
+    def __init__(
+        self,
+        state_input_dim: int,
+        action_input_dim: int,
+        state_output_dim: int,
+        action_output_dim: int,
+        state_hidden_dims: Optional[List[int]],
+        action_hidden_dims: Optional[List[int]],
+        hidden_dims: Optional[List[int]],
+        output_dim: int = 1,
+    ) -&gt; None:
+
+        super(TwoTowerNetwork, self).__init__()
+
+        &#34;&#34;&#34;
+        Input: batch of state, batch of action. Output: batch of Q-values for (s,a) pairs
+        The two tower archtecture is as follows:
+        state ----&gt; state_feature
+                            | concat ----&gt; Q(s,a)
+        action ----&gt; action_feature
+        &#34;&#34;&#34;
+        self._state_input_dim = state_input_dim
+        self._action_input_dim = action_input_dim
+        self._state_features = VanillaValueNetwork(
+            input_dim=state_input_dim,
+            hidden_dims=state_hidden_dims,
+            output_dim=state_output_dim,
+        )
+        self._state_features.xavier_init()
+        self._action_features = VanillaValueNetwork(
+            input_dim=action_input_dim,
+            hidden_dims=action_hidden_dims,
+            output_dim=action_output_dim,
+        )
+        self._action_features.xavier_init()
+        self._interaction_features = VanillaValueNetwork(
+            input_dim=state_output_dim + action_output_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+        )
+        self._interaction_features.xavier_init()
+
+    def forward(self, state_action: Tensor) -&gt; Tensor:
+        state = state_action[..., : self._state_input_dim]
+        action = state_action[..., self._state_input_dim :]
+        output = self.get_q_values(state_batch=state, action_batch=action)
+        return output
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+    ) -&gt; Tensor:
+        state_batch_features = self._state_features.forward(state_batch)
+        &#34;&#34;&#34; this might need to be done in tensor_based_replay_buffer &#34;&#34;&#34;
+        action_batch_features = self._action_features.forward(
+            action_batch.to(torch.get_default_dtype())
+        )
+
+        x = torch.cat([state_batch_features, action_batch_features], dim=-1)
+        return self._interaction_features.forward(x).view(-1)  # (batch_size)
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_input_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_input_dim</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></li>
+<li>abc.ABC</li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.common.value_networks.TwoTowerQValueNetwork" href="#pearl.neural_networks.common.value_networks.TwoTowerQValueNetwork">TwoTowerQValueNetwork</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.TwoTowerNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, state_action: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, state_action: Tensor) -&gt; Tensor:
+    state = state_action[..., : self._state_input_dim]
+    action = state_action[..., self._state_input_dim :]
+    output = self.get_q_values(state_batch=state, action_batch=action)
+    return output</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim">action_dim</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.get_q_values" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.get_q_values">get_q_values</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim">state_dim</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.TwoTowerQValueNetwork"><code class="flex name class">
+<span>class <span class="ident">TwoTowerQValueNetwork</span></span>
+<span>(</span><span>state_dim: int, action_dim: int, hidden_dims: List[int], output_dim: int = 1, state_output_dim: Optional[int] = None, action_output_dim: Optional[int] = None, state_hidden_dims: Optional[List[int]] = None, action_hidden_dims: Optional[List[int]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An interface for state-action value (Q-value) estimators (typically, neural networks).
+These are value neural networks with a special method
+for computing the Q-value for a state-action pair.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TwoTowerQValueNetwork(TwoTowerNetwork):
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: List[int],
+        output_dim: int = 1,
+        state_output_dim: Optional[int] = None,
+        action_output_dim: Optional[int] = None,
+        state_hidden_dims: Optional[List[int]] = None,
+        action_hidden_dims: Optional[List[int]] = None,
+    ) -&gt; None:
+
+        super().__init__(
+            state_input_dim=state_dim,
+            action_input_dim=action_dim,
+            state_output_dim=state_dim
+            if state_output_dim is None
+            else state_output_dim,
+            action_output_dim=action_dim
+            if action_output_dim is None
+            else action_output_dim,
+            state_hidden_dims=[] if state_hidden_dims is None else state_hidden_dims,
+            action_hidden_dims=[] if action_hidden_dims is None else action_hidden_dims,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.common.value_networks.TwoTowerNetwork" href="#pearl.neural_networks.common.value_networks.TwoTowerNetwork">TwoTowerNetwork</a></li>
+<li><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></li>
+<li>abc.ABC</li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.neural_networks.common.value_networks.TwoTowerNetwork" href="#pearl.neural_networks.common.value_networks.TwoTowerNetwork">TwoTowerNetwork</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.neural_networks.common.value_networks.TwoTowerNetwork.action_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim">action_dim</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.TwoTowerNetwork.forward" href="#pearl.neural_networks.common.value_networks.TwoTowerNetwork.forward">forward</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.TwoTowerNetwork.get_q_values" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.get_q_values">get_q_values</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.TwoTowerNetwork.state_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim">state_dim</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.ValueNetwork"><code class="flex name class">
+<span>class <span class="ident">ValueNetwork</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An interface for value neural networks.
+It does not add any required methods to those already present in
+its super classes.
+Its purpose instead is just to serve as an umbrella type for all value networks.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ValueNetwork(nn.Module, ABC):
+    &#34;&#34;&#34;
+    An interface for value neural networks.
+    It does not add any required methods to those already present in
+    its super classes.
+    Its purpose instead is just to serve as an umbrella type for all value networks.
+    &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.common.value_networks.VanillaCNN" href="#pearl.neural_networks.common.value_networks.VanillaCNN">VanillaCNN</a></li>
+<li><a title="pearl.neural_networks.common.value_networks.VanillaValueNetwork" href="#pearl.neural_networks.common.value_networks.VanillaValueNetwork">VanillaValueNetwork</a></li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.VanillaCNN"><code class="flex name class">
+<span>class <span class="ident">VanillaCNN</span></span>
+<span>(</span><span>input_width: int, input_height: int, input_channels_count: int, kernel_sizes: List[int], output_channels_list: List[int], strides: List[int], paddings: List[int], hidden_dims_fully_connected: Optional[List[int]] = None, use_batch_norm_conv: bool = False, use_batch_norm_fully_connected: bool = False, output_dim: int = 1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Vanilla CNN with a convolutional block followed by an mlp block.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>input_width</code></strong></dt>
+<dd>width of the input</dd>
+<dt><strong><code>input_height</code></strong></dt>
+<dd>height of the input</dd>
+<dt><strong><code>input_channels_count</code></strong></dt>
+<dd>number of input channels</dd>
+<dt><strong><code>kernel_sizes</code></strong></dt>
+<dd>list of kernel sizes for the convolutional layers</dd>
+<dt><strong><code>output_channels_list</code></strong></dt>
+<dd>list of number of output channels for each convolutional layer</dd>
+<dt><strong><code>strides</code></strong></dt>
+<dd>list of strides for each layer</dd>
+<dt><strong><code>paddings</code></strong></dt>
+<dd>list of paddings for each layer</dd>
+<dt><strong><code>hidden_dims_fully_connected</code></strong></dt>
+<dd>a list of dimensions of the hidden layers in the mlp</dd>
+<dt><strong><code>use_batch_norm_conv</code></strong></dt>
+<dd>whether to use batch_norm in the convolutional layers</dd>
+<dt><strong><code>use_batch_norm_fully_connected</code></strong></dt>
+<dd>whether to use batch_norm in the fully connected layers</dd>
+<dt><strong><code>output_dim</code></strong></dt>
+<dd>dimension of the output layer</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>An nn.Sequential module consisting of a convolutional block followed by an mlp.
+Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VanillaCNN(ValueNetwork):
+    &#34;&#34;&#34;
+    Vanilla CNN with a convolutional block followed by an mlp block.
+    Args:
+        input_width: width of the input
+        input_height: height of the input
+        input_channels_count: number of input channels
+        kernel_sizes: list of kernel sizes for the convolutional layers
+        output_channels_list: list of number of output channels for each convolutional layer
+        strides: list of strides for each layer
+        paddings: list of paddings for each layer
+        hidden_dims_fully_connected: a list of dimensions of the hidden layers in the mlp
+        use_batch_norm_conv: whether to use batch_norm in the convolutional layers
+        use_batch_norm_fully_connected: whether to use batch_norm in the fully connected layers
+        output_dim: dimension of the output layer
+    Returns:
+        An nn.Sequential module consisting of a convolutional block followed by an mlp.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        input_width: int,
+        input_height: int,
+        input_channels_count: int,
+        kernel_sizes: List[int],
+        output_channels_list: List[int],
+        strides: List[int],
+        paddings: List[int],
+        hidden_dims_fully_connected: Optional[
+            List[int]
+        ] = None,  # hidden dims for fully connected layers
+        use_batch_norm_conv: bool = False,
+        use_batch_norm_fully_connected: bool = False,
+        output_dim: int = 1,  # dimension of the final output
+    ) -&gt; None:
+
+        assert (
+            len(kernel_sizes)
+            == len(output_channels_list)
+            == len(strides)
+            == len(paddings)
+        )
+        super(VanillaCNN, self).__init__()
+
+        self._input_channels = input_channels_count
+        self._input_height = input_height
+        self._input_width = input_width
+        self._output_channels = output_channels_list
+        self._kernel_sizes = kernel_sizes
+        self._strides = strides
+        self._paddings = paddings
+        if hidden_dims_fully_connected is None:
+            self._hidden_dims_fully_connected: List[int] = []
+        else:
+            self._hidden_dims_fully_connected: List[int] = hidden_dims_fully_connected
+
+        self._use_batch_norm_conv = use_batch_norm_conv
+        self._use_batch_norm_fully_connected = use_batch_norm_fully_connected
+        self._output_dim = output_dim
+
+        self._model_cnn: nn.Module = conv_block(
+            input_channels_count=self._input_channels,
+            output_channels_list=self._output_channels,
+            kernel_sizes=self._kernel_sizes,
+            strides=self._strides,
+            paddings=self._paddings,
+            use_batch_norm=self._use_batch_norm_conv,
+        )
+
+        self._mlp_input_dims: int = self.compute_output_dim_model_cnn()
+        self._model_fc: nn.Module = mlp_block(
+            input_dim=self._mlp_input_dims,
+            hidden_dims=self._hidden_dims_fully_connected,
+            output_dim=self._output_dim,
+            use_batch_norm=self._use_batch_norm_fully_connected,
+        )
+
+    def compute_output_dim_model_cnn(self) -&gt; int:
+        dummy_input = torch.zeros(
+            1, self._input_channels, self._input_width, self._input_height
+        )
+        dummy_output_flattened = torch.flatten(
+            self._model_cnn(dummy_input), start_dim=1, end_dim=-1
+        )
+        return dummy_output_flattened.shape[1]
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        out_cnn = self._model_cnn(x)
+        out_flattened = torch.flatten(out_cnn, start_dim=1, end_dim=-1)
+        out_fc = self._model_fc(out_flattened)
+        return out_fc</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.common.value_networks.ValueNetwork" href="#pearl.neural_networks.common.value_networks.ValueNetwork">ValueNetwork</a></li>
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.common.value_networks.CNNQValueNetwork" href="#pearl.neural_networks.common.value_networks.CNNQValueNetwork">CNNQValueNetwork</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.VanillaCNN.compute_output_dim_model_cnn"><code class="name flex">
+<span>def <span class="ident">compute_output_dim_model_cnn</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_output_dim_model_cnn(self) -&gt; int:
+    dummy_input = torch.zeros(
+        1, self._input_channels, self._input_width, self._input_height
+    )
+    dummy_output_flattened = torch.flatten(
+        self._model_cnn(dummy_input), start_dim=1, end_dim=-1
+    )
+    return dummy_output_flattened.shape[1]</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.VanillaCNN.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: Tensor) -&gt; Tensor:
+    out_cnn = self._model_cnn(x)
+    out_flattened = torch.flatten(out_cnn, start_dim=1, end_dim=-1)
+    out_fc = self._model_fc(out_flattened)
+    return out_fc</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.VanillaQValueNetwork"><code class="flex name class">
+<span>class <span class="ident">VanillaQValueNetwork</span></span>
+<span>(</span><span>state_dim: int, action_dim: int, hidden_dims: List[int], output_dim: int, use_layer_norm: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A vanilla version of state-action value (Q-value) network.
+It leverages the vanilla implementation of value networks by
+using the state-action pair as the input for the value network.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VanillaQValueNetwork(QValueNetwork):
+    &#34;&#34;&#34;
+    A vanilla version of state-action value (Q-value) network.
+    It leverages the vanilla implementation of value networks by
+    using the state-action pair as the input for the value network.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_dim: int,
+        hidden_dims: List[int],
+        output_dim: int,
+        use_layer_norm: bool = False,
+    ) -&gt; None:
+        super(VanillaQValueNetwork, self).__init__()
+        self._state_dim: int = state_dim
+        self._action_dim: int = action_dim
+        self._model: nn.Module = mlp_block(
+            input_dim=state_dim + action_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            use_layer_norm=use_layer_norm,
+        )
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        return self._model(x)
+
+    def get_q_values(
+        self,
+        state_batch: Tensor,
+        action_batch: Tensor,
+        curr_available_actions_batch: Optional[Tensor] = None,
+    ) -&gt; Tensor:
+        x = torch.cat([state_batch, action_batch], dim=-1)
+        return self.forward(x).view(-1)
+
+    @property
+    def state_dim(self) -&gt; int:
+        return self._state_dim
+
+    @property
+    def action_dim(self) -&gt; int:
+        return self._action_dim</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></li>
+<li>abc.ABC</li>
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.VanillaQValueNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: Tensor) -&gt; Tensor:
+    return self._model(x)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.action_dim">action_dim</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.get_q_values" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.get_q_values">get_q_values</a></code></li>
+<li><code><a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim" href="../sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork.state_dim">state_dim</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.VanillaValueNetwork"><code class="flex name class">
+<span>class <span class="ident">VanillaValueNetwork</span></span>
+<span>(</span><span>input_dim: int, hidden_dims: Optional[List[int]], output_dim: int = 1, **kwargs: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An interface for value neural networks.
+It does not add any required methods to those already present in
+its super classes.
+Its purpose instead is just to serve as an umbrella type for all value networks.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VanillaValueNetwork(ValueNetwork):
+    def __init__(
+        self,
+        input_dim: int,
+        hidden_dims: Optional[List[int]],
+        output_dim: int = 1,
+        **kwargs: Any,
+    ) -&gt; None:
+        super(VanillaValueNetwork, self).__init__()
+        self._model: nn.Module = mlp_block(
+            input_dim=input_dim,
+            hidden_dims=hidden_dims,
+            output_dim=output_dim,
+            **kwargs,
+        )
+
+    def forward(self, x: Tensor) -&gt; Tensor:
+        return self._model(x)
+
+    # default initialization in linear and conv layers of a F.sequential model is Kaiming
+    def xavier_init(self) -&gt; None:
+        for layer in self._model:
+            if isinstance(layer, nn.Linear):
+                nn.init.xavier_normal_(layer.weight)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.neural_networks.common.value_networks.ValueNetwork" href="#pearl.neural_networks.common.value_networks.ValueNetwork">ValueNetwork</a></li>
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.neural_networks.common.value_networks.VanillaValueNetwork.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the :class:<code>Module</code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: Tensor) -&gt; Tensor:
+    return self._model(x)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.value_networks.VanillaValueNetwork.xavier_init"><code class="name flex">
+<span>def <span class="ident">xavier_init</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def xavier_init(self) -&gt; None:
+    for layer in self._model:
+        if isinstance(layer, nn.Linear):
+            nn.init.xavier_normal_(layer.weight)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.neural_networks.common" href="index.html">pearl.neural_networks.common</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.CNNQValueNetwork" href="#pearl.neural_networks.common.value_networks.CNNQValueNetwork">CNNQValueNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.value_networks.CNNQValueNetwork.action_dim" href="#pearl.neural_networks.common.value_networks.CNNQValueNetwork.action_dim">action_dim</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.CNNQValueNetwork.get_q_values" href="#pearl.neural_networks.common.value_networks.CNNQValueNetwork.get_q_values">get_q_values</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.DuelingQValueNetwork" href="#pearl.neural_networks.common.value_networks.DuelingQValueNetwork">DuelingQValueNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.value_networks.DuelingQValueNetwork.forward" href="#pearl.neural_networks.common.value_networks.DuelingQValueNetwork.forward">forward</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.DuelingQValueNetwork.get_q_values" href="#pearl.neural_networks.common.value_networks.DuelingQValueNetwork.get_q_values">get_q_values</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.EnsembleQValueNetwork" href="#pearl.neural_networks.common.value_networks.EnsembleQValueNetwork">EnsembleQValueNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.ensemble_size" href="#pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.ensemble_size">ensemble_size</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.forward" href="#pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.forward">forward</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.resample_epistemic_index" href="#pearl.neural_networks.common.value_networks.EnsembleQValueNetwork.resample_epistemic_index">resample_epistemic_index</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.QuantileQValueNetwork" href="#pearl.neural_networks.common.value_networks.QuantileQValueNetwork">QuantileQValueNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.value_networks.QuantileQValueNetwork.forward" href="#pearl.neural_networks.common.value_networks.QuantileQValueNetwork.forward">forward</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.TwoTowerNetwork" href="#pearl.neural_networks.common.value_networks.TwoTowerNetwork">TwoTowerNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.value_networks.TwoTowerNetwork.forward" href="#pearl.neural_networks.common.value_networks.TwoTowerNetwork.forward">forward</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.TwoTowerQValueNetwork" href="#pearl.neural_networks.common.value_networks.TwoTowerQValueNetwork">TwoTowerQValueNetwork</a></code></h4>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.ValueNetwork" href="#pearl.neural_networks.common.value_networks.ValueNetwork">ValueNetwork</a></code></h4>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.VanillaCNN" href="#pearl.neural_networks.common.value_networks.VanillaCNN">VanillaCNN</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.value_networks.VanillaCNN.compute_output_dim_model_cnn" href="#pearl.neural_networks.common.value_networks.VanillaCNN.compute_output_dim_model_cnn">compute_output_dim_model_cnn</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.VanillaCNN.forward" href="#pearl.neural_networks.common.value_networks.VanillaCNN.forward">forward</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.VanillaQValueNetwork" href="#pearl.neural_networks.common.value_networks.VanillaQValueNetwork">VanillaQValueNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.value_networks.VanillaQValueNetwork.forward" href="#pearl.neural_networks.common.value_networks.VanillaQValueNetwork.forward">forward</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.neural_networks.common.value_networks.VanillaValueNetwork" href="#pearl.neural_networks.common.value_networks.VanillaValueNetwork">VanillaValueNetwork</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.value_networks.VanillaValueNetwork.forward" href="#pearl.neural_networks.common.value_networks.VanillaValueNetwork.forward">forward</a></code></li>
+<li><code><a title="pearl.neural_networks.common.value_networks.VanillaValueNetwork.xavier_init" href="#pearl.neural_networks.common.value_networks.VanillaValueNetwork.xavier_init">xavier_init</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

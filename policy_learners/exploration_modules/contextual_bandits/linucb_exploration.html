@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from typing import List, Optional
+
+import torch
+
+from pearl.api.state import SubjectiveState
+from pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration import (
+    UCBExploration,
+)
+from pearl.utils.tensor_like import assert_is_tensor_like
+
+
+class LinUCBExploration(UCBExploration):
+    &#34;&#34;&#34;
+    Exploration module for linear UCB with joint linear models
+    paper: https://arxiv.org/pdf/1003.0146.pdf
+    &#34;&#34;&#34;
+
+    def sigma(
+        self,
+        subjective_state: SubjectiveState,
+        representation: Optional[torch.nn.Module] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Args:
+            subjective_state: feature vector (either state,
+            or state and action features after concatenation)
+            Shape should be either (batch_size, action_count, feature_dim) or
+            (batch_size, feature_dim).
+        Returns:
+            sigma with shape (batch_size, action_count) or (batch_size, 1)
+        &#34;&#34;&#34;
+        assert representation is not None
+        sigma = representation.calculate_sigma(subjective_state)
+        nan_check = torch.isnan(sigma)
+        sigma = torch.where(nan_check, torch.zeros_like(sigma), sigma)
+        return sigma
+
+
+class DisjointLinUCBExploration(LinUCBExploration):
+    &#34;&#34;&#34;
+    Same as LinUCBExploration, just that now different action has different linear regression
+    &#34;&#34;&#34;
+
+    # pyre-fixme[14]: `sigma` overrides method defined in `LinUCBExploration`
+    #  inconsistently.
+    def sigma(
+        self,
+        subjective_state: SubjectiveState,
+        representation: Optional[List[torch.nn.Module]] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Args:
+            subjective_state: this is feature vector in shape, batch_size, action_count, feature
+            representation: unlike LinUCBExploration, here it is a list for different actions
+        &#34;&#34;&#34;
+        assert representation is not None
+        subjective_state = assert_is_tensor_like(subjective_state)
+        sigma = []
+        for i, linear_regression in enumerate(representation):
+            sigma.append(
+                super(DisjointLinUCBExploration, self).sigma(
+                    subjective_state=subjective_state[
+                        :, i, :
+                    ],  # different action has different feature
+                    representation=linear_regression,
+                )
+            )
+        sigma = torch.stack(sigma)
+        # change from shape(action_count, batch_size) to shape(batch_size, action_count)
+        sigma = sigma.permute(1, 0)
+        return sigma</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.DisjointLinUCBExploration"><code class="flex name class">
+<span>class <span class="ident">DisjointLinUCBExploration</span></span>
+<span>(</span><span>alpha: float)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Same as LinUCBExploration, just that now different action has different linear regression</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DisjointLinUCBExploration(LinUCBExploration):
+    &#34;&#34;&#34;
+    Same as LinUCBExploration, just that now different action has different linear regression
+    &#34;&#34;&#34;
+
+    # pyre-fixme[14]: `sigma` overrides method defined in `LinUCBExploration`
+    #  inconsistently.
+    def sigma(
+        self,
+        subjective_state: SubjectiveState,
+        representation: Optional[List[torch.nn.Module]] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Args:
+            subjective_state: this is feature vector in shape, batch_size, action_count, feature
+            representation: unlike LinUCBExploration, here it is a list for different actions
+        &#34;&#34;&#34;
+        assert representation is not None
+        subjective_state = assert_is_tensor_like(subjective_state)
+        sigma = []
+        for i, linear_regression in enumerate(representation):
+            sigma.append(
+                super(DisjointLinUCBExploration, self).sigma(
+                    subjective_state=subjective_state[
+                        :, i, :
+                    ],  # different action has different feature
+                    representation=linear_regression,
+                )
+            )
+        sigma = torch.stack(sigma)
+        # change from shape(action_count, batch_size) to shape(batch_size, action_count)
+        sigma = sigma.permute(1, 0)
+        return sigma</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration" href="#pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration">LinUCBExploration</a></li>
+<li><a title="pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration" href="ucb_exploration.html#pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration">UCBExploration</a></li>
+<li><a title="pearl.policy_learners.exploration_modules.common.score_exploration_base.ScoreExplorationBase" href="../common/score_exploration_base.html#pearl.policy_learners.exploration_modules.common.score_exploration_base.ScoreExplorationBase">ScoreExplorationBase</a></li>
+<li><a title="pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule" href="../exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule">ExplorationModule</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.DisjointLinUCBExploration.sigma"><code class="name flex">
+<span>def <span class="ident">sigma</span></span>(<span>self, subjective_state: torch.Tensor, representation: Optional[List[torch.nn.modules.module.Module]] = None) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>subjective_state</code></strong></dt>
+<dd>this is feature vector in shape, batch_size, action_count, feature</dd>
+<dt><strong><code>representation</code></strong></dt>
+<dd>unlike LinUCBExploration, here it is a list for different actions</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sigma(
+    self,
+    subjective_state: SubjectiveState,
+    representation: Optional[List[torch.nn.Module]] = None,
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Args:
+        subjective_state: this is feature vector in shape, batch_size, action_count, feature
+        representation: unlike LinUCBExploration, here it is a list for different actions
+    &#34;&#34;&#34;
+    assert representation is not None
+    subjective_state = assert_is_tensor_like(subjective_state)
+    sigma = []
+    for i, linear_regression in enumerate(representation):
+        sigma.append(
+            super(DisjointLinUCBExploration, self).sigma(
+                subjective_state=subjective_state[
+                    :, i, :
+                ],  # different action has different feature
+                representation=linear_regression,
+            )
+        )
+    sigma = torch.stack(sigma)
+    # change from shape(action_count, batch_size) to shape(batch_size, action_count)
+    sigma = sigma.permute(1, 0)
+    return sigma</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration" href="#pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration">LinUCBExploration</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration.act" href="../common/score_exploration_base.html#pearl.policy_learners.exploration_modules.common.score_exploration_base.ScoreExplorationBase.act">act</a></code></li>
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration.get_scores" href="ucb_exploration.html#pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration.get_scores">get_scores</a></code></li>
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration.learn" href="../exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule.learn">learn</a></code></li>
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration.reset" href="../exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration"><code class="flex name class">
+<span>class <span class="ident">LinUCBExploration</span></span>
+<span>(</span><span>alpha: float)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Exploration module for linear UCB with joint linear models
+paper: <a href="https://arxiv.org/pdf/1003.0146.pdf">https://arxiv.org/pdf/1003.0146.pdf</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LinUCBExploration(UCBExploration):
+    &#34;&#34;&#34;
+    Exploration module for linear UCB with joint linear models
+    paper: https://arxiv.org/pdf/1003.0146.pdf
+    &#34;&#34;&#34;
+
+    def sigma(
+        self,
+        subjective_state: SubjectiveState,
+        representation: Optional[torch.nn.Module] = None,
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Args:
+            subjective_state: feature vector (either state,
+            or state and action features after concatenation)
+            Shape should be either (batch_size, action_count, feature_dim) or
+            (batch_size, feature_dim).
+        Returns:
+            sigma with shape (batch_size, action_count) or (batch_size, 1)
+        &#34;&#34;&#34;
+        assert representation is not None
+        sigma = representation.calculate_sigma(subjective_state)
+        nan_check = torch.isnan(sigma)
+        sigma = torch.where(nan_check, torch.zeros_like(sigma), sigma)
+        return sigma</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration" href="ucb_exploration.html#pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration">UCBExploration</a></li>
+<li><a title="pearl.policy_learners.exploration_modules.common.score_exploration_base.ScoreExplorationBase" href="../common/score_exploration_base.html#pearl.policy_learners.exploration_modules.common.score_exploration_base.ScoreExplorationBase">ScoreExplorationBase</a></li>
+<li><a title="pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule" href="../exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule">ExplorationModule</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.DisjointLinUCBExploration" href="#pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.DisjointLinUCBExploration">DisjointLinUCBExploration</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration" href="ucb_exploration.html#pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration">UCBExploration</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration.act" href="../common/score_exploration_base.html#pearl.policy_learners.exploration_modules.common.score_exploration_base.ScoreExplorationBase.act">act</a></code></li>
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration.get_scores" href="ucb_exploration.html#pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration.get_scores">get_scores</a></code></li>
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration.learn" href="../exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule.learn">learn</a></code></li>
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration.reset" href="../exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule.reset">reset</a></code></li>
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration.sigma" href="ucb_exploration.html#pearl.policy_learners.exploration_modules.contextual_bandits.ucb_exploration.UCBExploration.sigma">sigma</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits" href="index.html">pearl.policy_learners.exploration_modules.contextual_bandits</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.DisjointLinUCBExploration" href="#pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.DisjointLinUCBExploration">DisjointLinUCBExploration</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.DisjointLinUCBExploration.sigma" href="#pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.DisjointLinUCBExploration.sigma">sigma</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration" href="#pearl.policy_learners.exploration_modules.contextual_bandits.linucb_exploration.LinUCBExploration">LinUCBExploration</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.utils.scripts.benchmark_config API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.utils.scripts.benchmark_config</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from copy import deepcopy
+
+import gymnasium as gym
+from pearl.action_representation_modules.one_hot_action_representation_module import (
+    OneHotActionTensorRepresentationModule,
+)
+
+from pearl.history_summarization_modules.lstm_history_summarization_module import (
+    LSTMHistorySummarizationModule,
+)
+from pearl.neural_networks.common.value_networks import (
+    DuelingQValueNetwork,
+    EnsembleQValueNetwork,
+    VanillaQValueNetwork,
+    VanillaValueNetwork,
+)
+from pearl.neural_networks.sequential_decision_making.actor_networks import (
+    DynamicActionActorNetwork,
+    GaussianActorNetwork,
+    VanillaActorNetwork,
+    VanillaContinuousActorNetwork,
+)
+from pearl.policy_learners.exploration_modules.common.epsilon_greedy_exploration import (  # noqa E501
+    EGreedyExploration,
+)
+from pearl.policy_learners.exploration_modules.common.normal_distribution_exploration import (  # noqa E501
+    NormalDistributionExploration,
+)
+from pearl.policy_learners.exploration_modules.common.propensity_exploration import (
+    PropensityExploration,
+)
+from pearl.policy_learners.sequential_decision_making.bootstrapped_dqn import (
+    BootstrappedDQN,
+)
+from pearl.policy_learners.sequential_decision_making.ddpg import (
+    DeepDeterministicPolicyGradient,
+)
+from pearl.policy_learners.sequential_decision_making.deep_q_learning import (
+    DeepQLearning,
+)
+from pearl.policy_learners.sequential_decision_making.deep_sarsa import DeepSARSA
+from pearl.policy_learners.sequential_decision_making.double_dqn import DoubleDQN
+
+from pearl.policy_learners.sequential_decision_making.implicit_q_learning import (
+    ImplicitQLearning,
+)
+from pearl.policy_learners.sequential_decision_making.ppo import (
+    ProximalPolicyOptimization,
+)
+from pearl.policy_learners.sequential_decision_making.quantile_regression_deep_q_learning import (  # noqa E501
+    QuantileRegressionDeepQLearning,
+)
+from pearl.policy_learners.sequential_decision_making.reinforce import REINFORCE
+from pearl.policy_learners.sequential_decision_making.soft_actor_critic import (
+    SoftActorCritic,
+)
+from pearl.policy_learners.sequential_decision_making.soft_actor_critic_continuous import (
+    ContinuousSoftActorCritic,
+)
+from pearl.policy_learners.sequential_decision_making.td3 import RCTD3, TD3
+from pearl.replay_buffers.sequential_decision_making.bootstrap_replay_buffer import (
+    BootstrapReplayBuffer,
+)
+from pearl.replay_buffers.sequential_decision_making.fifo_off_policy_replay_buffer import (  # noqa E501
+    FIFOOffPolicyReplayBuffer,
+)
+from pearl.replay_buffers.sequential_decision_making.fifo_on_policy_replay_buffer import (  # noqa E501
+    FIFOOnPolicyReplayBuffer,
+)
+from pearl.replay_buffers.sequential_decision_making.on_policy_episodic_replay_buffer import (  # noqa E501
+    OnPolicyEpisodicReplayBuffer,
+)
+from pearl.safety_modules.reward_constrained_safety_module import (
+    RewardConstrainedSafetyModule,
+)
+from pearl.safety_modules.risk_sensitive_safety_modules import (
+    QuantileNetworkMeanVarianceSafetyModule,
+)
+
+from pearl.user_envs import (
+    AcrobotPartialObservableWrapper,
+    AcrobotSparseRewardWrapper,
+    CartPolePartialObservableWrapper,
+    GymAvgTorqueWrapper,
+    MountainCarPartialObservableWrapper,
+    MountainCarSparseRewardWrapper,
+    PendulumPartialObservableWrapper,
+    PendulumSparseRewardWrapper,
+    PuckWorldPartialObservableWrapper,
+    PuckWorldSafetyWrapper,
+    PuckWorldSparseRewardWrapper,
+)
+from pearl.user_envs.wrappers.dynamic_action_env import DynamicActionSpaceWrapper
+from pearl.utils.instantiations.environments.gym_environment import GymEnvironment
+
+
+DQN_method = {
+    &#34;name&#34;: &#34;DQN&#34;,
+    &#34;policy_learner&#34;: DeepQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+DQN_LSTM_method = {
+    &#34;name&#34;: &#34;LSTMDQN&#34;,
+    &#34;policy_learner&#34;: DeepQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+    &#34;history_summarization_module&#34;: LSTMHistorySummarizationModule,
+    &#34;history_summarization_module_args&#34;: {&#34;hidden_dim&#34;: 8},
+}
+CDQN_method = {
+    &#34;name&#34;: &#34;Conservative DQN&#34;,
+    &#34;policy_learner&#34;: DeepQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+        &#34;is_conservative&#34;: True,
+    },
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+DDQN_method = {
+    &#34;name&#34;: &#34;DoubleDQN&#34;,
+    &#34;policy_learner&#34;: DoubleDQN,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+SARSA_method = {
+    &#34;name&#34;: &#34;SARSA&#34;,
+    &#34;policy_learner&#34;: DeepSARSA,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOnPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+REINFORCE_method = {
+    &#34;name&#34;: &#34;REINFORCE&#34;,
+    &#34;policy_learner&#34;: REINFORCE,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [64, 64],
+        &#34;critic_hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+    },
+    &#34;replay_buffer&#34;: OnPolicyEpisodicReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+REINFORCE_dynamic_method = {
+    &#34;name&#34;: &#34;REINFORCE_dynamic&#34;,
+    &#34;policy_learner&#34;: REINFORCE,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [64, 64],
+        &#34;critic_hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+    },
+    &#34;actor_network_type&#34;: DynamicActionActorNetwork,
+    &#34;replay_buffer&#34;: OnPolicyEpisodicReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+DuelingDQN_method = {
+    &#34;name&#34;: &#34;DuelingDQN&#34;,
+    &#34;policy_learner&#34;: DeepQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;network_module&#34;: DuelingQValueNetwork,
+    &#34;network_args&#34;: {&#34;hidden_dims&#34;: [64, 64], &#34;output_dim&#34;: 1},
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+QRDQN_method = {
+    &#34;name&#34;: &#34;QRDQN var coeff = 0&#34;,
+    &#34;policy_learner&#34;: QuantileRegressionDeepQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;safety_module&#34;: QuantileNetworkMeanVarianceSafetyModule,
+    &#34;safety_module_args&#34;: {&#34;variance_weighting_coefficient&#34;: 0.0},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+QRDQN_var_coeff_05_method = {
+    &#34;name&#34;: &#34;QRDQN var coeff = 0.5&#34;,
+    &#34;policy_learner&#34;: QuantileRegressionDeepQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;safety_module&#34;: QuantileNetworkMeanVarianceSafetyModule,
+    &#34;safety_module_args&#34;: {&#34;variance_weighting_coefficient&#34;: 0.5},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+QRDQN_var_coeff_2_method = {
+    &#34;name&#34;: &#34;QRDQN var coeff = 2&#34;,
+    &#34;policy_learner&#34;: QuantileRegressionDeepQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;exploration_module&#34;: EGreedyExploration,
+    &#34;exploration_module_args&#34;: {&#34;epsilon&#34;: 0.1},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;safety_module&#34;: QuantileNetworkMeanVarianceSafetyModule,
+    &#34;safety_module_args&#34;: {&#34;variance_weighting_coefficient&#34;: 2.0},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+BootstrappedDQN_method = {
+    &#34;name&#34;: &#34;BootstrappedDQN&#34;,
+    &#34;policy_learner&#34;: BootstrappedDQN,
+    &#34;policy_learner_args&#34;: {
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;replay_buffer&#34;: BootstrapReplayBuffer,
+    &#34;replay_buffer_args&#34;: {
+        &#34;capacity&#34;: 50000,
+        &#34;p&#34;: 1.0,
+        &#34;ensemble_size&#34;: 10,
+    },
+    &#34;network_module&#34;: EnsembleQValueNetwork,
+    &#34;network_args&#34;: {
+        &#34;ensemble_size&#34;: 10,
+        &#34;output_dim&#34;: 1,
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;prior_scale&#34;: 0.0,
+    },
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+BootstrappedDQN_ensemble_1_method = {
+    &#34;name&#34;: &#34;BootstrappedDQN_ensemble_1&#34;,
+    &#34;policy_learner&#34;: BootstrappedDQN,
+    &#34;policy_learner_args&#34;: {
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+    },
+    &#34;replay_buffer&#34;: BootstrapReplayBuffer,
+    &#34;replay_buffer_args&#34;: {
+        &#34;capacity&#34;: 50000,
+        &#34;p&#34;: 1.0,
+        &#34;ensemble_size&#34;: 1,
+    },
+    &#34;network_module&#34;: EnsembleQValueNetwork,
+    &#34;network_args&#34;: {
+        &#34;ensemble_size&#34;: 1,
+        &#34;output_dim&#34;: 1,
+        &#34;hidden_dims&#34;: [64, 64],
+        &#34;prior_scale&#34;: 0.0,
+    },
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+PPO_method = {
+    &#34;name&#34;: &#34;PPO&#34;,
+    &#34;policy_learner&#34;: ProximalPolicyOptimization,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [64, 64],
+        &#34;critic_hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 50,
+        &#34;batch_size&#34;: 32,
+        &#34;epsilon&#34;: 0.1,
+    },
+    &#34;replay_buffer&#34;: OnPolicyEpisodicReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+PPO_dynamic_method = {
+    &#34;name&#34;: &#34;PPO_dynamic&#34;,
+    &#34;policy_learner&#34;: ProximalPolicyOptimization,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [64, 64],
+        &#34;critic_hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 50,
+        &#34;batch_size&#34;: 32,
+        &#34;epsilon&#34;: 0.1,
+    },
+    &#34;actor_network_type&#34;: DynamicActionActorNetwork,
+    &#34;replay_buffer&#34;: OnPolicyEpisodicReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+SAC_method = {
+    &#34;name&#34;: &#34;SAC&#34;,
+    &#34;policy_learner&#34;: SoftActorCritic,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [64, 64],
+        &#34;critic_hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+        &#34;entropy_coef&#34;: 0.1,
+    },
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+SAC_dynamic_method = {
+    &#34;name&#34;: &#34;SAC_dynamic&#34;,
+    &#34;policy_learner&#34;: SoftActorCritic,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [64, 64],
+        &#34;critic_hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+        &#34;entropy_coef&#34;: 0.1,
+    },
+    &#34;actor_network_type&#34;: DynamicActionActorNetwork,
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+IQL_online_method = {
+    &#34;name&#34;: &#34;IQL&#34;,
+    &#34;policy_learner&#34;: ImplicitQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [64, 64],
+        &#34;critic_hidden_dims&#34;: [64, 64],
+        &#34;value_critic_hidden_dims&#34;: [64, 64],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 32,
+        &#34;expectile&#34;: 0.75,
+        &#34;critic_soft_update_tau&#34;: 0.005,
+        &#34;advantage_clamp&#34;: 100.0,
+        &#34;temperature_advantage_weighted_regression&#34;: 3.0,
+        &#34;value_critic_learning_rate&#34;: 1e-3,
+        &#34;actor_learning_rate&#34;: 1e-3,
+        &#34;critic_learning_rate&#34;: 1e-3,
+        &#34;actor_network_type&#34;: VanillaActorNetwork,
+        &#34;critic_network_type&#34;: VanillaQValueNetwork,
+        &#34;value_network_type&#34;: VanillaValueNetwork,
+        &#34;discount_factor&#34;: 0.99,
+    },
+    &#34;exploration_module&#34;: PropensityExploration,
+    &#34;exploration_module_args&#34;: {},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 50000},
+    &#34;action_representation_module&#34;: OneHotActionTensorRepresentationModule,
+    &#34;action_representation_module_args&#34;: {},
+}
+
+IQL_offline_method = {
+    &#34;name&#34;: &#34;IQL&#34;,
+    &#34;policy_learner&#34;: ImplicitQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [256, 256],
+        &#34;critic_hidden_dims&#34;: [256, 256],
+        &#34;value_critic_hidden_dims&#34;: [256, 256],
+        &#34;training_rounds&#34;: 2,
+        &#34;batch_size&#34;: 256,
+        &#34;expectile&#34;: 0.75,
+        &#34;critic_soft_update_tau&#34;: 0.05,
+        &#34;temperature_advantage_weighted_regression&#34;: 3.0,
+        &#34;value_critic_learning_rate&#34;: 1e-3,
+        &#34;actor_learning_rate&#34;: 3e-4,
+        &#34;critic_learning_rate&#34;: 1e-4,
+        &#34;actor_network_type&#34;: VanillaContinuousActorNetwork,
+        &#34;critic_network_type&#34;: VanillaQValueNetwork,
+        &#34;state_value_network_type&#34;: VanillaValueNetwork,
+        &#34;discount_factor&#34;: 0.99,
+    },
+    &#34;exploration_module&#34;: None,
+    &#34;exploration_module_args&#34;: {},
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 100000},
+}
+
+CIQL_online_method = {
+    &#34;name&#34;: &#34;Continuous IQL&#34;,
+    &#34;policy_learner&#34;: ImplicitQLearning,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [256, 256],
+        &#34;critic_hidden_dims&#34;: [256, 256],
+        &#34;value_critic_hidden_dims&#34;: [256, 256],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 256,
+        &#34;expectile&#34;: 0.75,
+        &#34;critic_soft_update_tau&#34;: 0.05,
+        &#34;advantage_clamp&#34;: 100.0,
+        &#34;temperature_advantage_weighted_regression&#34;: 3.0,
+        &#34;actor_learning_rate&#34;: 1e-4,
+        &#34;critic_learning_rate&#34;: 3e-4,
+        &#34;value_critic_learning_rate&#34;: 1e-3,
+        &#34;actor_network_type&#34;: VanillaContinuousActorNetwork,
+        &#34;critic_network_type&#34;: VanillaQValueNetwork,
+        &#34;value_network_type&#34;: VanillaValueNetwork,
+        &#34;discount_factor&#34;: 0.99,
+    },
+    &#34;exploration_module&#34;: NormalDistributionExploration,
+    &#34;exploration_module_args&#34;: {
+        &#34;mean&#34;: 0,
+        &#34;std_dev&#34;: 0.1,
+    },
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 100000},
+}
+DDPG_method = {
+    &#34;name&#34;: &#34;DDPG&#34;,
+    &#34;policy_learner&#34;: DeepDeterministicPolicyGradient,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [256, 256],
+        &#34;critic_hidden_dims&#34;: [256, 256],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 256,
+        &#34;actor_network_type&#34;: VanillaContinuousActorNetwork,
+        &#34;critic_network_type&#34;: VanillaQValueNetwork,
+        &#34;actor_soft_update_tau&#34;: 0.005,
+        &#34;critic_soft_update_tau&#34;: 0.005,
+        &#34;actor_learning_rate&#34;: 1e-3,
+        &#34;critic_learning_rate&#34;: 3e-4,
+        &#34;discount_factor&#34;: 0.99,
+    },
+    &#34;exploration_module&#34;: NormalDistributionExploration,
+    &#34;exploration_module_args&#34;: {
+        &#34;mean&#34;: 0,
+        &#34;std_dev&#34;: 0.1,
+    },
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 100000},
+}
+TD3_method = {
+    &#34;name&#34;: &#34;TD3&#34;,
+    &#34;policy_learner&#34;: TD3,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [256, 256],
+        &#34;critic_hidden_dims&#34;: [256, 256],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 256,
+        &#34;actor_network_type&#34;: VanillaContinuousActorNetwork,
+        &#34;critic_network_type&#34;: VanillaQValueNetwork,
+        &#34;actor_soft_update_tau&#34;: 0.005,
+        &#34;critic_soft_update_tau&#34;: 0.005,
+        &#34;actor_learning_rate&#34;: 1e-3,
+        &#34;critic_learning_rate&#34;: 3e-4,
+        &#34;discount_factor&#34;: 0.99,
+        &#34;actor_update_freq&#34;: 2,
+        &#34;actor_update_noise&#34;: 0.2,
+        &#34;actor_update_noise_clip&#34;: 0.5,
+    },
+    &#34;exploration_module&#34;: NormalDistributionExploration,
+    &#34;exploration_module_args&#34;: {
+        &#34;mean&#34;: 0,
+        &#34;std_dev&#34;: 0.1,
+    },
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 100000},
+}
+
+RCTD3_method_const_0_2 = {
+    &#34;name&#34;: &#34;RCTD3 $\\alpha$=0.2&#34;,
+    &#34;policy_learner&#34;: RCTD3,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [256, 256],
+        &#34;critic_hidden_dims&#34;: [256, 256],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 256,
+        &#34;actor_network_type&#34;: VanillaContinuousActorNetwork,
+        &#34;critic_network_type&#34;: VanillaQValueNetwork,
+        &#34;actor_soft_update_tau&#34;: 0.005,
+        &#34;critic_soft_update_tau&#34;: 0.005,
+        &#34;actor_learning_rate&#34;: 1e-3,
+        &#34;critic_learning_rate&#34;: 3e-4,
+        &#34;discount_factor&#34;: 0.99,
+        &#34;actor_update_freq&#34;: 2,
+        &#34;actor_update_noise&#34;: 0.2,
+        &#34;actor_update_noise_clip&#34;: 0.5,
+    },
+    &#34;exploration_module&#34;: NormalDistributionExploration,
+    &#34;exploration_module_args&#34;: {
+        &#34;mean&#34;: 0,
+        &#34;std_dev&#34;: 0.1,
+    },
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 100000, &#34;has_cost_available&#34;: True},
+    &#34;safety_module&#34;: RewardConstrainedSafetyModule,
+    &#34;safety_module_args&#34;: {
+        &#34;constraint_value&#34;: 0.2,
+        &#34;lambda_constraint_ub_value&#34;: 200.0,
+        &#34;lr_lambda&#34;: 3e-4,
+    },
+}
+
+RCTD3_method_const_0_05 = deepcopy(RCTD3_method_const_0_2)
+RCTD3_method_const_0_05[&#34;name&#34;] = &#34;RCTD3 $\\alpha$=0.05&#34;
+RCTD3_method_const_0_05[&#34;safety_module_args&#34;][&#34;constraint_value&#34;] = 0.05
+
+RCTD3_method_const_0_1 = deepcopy(RCTD3_method_const_0_2)
+RCTD3_method_const_0_1[&#34;name&#34;] = &#34;RCTD3 $\\alpha$=0.1&#34;
+RCTD3_method_const_0_1[&#34;safety_module_args&#34;][&#34;constraint_value&#34;] = 0.1
+
+RCTD3_method_const_0_4 = deepcopy(RCTD3_method_const_0_2)
+RCTD3_method_const_0_4[&#34;name&#34;] = &#34;RCTD3 $\\alpha$=0.4&#34;
+RCTD3_method_const_0_4[&#34;safety_module_args&#34;][&#34;constraint_value&#34;] = 0.4
+
+RCTD3_method_const_0_8 = deepcopy(RCTD3_method_const_0_2)
+RCTD3_method_const_0_8[&#34;name&#34;] = &#34;RCTD3 $\\alpha$=0.8&#34;
+RCTD3_method_const_0_8[&#34;safety_module_args&#34;][&#34;constraint_value&#34;] = 0.8
+
+
+CSAC_method = {
+    &#34;name&#34;: &#34;ContinuousSAC&#34;,
+    &#34;policy_learner&#34;: ContinuousSoftActorCritic,
+    &#34;policy_learner_args&#34;: {
+        &#34;actor_hidden_dims&#34;: [256, 256],
+        &#34;critic_hidden_dims&#34;: [256, 256],
+        &#34;training_rounds&#34;: 1,
+        &#34;batch_size&#34;: 256,
+        &#34;entropy_autotune&#34;: False,
+        &#34;entropy_coef&#34;: 0.25,
+        &#34;critic_soft_update_tau&#34;: 0.005,
+        &#34;actor_learning_rate&#34;: 3e-4,
+        &#34;critic_learning_rate&#34;: 5e-4,
+        &#34;actor_network_type&#34;: GaussianActorNetwork,
+        &#34;critic_network_type&#34;: VanillaQValueNetwork,
+        &#34;discount_factor&#34;: 0.99,
+    },
+    &#34;replay_buffer&#34;: FIFOOffPolicyReplayBuffer,
+    &#34;replay_buffer_args&#34;: {&#34;capacity&#34;: 100000},
+}
+all_online_discrete_control_methods = [
+    DQN_method,
+    CDQN_method,
+    DDQN_method,
+    SARSA_method,
+    REINFORCE_method,
+    DuelingDQN_method,
+    QRDQN_method,
+    BootstrappedDQN_method,
+    PPO_method,
+    SAC_method,
+    IQL_online_method,
+]
+all_online_ac_discrete_control_methods = [
+    REINFORCE_method,
+    PPO_method,
+    SAC_method,
+    IQL_online_method,
+]
+all_online_continuous_control_methods = [
+    DDPG_method,
+    TD3_method,
+    CSAC_method,
+    CIQL_online_method,
+]
+all_discrete_control_envs = [
+    &#34;CartPole-v0&#34;,
+    &#34;Acrobot-v1&#34;,
+    &#34;MountainCar-v0&#34;,
+]
+all_continuous_control_envs = [
+    &#34;MountainCarContinuous-v0&#34;,
+    &#34;Pendulum-v1&#34;,
+    &#34;HalfCheetah-v4&#34;,
+    &#34;Ant-v4&#34;,
+    &#34;Hopper-v4&#34;,
+    &#34;Walker2d-v4&#34;,
+]
+all_continuous_control_w_cost_envs = [
+    # &#34;MountainCarContinuous-v0_w_cost&#34;,
+    # &#34;Pendulum-v1_w_cost&#34;,
+    # &#34;HalfCheetah-v4_w_cost&#34;,
+    # &#34;Ant-v4_w_cost&#34;,
+    &#34;Hopper-v4_w_cost&#34;,
+    # &#34;Walker2d-v4_w_cost&#34;,
+]
+all_dynamic_action_space_envs = [
+    &#34;Acrobot-DynamicAction-v1&#34;,
+]
+classic_continuous_control_envs = [
+    &#34;MountainCarContinuous-v0&#34;,
+    &#34;Pendulum-v1&#34;,
+]
+mujoco_envs = [
+    &#34;HalfCheetah-v4&#34;,
+    &#34;Ant-v4&#34;,
+    &#34;Hopper-v4&#34;,
+    &#34;Walker2d-v4&#34;,
+]
+all_partial_observable_discrete_control_envs = [
+    &#34;CartPole-PO-v0&#34;,
+    &#34;Acrobot-PO-v1&#34;,
+    &#34;MountainCar-PO-v0&#34;,
+    &#34;PuckWorld-PLE-500-PO-v0&#34;,
+]
+all_partial_observable_continuous_control_envs = [
+    &#34;Pendulum-PO-v1&#34;,
+]
+all_sparse_reward_discrete_control_envs = [
+    &#34;Acrobot-SR-v1&#34;,
+    &#34;MountainCar-SR-v0&#34;,
+    &#34;PuckWorld-PLE-500-SR-v0&#34;,
+]
+all_sparse_reward_continuous_control_envs = [
+    &#34;Pendulum-SR-v1&#34;,
+]
+all_safety_discrete_control_envs = [
+    &#34;StochMDP-v0&#34;,
+    &#34;PuckWorld-PLE-500-SF-v0&#34;,
+]
+
+mujoco_steps = 500000
+classic_control_steps = 100000
+ple_steps = 500000
+num_runs = 5
+print_every_x_steps = 1000
+
+# the following sets of experiments are used to generate figures and should be fixed
+
+rctd3_walker_part_1 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_walker_part_1&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_05,
+            RCTD3_method_const_0_1,
+            RCTD3_method_const_0_2,
+        ],
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;Walker2d-v4_w_cost&#34;,
+    ]
+]
+
+rctd3_walker_part_2 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_walker_part_2&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_4,
+            RCTD3_method_const_0_8,
+            TD3_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Walker2d-v4_w_cost&#34;,
+    ]
+]
+
+generate_rctd3_walker = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_walker&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_05,
+            RCTD3_method_const_0_1,
+            RCTD3_method_const_0_2,
+            RCTD3_method_const_0_4,
+            RCTD3_method_const_0_8,
+            TD3_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Walker2d-v4_w_cost&#34;,
+    ]
+]
+
+
+rctd3_hopper_part_1 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_hopper_part_1&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_05,
+            RCTD3_method_const_0_1,
+            RCTD3_method_const_0_2,
+        ],
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;Hopper-v4_w_cost&#34;,
+    ]
+]
+
+rctd3_hopper_part_2 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_hopper_part_2&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_4,
+            RCTD3_method_const_0_8,
+            TD3_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Hopper-v4_w_cost&#34;,
+    ]
+]
+
+generate_rctd3_hopper = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_hopper&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_05,
+            RCTD3_method_const_0_1,
+            RCTD3_method_const_0_2,
+            RCTD3_method_const_0_4,
+            RCTD3_method_const_0_8,
+            TD3_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Hopper-v4_w_cost&#34;,
+    ]
+]
+
+
+rctd3_ant_part_1 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_ant_part_1&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_05,
+            RCTD3_method_const_0_1,
+            RCTD3_method_const_0_2,
+        ],
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;Ant-v4_w_cost&#34;,
+    ]
+]
+
+rctd3_ant_part_2 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_ant_part_2&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_8,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Ant-v4_w_cost&#34;,
+    ]
+]
+
+rctd3_ant_part_3 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_ant_part_2&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_4,
+        ],
+        &#34;device_id&#34;: 2,
+    }
+    for env_name in [
+        &#34;Ant-v4_w_cost&#34;,
+    ]
+]
+
+rctd3_ant_part_4 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_ant_part_2&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            TD3_method,
+        ],
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;Ant-v4_w_cost&#34;,
+    ]
+]
+
+generate_rctd3_ant = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_ant&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_05,
+            RCTD3_method_const_0_1,
+            RCTD3_method_const_0_2,
+            RCTD3_method_const_0_4,
+            RCTD3_method_const_0_8,
+            TD3_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Ant-v4_w_cost&#34;,
+    ]
+]
+
+rctd3_half_cheetah_v1_part_1 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_half_cheetah_v1_part_1&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_05,
+            RCTD3_method_const_0_1,
+            RCTD3_method_const_0_2,
+        ],
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;HalfCheetah-v4_w_cost&#34;,
+    ]
+]
+
+rctd3_half_cheetah_v1_part_2 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_half_cheetah_v1_part_2&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_4,
+            RCTD3_method_const_0_8,
+            TD3_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;HalfCheetah-v4_w_cost&#34;,
+    ]
+]
+
+generate_rctd3_half_cheetah_v1 = [
+    {
+        &#34;exp_name&#34;: &#34;rctd3_half_cheetah&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            RCTD3_method_const_0_05,
+            RCTD3_method_const_0_1,
+            RCTD3_method_const_0_2,
+            RCTD3_method_const_0_4,
+            RCTD3_method_const_0_8,
+            TD3_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;HalfCheetah-v4_w_cost&#34;,
+    ]
+]
+
+benchmark_cartpole_v1_part_1 = [
+    {
+        &#34;exp_name&#34;: &#34;benchmark_cartpole_v1_part_1&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: classic_control_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            DQN_method,
+            CDQN_method,
+            DDQN_method,
+            SARSA_method,
+            REINFORCE_method,
+            DuelingDQN_method,
+        ],
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;CartPole-v1&#34;,
+    ]
+]
+
+benchmark_cartpole_v1_part_2 = [
+    {
+        &#34;exp_name&#34;: &#34;benchmark_cartpole_v1_part_2&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: classic_control_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            QRDQN_method,
+            BootstrappedDQN_method,
+            PPO_method,
+            SAC_method,
+            IQL_online_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;CartPole-v1&#34;,
+    ]
+]
+
+benchmark_acrobot_v1_part_1 = [
+    {
+        &#34;exp_name&#34;: &#34;benchmark_acrobot_v1_part_1&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: classic_control_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            DQN_method,
+            CDQN_method,
+            DDQN_method,
+            SARSA_method,
+            REINFORCE_method,
+            DuelingDQN_method,
+        ],
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;Acrobot-v1&#34;,
+    ]
+]
+
+benchmark_acrobot_v1_part_2 = [
+    {
+        &#34;exp_name&#34;: &#34;benchmark_acrobot_v1_part_2&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: classic_control_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            QRDQN_method,
+            BootstrappedDQN_method,
+            PPO_method,
+            SAC_method,
+            IQL_online_method,
+        ],
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Acrobot-v1&#34;,
+    ]
+]
+
+benchmark_halfcheetah_v4 = [
+    {
+        &#34;exp_name&#34;: &#34;benchmark_halfcheetah_v4&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: all_online_continuous_control_methods,
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;HalfCheetah-v4&#34;,
+    ]
+]
+
+benchmark_ant_v4 = [
+    {
+        &#34;exp_name&#34;: &#34;benchmark_ant_v4&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: all_online_continuous_control_methods,
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Ant-v4&#34;,
+    ]
+]
+
+benchmark_hopper_v4 = [
+    {
+        &#34;exp_name&#34;: &#34;benchmark_hopper_v4&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: all_online_continuous_control_methods,
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;Hopper-v4&#34;,
+    ]
+]
+
+benchmark_walker2d_v4 = [
+    {
+        &#34;exp_name&#34;: &#34;benchmark_walker2d_v4&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: mujoco_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: all_online_continuous_control_methods,
+        &#34;device_id&#34;: 1,
+    }
+    for env_name in [
+        &#34;Walker2d-v4&#34;,
+    ]
+]
+
+# the following experiments are not used to generate figures and may change over time
+
+test_qrdqn = [
+    {
+        &#34;exp_name&#34;: &#34;test_qrdqn&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: num_runs,
+        &#34;num_steps&#34;: classic_control_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            QRDQN_method,
+            QRDQN_var_coeff_05_method,
+            QRDQN_var_coeff_2_method,
+        ],
+    }
+    for env_name in [
+        &#34;PuckWorld-PLE-500-SF-v0&#34;,
+        &#34;MeanVarBandit-v0&#34;,
+    ]
+]
+
+test_dynamic_action_space = [
+    {
+        &#34;exp_name&#34;: &#34;test_dynamic_action&#34;,
+        &#34;env_name&#34;: env_name,
+        &#34;num_runs&#34;: 3,
+        &#34;num_steps&#34;: classic_control_steps,
+        &#34;print_every_x_steps&#34;: print_every_x_steps,
+        &#34;record_period&#34;: 1000,
+        &#34;methods&#34;: [
+            DQN_method,
+            REINFORCE_dynamic_method,
+            PPO_dynamic_method,
+            SAC_dynamic_method,
+        ],
+        &#34;device_id&#34;: 0,
+    }
+    for env_name in [
+        &#34;Acrobot-DynamicAction-v1&#34;,
+        &#34;CartPole-DynamicAction-v1&#34;,
+    ]
+]
+
+
+def get_env(env_name: str) -&gt; GymEnvironment:
+    &#34;&#34;&#34;
+    attach a versatility wrapper to the environment
+    &#34;&#34;&#34;
+    if env_name == &#34;CartPole-PO-v0&#34;:
+        return GymEnvironment(
+            CartPolePartialObservableWrapper(
+                gym.make(&#34;CartPole-v0&#34;), time_between_two_valid_obs=2
+            )
+        )
+    elif env_name == &#34;Pendulum-PO-v1&#34;:
+        return GymEnvironment(
+            PendulumPartialObservableWrapper(
+                gym.make(&#34;Pendulum-v1&#34;), time_between_two_valid_obs=2
+            )
+        )
+    elif env_name == &#34;Acrobot-PO-v1&#34;:
+        return GymEnvironment(
+            AcrobotPartialObservableWrapper(
+                gym.make(&#34;Acrobot-v1&#34;), time_between_two_valid_obs=2
+            )
+        )
+    elif env_name == &#34;MountainCar-PO-v0&#34;:
+        return GymEnvironment(
+            MountainCarPartialObservableWrapper(
+                gym.make(&#34;MountainCar-v0&#34;), time_between_two_valid_obs=2
+            )
+        )
+    elif env_name == &#34;Acrobot-SR-v1&#34;:
+        return GymEnvironment(AcrobotSparseRewardWrapper(gym.make(&#34;Acrobot-v1&#34;)))
+    elif env_name == &#34;Pendulum-SR-v1&#34;:
+        return GymEnvironment(PendulumSparseRewardWrapper(gym.make(&#34;Pendulum-v1&#34;)))
+    elif env_name == &#34;MountainCar-SR-v0&#34;:
+        return GymEnvironment(
+            MountainCarSparseRewardWrapper(gym.make(&#34;MountainCar-v0&#34;))
+        )
+    elif env_name == &#34;PuckWorld-PLE-500-SR-v0&#34;:
+        return GymEnvironment(
+            PuckWorldSparseRewardWrapper(gym.make(&#34;PuckWorld-PLE-500-v0&#34;))
+        )
+    elif env_name == &#34;PuckWorld-PLE-500-SF-v0&#34;:
+        return GymEnvironment(PuckWorldSafetyWrapper(gym.make(&#34;PuckWorld-PLE-500-v0&#34;)))
+    elif env_name == &#34;PuckWorld-PLE-500-PO-v0&#34;:
+        return GymEnvironment(
+            PuckWorldPartialObservableWrapper(gym.make(&#34;PuckWorld-PLE-500-v0&#34;))
+        )
+    elif env_name == &#34;Acrobot-DynamicAction-v1&#34;:
+        return GymEnvironment(DynamicActionSpaceWrapper(gym.make(&#34;Acrobot-v1&#34;)))
+    elif env_name == &#34;CartPole-DynamicAction-v1&#34;:
+        return GymEnvironment(DynamicActionSpaceWrapper(gym.make(&#34;CartPole-v1&#34;)))
+    elif env_name[-7:] == &#34;_w_cost&#34;:
+        env_name = env_name[:-7]
+        return GymEnvironment(GymAvgTorqueWrapper(gym.make(env_name)))
+    else:
+        return GymEnvironment(env_name)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pearl.utils.scripts.benchmark_config.get_env"><code class="name flex">
+<span>def <span class="ident">get_env</span></span>(<span>env_name: str) ‑> <a title="pearl.utils.instantiations.environments.gym_environment.GymEnvironment" href="../instantiations/environments/gym_environment.html#pearl.utils.instantiations.environments.gym_environment.GymEnvironment">GymEnvironment</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>attach a versatility wrapper to the environment</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_env(env_name: str) -&gt; GymEnvironment:
+    &#34;&#34;&#34;
+    attach a versatility wrapper to the environment
+    &#34;&#34;&#34;
+    if env_name == &#34;CartPole-PO-v0&#34;:
+        return GymEnvironment(
+            CartPolePartialObservableWrapper(
+                gym.make(&#34;CartPole-v0&#34;), time_between_two_valid_obs=2
+            )
+        )
+    elif env_name == &#34;Pendulum-PO-v1&#34;:
+        return GymEnvironment(
+            PendulumPartialObservableWrapper(
+                gym.make(&#34;Pendulum-v1&#34;), time_between_two_valid_obs=2
+            )
+        )
+    elif env_name == &#34;Acrobot-PO-v1&#34;:
+        return GymEnvironment(
+            AcrobotPartialObservableWrapper(
+                gym.make(&#34;Acrobot-v1&#34;), time_between_two_valid_obs=2
+            )
+        )
+    elif env_name == &#34;MountainCar-PO-v0&#34;:
+        return GymEnvironment(
+            MountainCarPartialObservableWrapper(
+                gym.make(&#34;MountainCar-v0&#34;), time_between_two_valid_obs=2
+            )
+        )
+    elif env_name == &#34;Acrobot-SR-v1&#34;:
+        return GymEnvironment(AcrobotSparseRewardWrapper(gym.make(&#34;Acrobot-v1&#34;)))
+    elif env_name == &#34;Pendulum-SR-v1&#34;:
+        return GymEnvironment(PendulumSparseRewardWrapper(gym.make(&#34;Pendulum-v1&#34;)))
+    elif env_name == &#34;MountainCar-SR-v0&#34;:
+        return GymEnvironment(
+            MountainCarSparseRewardWrapper(gym.make(&#34;MountainCar-v0&#34;))
+        )
+    elif env_name == &#34;PuckWorld-PLE-500-SR-v0&#34;:
+        return GymEnvironment(
+            PuckWorldSparseRewardWrapper(gym.make(&#34;PuckWorld-PLE-500-v0&#34;))
+        )
+    elif env_name == &#34;PuckWorld-PLE-500-SF-v0&#34;:
+        return GymEnvironment(PuckWorldSafetyWrapper(gym.make(&#34;PuckWorld-PLE-500-v0&#34;)))
+    elif env_name == &#34;PuckWorld-PLE-500-PO-v0&#34;:
+        return GymEnvironment(
+            PuckWorldPartialObservableWrapper(gym.make(&#34;PuckWorld-PLE-500-v0&#34;))
+        )
+    elif env_name == &#34;Acrobot-DynamicAction-v1&#34;:
+        return GymEnvironment(DynamicActionSpaceWrapper(gym.make(&#34;Acrobot-v1&#34;)))
+    elif env_name == &#34;CartPole-DynamicAction-v1&#34;:
+        return GymEnvironment(DynamicActionSpaceWrapper(gym.make(&#34;CartPole-v1&#34;)))
+    elif env_name[-7:] == &#34;_w_cost&#34;:
+        env_name = env_name[:-7]
+        return GymEnvironment(GymAvgTorqueWrapper(gym.make(env_name)))
+    else:
+        return GymEnvironment(env_name)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.utils.scripts" href="index.html">pearl.utils.scripts</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pearl.utils.scripts.benchmark_config.get_env" href="#pearl.utils.scripts.benchmark_config.get_env">get_env</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
