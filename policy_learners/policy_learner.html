@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.policy_learners.policy_learner API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.policy_learners.policy_learner</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from abc import ABC, abstractmethod
+from typing import Any, Dict, Optional, TypeVar
+
+import torch
+from pearl.action_representation_modules.action_representation_module import (
+    ActionRepresentationModule,
+)
+from pearl.action_representation_modules.identity_action_representation_module import (
+    IdentityActionRepresentationModule,
+)
+from pearl.api.action import Action
+from pearl.api.action_space import ActionSpace
+from pearl.history_summarization_modules.history_summarization_module import (
+    HistorySummarizationModule,
+    SubjectiveState,
+)
+from pearl.history_summarization_modules.identity_history_summarization_module import (
+    IdentityHistorySummarizationModule,
+)
+from pearl.policy_learners.exploration_modules.common.no_exploration import (
+    NoExploration,
+)
+from pearl.policy_learners.exploration_modules.exploration_module import (
+    ExplorationModule,
+)
+from pearl.replay_buffers.replay_buffer import ReplayBuffer
+from pearl.replay_buffers.transition import TransitionBatch
+from pearl.utils.device import is_distribution_enabled
+from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
+
+
+class PolicyLearner(torch.nn.Module, ABC):
+    &#34;&#34;&#34;
+    An abstract interface for policy learners.
+
+    Important requirements for policy learners using tensors:
+        1. Attribute `requires_tensors` must be `True` (this is the default).
+        2. If a policy learner is to operate on a given torch device,
+           the policy learner must be moved to that device using method `to(device)`.
+        3. All inputs to policy leaners must be moved to the proper device,
+           including `TransitionBatch`es (which also have a `to(device)` method).
+    &#34;&#34;&#34;
+
+    # See https://mypy.readthedocs.io/en/latest/generics.html#generic-methods-and-generic-self for the use  # noqa E501
+    # of `T` to annotate `self`. At least one method of `PolicyLearner`
+    # returns `self` and we want those return values to be
+    # the type of the subclass, not the looser type of `PolicyLearner`.
+    T = TypeVar(&#34;T&#34;, bound=&#34;PolicyLearner&#34;)
+
+    def __init__(
+        self,
+        on_policy: bool,
+        is_action_continuous: bool,
+        action_space: Optional[ActionSpace] = None,
+        training_rounds: int = 100,
+        batch_size: int = 1,
+        requires_tensors: bool = True,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+        **options: Any,
+    ) -&gt; None:
+        super(PolicyLearner, self).__init__()
+
+        self._exploration_module: ExplorationModule = (
+            options[&#34;exploration_module&#34;]
+            if &#34;exploration_module&#34; in options
+            else NoExploration()
+        )
+
+        # User needs to either provide the action space or an action representation module at
+        # policy learner&#39;s initialization for sequential decision making.
+        if action_representation_module is None:
+            if action_space is not None:
+                # If a policy learner is initialized with an action space, then we assume that
+                # the agent does not need dynamic action space support.
+                self._action_representation_module: ActionRepresentationModule = (
+                    IdentityActionRepresentationModule(
+                        max_number_actions=action_space.n
+                        if isinstance(action_space, DiscreteActionSpace)
+                        else -1,
+                        representation_dim=action_space.action_dim,
+                    )
+                )
+            else:
+                # This is only used in the case of bandit learning applications.
+                # TODO: add action representation module for bandit learning applications.
+                self._action_representation_module = (
+                    IdentityActionRepresentationModule()
+                )
+        else:
+            # User needs to at least specify action dimensions if no action_space is provided.
+            assert action_representation_module.representation_dim != -1
+            self._action_representation_module = action_representation_module
+
+        self._history_summarization_module: HistorySummarizationModule = (
+            IdentityHistorySummarizationModule()
+        )
+
+        self._training_rounds = training_rounds
+        self._batch_size = batch_size
+        self._training_steps = 0
+        self.on_policy = on_policy
+        self.is_action_continuous = is_action_continuous
+        self.distribution_enabled: bool = is_distribution_enabled()
+        self.requires_tensors = requires_tensors
+
+    @property
+    def batch_size(self) -&gt; int:
+        return self._batch_size
+
+    @property
+    def exploration_module(self) -&gt; ExplorationModule:
+        return self._exploration_module
+
+    @property
+    def action_representation_module(self) -&gt; ActionRepresentationModule:
+        return self._action_representation_module
+
+    @exploration_module.setter
+    def exploration_module(self, new_exploration_module: ExplorationModule) -&gt; None:
+        self._exploration_module = new_exploration_module
+
+    def get_action_representation_module(self) -&gt; ActionRepresentationModule:
+        return self._action_representation_module
+
+    def set_history_summarization_module(
+        self, value: HistorySummarizationModule
+    ) -&gt; None:
+        self._history_summarization_module = value
+
+    def reset(self, action_space: ActionSpace) -&gt; None:
+        &#34;&#34;&#34;Resets policy maker for a new episode. Default implementation does nothing.&#34;&#34;&#34;
+        pass
+
+    @abstractmethod
+    def act(
+        self,
+        subjective_state: SubjectiveState,
+        available_action_space: ActionSpace,
+        exploit: bool = False,
+    ) -&gt; Action:
+        pass
+
+    def learn(
+        self,
+        replay_buffer: ReplayBuffer,
+    ) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Args:
+            replay_buffer: buffer instance which learn is reading from
+
+        Returns:
+            A dictionary which includes useful metrics
+        &#34;&#34;&#34;
+        batch_size = self._batch_size if not self.on_policy else len(replay_buffer)
+
+        if len(replay_buffer) &lt; batch_size or len(replay_buffer) == 0:
+            return {}
+
+        report = {}
+        for _ in range(self._training_rounds):
+            self._training_steps += 1
+            batch = replay_buffer.sample(batch_size)
+            single_report = {}
+            if isinstance(batch, TransitionBatch):
+                batch = self.preprocess_batch(batch)
+                single_report = self.learn_batch(batch)
+
+            for k, v in single_report.items():
+                if k in report:
+                    report[k].append(v)
+                else:
+                    report[k] = [v]
+        return report
+
+    def preprocess_batch(self, batch: TransitionBatch) -&gt; TransitionBatch:
+        &#34;&#34;&#34;
+        Processes a batch of transitions before passing it to learn_batch().
+        This function can be used to implement preprocessing steps such as
+        transform the actions.
+        &#34;&#34;&#34;
+        batch.state = self._history_summarization_module(batch.state)
+        with torch.no_grad():
+            batch.next_state = self._history_summarization_module(batch.next_state)
+
+        batch.action = self._action_representation_module(batch.action)
+        if batch.next_action is not None:
+            batch.next_action = self._action_representation_module(batch.next_action)
+        if batch.curr_available_actions is not None:
+            batch.curr_available_actions = self._action_representation_module(
+                batch.curr_available_actions
+            )
+        if batch.next_available_actions is not None:
+            batch.next_available_actions = self._action_representation_module(
+                batch.next_available_actions
+            )
+        return batch
+
+    @abstractmethod
+    def learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Args:
+            batch: batch of data that agent is learning from
+
+        Returns:
+            A dictionary which includes useful metrics
+        &#34;&#34;&#34;
+        raise NotImplementedError(&#34;learn_batch is not implemented&#34;)
+
+    def __str__(self) -&gt; str:
+        return self.__class__.__name__
+
+
+class DistributionalPolicyLearner(PolicyLearner):
+    &#34;&#34;&#34;
+    An abstract interface for distributional policy learners.
+    Enforces the property of a risk sensitive safety module.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        on_policy: bool,
+        is_action_continuous: bool,
+        training_rounds: int = 100,
+        batch_size: int = 1,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+        **options: Any,
+    ) -&gt; None:
+
+        super(DistributionalPolicyLearner, self).__init__(
+            on_policy=on_policy,
+            is_action_continuous=is_action_continuous,
+            training_rounds=training_rounds,
+            batch_size=batch_size,
+            action_representation_module=action_representation_module,
+            **options,
+        )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pearl.policy_learners.policy_learner.DistributionalPolicyLearner"><code class="flex name class">
+<span>class <span class="ident">DistributionalPolicyLearner</span></span>
+<span>(</span><span>on_policy: bool, is_action_continuous: bool, training_rounds: int = 100, batch_size: int = 1, action_representation_module: Optional[<a title="pearl.action_representation_modules.action_representation_module.ActionRepresentationModule" href="../action_representation_modules/action_representation_module.html#pearl.action_representation_modules.action_representation_module.ActionRepresentationModule">ActionRepresentationModule</a>] = None, **options: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An abstract interface for distributional policy learners.
+Enforces the property of a risk sensitive safety module.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DistributionalPolicyLearner(PolicyLearner):
+    &#34;&#34;&#34;
+    An abstract interface for distributional policy learners.
+    Enforces the property of a risk sensitive safety module.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        on_policy: bool,
+        is_action_continuous: bool,
+        training_rounds: int = 100,
+        batch_size: int = 1,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+        **options: Any,
+    ) -&gt; None:
+
+        super(DistributionalPolicyLearner, self).__init__(
+            on_policy=on_policy,
+            is_action_continuous=is_action_continuous,
+            training_rounds=training_rounds,
+            batch_size=batch_size,
+            action_representation_module=action_representation_module,
+            **options,
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.policy_learner.PolicyLearner" href="#pearl.policy_learners.policy_learner.PolicyLearner">PolicyLearner</a></li>
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning" href="sequential_decision_making/quantile_regression_deep_td_learning.html#pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning">QuantileRegressionDeepTDLearning</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.policy_learners.policy_learner.PolicyLearner" href="#pearl.policy_learners.policy_learner.PolicyLearner">PolicyLearner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.learn" href="#pearl.policy_learners.policy_learner.PolicyLearner.learn">learn</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.learn_batch" href="#pearl.policy_learners.policy_learner.PolicyLearner.learn_batch">learn_batch</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.preprocess_batch" href="#pearl.policy_learners.policy_learner.PolicyLearner.preprocess_batch">preprocess_batch</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.reset" href="#pearl.policy_learners.policy_learner.PolicyLearner.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner"><code class="flex name class">
+<span>class <span class="ident">PolicyLearner</span></span>
+<span>(</span><span>on_policy: bool, is_action_continuous: bool, action_space: Optional[<a title="pearl.api.action_space.ActionSpace" href="../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>] = None, training_rounds: int = 100, batch_size: int = 1, requires_tensors: bool = True, action_representation_module: Optional[<a title="pearl.action_representation_modules.action_representation_module.ActionRepresentationModule" href="../action_representation_modules/action_representation_module.html#pearl.action_representation_modules.action_representation_module.ActionRepresentationModule">ActionRepresentationModule</a>] = None, **options: Any)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An abstract interface for policy learners.</p>
+<p>Important requirements for policy learners using tensors:
+1. Attribute <code>requires_tensors</code> must be <code>True</code> (this is the default).
+2. If a policy learner is to operate on a given torch device,
+the policy learner must be moved to that device using method <code>to(device)</code>.
+3. All inputs to policy leaners must be moved to the proper device,
+including <code>TransitionBatch</code>es (which also have a <code>to(device)</code> method).</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PolicyLearner(torch.nn.Module, ABC):
+    &#34;&#34;&#34;
+    An abstract interface for policy learners.
+
+    Important requirements for policy learners using tensors:
+        1. Attribute `requires_tensors` must be `True` (this is the default).
+        2. If a policy learner is to operate on a given torch device,
+           the policy learner must be moved to that device using method `to(device)`.
+        3. All inputs to policy leaners must be moved to the proper device,
+           including `TransitionBatch`es (which also have a `to(device)` method).
+    &#34;&#34;&#34;
+
+    # See https://mypy.readthedocs.io/en/latest/generics.html#generic-methods-and-generic-self for the use  # noqa E501
+    # of `T` to annotate `self`. At least one method of `PolicyLearner`
+    # returns `self` and we want those return values to be
+    # the type of the subclass, not the looser type of `PolicyLearner`.
+    T = TypeVar(&#34;T&#34;, bound=&#34;PolicyLearner&#34;)
+
+    def __init__(
+        self,
+        on_policy: bool,
+        is_action_continuous: bool,
+        action_space: Optional[ActionSpace] = None,
+        training_rounds: int = 100,
+        batch_size: int = 1,
+        requires_tensors: bool = True,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+        **options: Any,
+    ) -&gt; None:
+        super(PolicyLearner, self).__init__()
+
+        self._exploration_module: ExplorationModule = (
+            options[&#34;exploration_module&#34;]
+            if &#34;exploration_module&#34; in options
+            else NoExploration()
+        )
+
+        # User needs to either provide the action space or an action representation module at
+        # policy learner&#39;s initialization for sequential decision making.
+        if action_representation_module is None:
+            if action_space is not None:
+                # If a policy learner is initialized with an action space, then we assume that
+                # the agent does not need dynamic action space support.
+                self._action_representation_module: ActionRepresentationModule = (
+                    IdentityActionRepresentationModule(
+                        max_number_actions=action_space.n
+                        if isinstance(action_space, DiscreteActionSpace)
+                        else -1,
+                        representation_dim=action_space.action_dim,
+                    )
+                )
+            else:
+                # This is only used in the case of bandit learning applications.
+                # TODO: add action representation module for bandit learning applications.
+                self._action_representation_module = (
+                    IdentityActionRepresentationModule()
+                )
+        else:
+            # User needs to at least specify action dimensions if no action_space is provided.
+            assert action_representation_module.representation_dim != -1
+            self._action_representation_module = action_representation_module
+
+        self._history_summarization_module: HistorySummarizationModule = (
+            IdentityHistorySummarizationModule()
+        )
+
+        self._training_rounds = training_rounds
+        self._batch_size = batch_size
+        self._training_steps = 0
+        self.on_policy = on_policy
+        self.is_action_continuous = is_action_continuous
+        self.distribution_enabled: bool = is_distribution_enabled()
+        self.requires_tensors = requires_tensors
+
+    @property
+    def batch_size(self) -&gt; int:
+        return self._batch_size
+
+    @property
+    def exploration_module(self) -&gt; ExplorationModule:
+        return self._exploration_module
+
+    @property
+    def action_representation_module(self) -&gt; ActionRepresentationModule:
+        return self._action_representation_module
+
+    @exploration_module.setter
+    def exploration_module(self, new_exploration_module: ExplorationModule) -&gt; None:
+        self._exploration_module = new_exploration_module
+
+    def get_action_representation_module(self) -&gt; ActionRepresentationModule:
+        return self._action_representation_module
+
+    def set_history_summarization_module(
+        self, value: HistorySummarizationModule
+    ) -&gt; None:
+        self._history_summarization_module = value
+
+    def reset(self, action_space: ActionSpace) -&gt; None:
+        &#34;&#34;&#34;Resets policy maker for a new episode. Default implementation does nothing.&#34;&#34;&#34;
+        pass
+
+    @abstractmethod
+    def act(
+        self,
+        subjective_state: SubjectiveState,
+        available_action_space: ActionSpace,
+        exploit: bool = False,
+    ) -&gt; Action:
+        pass
+
+    def learn(
+        self,
+        replay_buffer: ReplayBuffer,
+    ) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Args:
+            replay_buffer: buffer instance which learn is reading from
+
+        Returns:
+            A dictionary which includes useful metrics
+        &#34;&#34;&#34;
+        batch_size = self._batch_size if not self.on_policy else len(replay_buffer)
+
+        if len(replay_buffer) &lt; batch_size or len(replay_buffer) == 0:
+            return {}
+
+        report = {}
+        for _ in range(self._training_rounds):
+            self._training_steps += 1
+            batch = replay_buffer.sample(batch_size)
+            single_report = {}
+            if isinstance(batch, TransitionBatch):
+                batch = self.preprocess_batch(batch)
+                single_report = self.learn_batch(batch)
+
+            for k, v in single_report.items():
+                if k in report:
+                    report[k].append(v)
+                else:
+                    report[k] = [v]
+        return report
+
+    def preprocess_batch(self, batch: TransitionBatch) -&gt; TransitionBatch:
+        &#34;&#34;&#34;
+        Processes a batch of transitions before passing it to learn_batch().
+        This function can be used to implement preprocessing steps such as
+        transform the actions.
+        &#34;&#34;&#34;
+        batch.state = self._history_summarization_module(batch.state)
+        with torch.no_grad():
+            batch.next_state = self._history_summarization_module(batch.next_state)
+
+        batch.action = self._action_representation_module(batch.action)
+        if batch.next_action is not None:
+            batch.next_action = self._action_representation_module(batch.next_action)
+        if batch.curr_available_actions is not None:
+            batch.curr_available_actions = self._action_representation_module(
+                batch.curr_available_actions
+            )
+        if batch.next_available_actions is not None:
+            batch.next_available_actions = self._action_representation_module(
+                batch.next_available_actions
+            )
+        return batch
+
+    @abstractmethod
+    def learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Args:
+            batch: batch of data that agent is learning from
+
+        Returns:
+            A dictionary which includes useful metrics
+        &#34;&#34;&#34;
+        raise NotImplementedError(&#34;learn_batch is not implemented&#34;)
+
+    def __str__(self) -&gt; str:
+        return self.__class__.__name__</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.contextual_bandits.contextual_bandit_base.ContextualBanditBase" href="contextual_bandits/contextual_bandit_base.html#pearl.policy_learners.contextual_bandits.contextual_bandit_base.ContextualBanditBase">ContextualBanditBase</a></li>
+<li><a title="pearl.policy_learners.policy_learner.DistributionalPolicyLearner" href="#pearl.policy_learners.policy_learner.DistributionalPolicyLearner">DistributionalPolicyLearner</a></li>
+<li><a title="pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase" href="sequential_decision_making/actor_critic_base.html#pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase">ActorCriticBase</a></li>
+<li><a title="pearl.policy_learners.sequential_decision_making.deep_td_learning.DeepTDLearning" href="sequential_decision_making/deep_td_learning.html#pearl.policy_learners.sequential_decision_making.deep_td_learning.DeepTDLearning">DeepTDLearning</a></li>
+<li><a title="pearl.policy_learners.sequential_decision_making.tabular_q_learning.TabularQLearning" href="sequential_decision_making/tabular_q_learning.html#pearl.policy_learners.sequential_decision_making.tabular_q_learning.TabularQLearning">TabularQLearning</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.T"><code class="name">var <span class="ident">T</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.action_representation_module"><code class="name">var <span class="ident">action_representation_module</span> : <a title="pearl.action_representation_modules.action_representation_module.ActionRepresentationModule" href="../action_representation_modules/action_representation_module.html#pearl.action_representation_modules.action_representation_module.ActionRepresentationModule">ActionRepresentationModule</a></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def action_representation_module(self) -&gt; ActionRepresentationModule:
+    return self._action_representation_module</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.batch_size"><code class="name">var <span class="ident">batch_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def batch_size(self) -&gt; int:
+    return self._batch_size</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.exploration_module"><code class="name">var <span class="ident">exploration_module</span> : <a title="pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule" href="exploration_modules/exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule">ExplorationModule</a></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def exploration_module(self) -&gt; ExplorationModule:
+    return self._exploration_module</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.act"><code class="name flex">
+<span>def <span class="ident">act</span></span>(<span>self, subjective_state: torch.Tensor, available_action_space: <a title="pearl.api.action_space.ActionSpace" href="../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>, exploit: bool = False) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def act(
+    self,
+    subjective_state: SubjectiveState,
+    available_action_space: ActionSpace,
+    exploit: bool = False,
+) -&gt; Action:
+    pass</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.get_action_representation_module"><code class="name flex">
+<span>def <span class="ident">get_action_representation_module</span></span>(<span>self) ‑> <a title="pearl.action_representation_modules.action_representation_module.ActionRepresentationModule" href="../action_representation_modules/action_representation_module.html#pearl.action_representation_modules.action_representation_module.ActionRepresentationModule">ActionRepresentationModule</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_action_representation_module(self) -&gt; ActionRepresentationModule:
+    return self._action_representation_module</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.learn"><code class="name flex">
+<span>def <span class="ident">learn</span></span>(<span>self, replay_buffer: <a title="pearl.replay_buffers.replay_buffer.ReplayBuffer" href="../replay_buffers/replay_buffer.html#pearl.replay_buffers.replay_buffer.ReplayBuffer">ReplayBuffer</a>) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>replay_buffer</code></strong></dt>
+<dd>buffer instance which learn is reading from</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A dictionary which includes useful metrics</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def learn(
+    self,
+    replay_buffer: ReplayBuffer,
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Args:
+        replay_buffer: buffer instance which learn is reading from
+
+    Returns:
+        A dictionary which includes useful metrics
+    &#34;&#34;&#34;
+    batch_size = self._batch_size if not self.on_policy else len(replay_buffer)
+
+    if len(replay_buffer) &lt; batch_size or len(replay_buffer) == 0:
+        return {}
+
+    report = {}
+    for _ in range(self._training_rounds):
+        self._training_steps += 1
+        batch = replay_buffer.sample(batch_size)
+        single_report = {}
+        if isinstance(batch, TransitionBatch):
+            batch = self.preprocess_batch(batch)
+            single_report = self.learn_batch(batch)
+
+        for k, v in single_report.items():
+            if k in report:
+                report[k].append(v)
+            else:
+                report[k] = [v]
+    return report</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.learn_batch"><code class="name flex">
+<span>def <span class="ident">learn_batch</span></span>(<span>self, batch: <a title="pearl.replay_buffers.transition.TransitionBatch" href="../replay_buffers/transition.html#pearl.replay_buffers.transition.TransitionBatch">TransitionBatch</a>) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>batch</code></strong></dt>
+<dd>batch of data that agent is learning from</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A dictionary which includes useful metrics</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Args:
+        batch: batch of data that agent is learning from
+
+    Returns:
+        A dictionary which includes useful metrics
+    &#34;&#34;&#34;
+    raise NotImplementedError(&#34;learn_batch is not implemented&#34;)</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.preprocess_batch"><code class="name flex">
+<span>def <span class="ident">preprocess_batch</span></span>(<span>self, batch: <a title="pearl.replay_buffers.transition.TransitionBatch" href="../replay_buffers/transition.html#pearl.replay_buffers.transition.TransitionBatch">TransitionBatch</a>) ‑> <a title="pearl.replay_buffers.transition.TransitionBatch" href="../replay_buffers/transition.html#pearl.replay_buffers.transition.TransitionBatch">TransitionBatch</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Processes a batch of transitions before passing it to learn_batch().
+This function can be used to implement preprocessing steps such as
+transform the actions.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def preprocess_batch(self, batch: TransitionBatch) -&gt; TransitionBatch:
+    &#34;&#34;&#34;
+    Processes a batch of transitions before passing it to learn_batch().
+    This function can be used to implement preprocessing steps such as
+    transform the actions.
+    &#34;&#34;&#34;
+    batch.state = self._history_summarization_module(batch.state)
+    with torch.no_grad():
+        batch.next_state = self._history_summarization_module(batch.next_state)
+
+    batch.action = self._action_representation_module(batch.action)
+    if batch.next_action is not None:
+        batch.next_action = self._action_representation_module(batch.next_action)
+    if batch.curr_available_actions is not None:
+        batch.curr_available_actions = self._action_representation_module(
+            batch.curr_available_actions
+        )
+    if batch.next_available_actions is not None:
+        batch.next_available_actions = self._action_representation_module(
+            batch.next_available_actions
+        )
+    return batch</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.reset"><code class="name flex">
+<span>def <span class="ident">reset</span></span>(<span>self, action_space: <a title="pearl.api.action_space.ActionSpace" href="../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resets policy maker for a new episode. Default implementation does nothing.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset(self, action_space: ActionSpace) -&gt; None:
+    &#34;&#34;&#34;Resets policy maker for a new episode. Default implementation does nothing.&#34;&#34;&#34;
+    pass</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.policy_learner.PolicyLearner.set_history_summarization_module"><code class="name flex">
+<span>def <span class="ident">set_history_summarization_module</span></span>(<span>self, value: <a title="pearl.history_summarization_modules.history_summarization_module.HistorySummarizationModule" href="../history_summarization_modules/history_summarization_module.html#pearl.history_summarization_modules.history_summarization_module.HistorySummarizationModule">HistorySummarizationModule</a>) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_history_summarization_module(
+    self, value: HistorySummarizationModule
+) -&gt; None:
+    self._history_summarization_module = value</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.policy_learners" href="index.html">pearl.policy_learners</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pearl.policy_learners.policy_learner.DistributionalPolicyLearner" href="#pearl.policy_learners.policy_learner.DistributionalPolicyLearner">DistributionalPolicyLearner</a></code></h4>
+</li>
+<li>
+<h4><code><a title="pearl.policy_learners.policy_learner.PolicyLearner" href="#pearl.policy_learners.policy_learner.PolicyLearner">PolicyLearner</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.T" href="#pearl.policy_learners.policy_learner.PolicyLearner.T">T</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.act" href="#pearl.policy_learners.policy_learner.PolicyLearner.act">act</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.action_representation_module" href="#pearl.policy_learners.policy_learner.PolicyLearner.action_representation_module">action_representation_module</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.batch_size" href="#pearl.policy_learners.policy_learner.PolicyLearner.batch_size">batch_size</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.exploration_module" href="#pearl.policy_learners.policy_learner.PolicyLearner.exploration_module">exploration_module</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.get_action_representation_module" href="#pearl.policy_learners.policy_learner.PolicyLearner.get_action_representation_module">get_action_representation_module</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.learn" href="#pearl.policy_learners.policy_learner.PolicyLearner.learn">learn</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.learn_batch" href="#pearl.policy_learners.policy_learner.PolicyLearner.learn_batch">learn_batch</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.preprocess_batch" href="#pearl.policy_learners.policy_learner.PolicyLearner.preprocess_batch">preprocess_batch</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.reset" href="#pearl.policy_learners.policy_learner.PolicyLearner.reset">reset</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.set_history_summarization_module" href="#pearl.policy_learners.policy_learner.PolicyLearner.set_history_summarization_module">set_history_summarization_module</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.policy_learners.sequential_decision_making.actor_critic_base API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.policy_learners.sequential_decision_making.actor_critic_base</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+from abc import abstractmethod
+from typing import Any, Dict, Iterable, List, Optional, Type
+
+from pearl.action_representation_modules.action_representation_module import (
+    ActionRepresentationModule,
+)
+
+from pearl.neural_networks.common.value_networks import QValueNetwork
+from pearl.neural_networks.sequential_decision_making.actor_networks import (
+    ActorNetwork,
+    DynamicActionActorNetwork,
+)
+
+from pearl.utils.instantiations.spaces.box_action import BoxActionSpace
+
+from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
+
+try:
+    import gymnasium as gym
+except ModuleNotFoundError:
+    import gym
+
+import torch
+
+from pearl.api.action import Action
+
+from pearl.api.action_space import ActionSpace
+from pearl.api.state import SubjectiveState
+from pearl.history_summarization_modules.history_summarization_module import (
+    HistorySummarizationModule,
+)
+from pearl.neural_networks.common.utils import (
+    init_weights,
+    update_target_network,
+    update_target_networks,
+)
+from pearl.neural_networks.common.value_networks import (
+    VanillaQValueNetwork,
+    VanillaValueNetwork,
+)
+from pearl.neural_networks.sequential_decision_making.actor_networks import (
+    VanillaActorNetwork,
+)
+from pearl.neural_networks.sequential_decision_making.twin_critic import TwinCritic
+from pearl.policy_learners.exploration_modules.exploration_module import (
+    ExplorationModule,
+)
+from pearl.policy_learners.policy_learner import PolicyLearner
+from pearl.replay_buffers.transition import TransitionBatch
+from torch import nn, optim
+
+
+class ActorCriticBase(PolicyLearner):
+    &#34;&#34;&#34;
+    A base class for all actor-critic based policy learners.
+    Many components are common to actor-critic methods.
+        - Actor and critic (as well as target networks) network initializations.
+        - Act, reset and learn_batch methods.
+        - Utility functions used by many actor-critic methods.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        exploration_module: ExplorationModule,
+        actor_hidden_dims: List[int],
+        critic_hidden_dims: Optional[List[int]] = None,
+        action_space: Optional[ActionSpace] = None,
+        actor_learning_rate: float = 1e-3,
+        critic_learning_rate: float = 1e-3,
+        actor_network_type: Type[ActorNetwork] = VanillaActorNetwork,
+        critic_network_type: Type[QValueNetwork] = VanillaQValueNetwork,
+        use_actor_target: bool = False,
+        use_critic_target: bool = False,
+        actor_soft_update_tau: float = 0.005,
+        critic_soft_update_tau: float = 0.005,
+        use_twin_critic: bool = False,
+        discount_factor: float = 0.99,
+        training_rounds: int = 1,
+        batch_size: int = 256,
+        is_action_continuous: bool = False,
+        on_policy: bool = False,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+    ) -&gt; None:
+        super(ActorCriticBase, self).__init__(
+            on_policy=on_policy,
+            is_action_continuous=is_action_continuous,
+            training_rounds=training_rounds,
+            batch_size=batch_size,
+            exploration_module=exploration_module,
+            action_representation_module=action_representation_module,
+            action_space=action_space,
+        )
+        self._state_dim = state_dim
+        self._use_actor_target = use_actor_target
+        self._use_critic_target = use_critic_target
+        self._use_twin_critic = use_twin_critic
+        self._use_critic: bool = critic_hidden_dims is not None
+
+        self._action_dim: int = (
+            self.action_representation_module.representation_dim
+            if self.is_action_continuous
+            else self.action_representation_module.max_number_actions
+        )
+
+        # actor network takes state as input and outputs an action vector
+        self._actor: nn.Module = actor_network_type(
+            input_dim=state_dim + self._action_dim
+            if actor_network_type is DynamicActionActorNetwork
+            else state_dim,
+            hidden_dims=actor_hidden_dims,
+            output_dim=1
+            if actor_network_type is DynamicActionActorNetwork
+            else self._action_dim,
+            action_space=action_space,
+        )
+        self._actor.apply(init_weights)
+        self._actor_optimizer = optim.AdamW(
+            [
+                {
+                    &#34;params&#34;: self._actor.parameters(),
+                    &#34;lr&#34;: actor_learning_rate,
+                    &#34;amsgrad&#34;: True,
+                },
+            ]
+        )
+        self._actor_soft_update_tau = actor_soft_update_tau
+        if self._use_actor_target:
+            self._actor_target: nn.Module = actor_network_type(
+                input_dim=state_dim + self._action_dim
+                if actor_network_type is DynamicActionActorNetwork
+                else state_dim,
+                hidden_dims=actor_hidden_dims,
+                output_dim=1
+                if actor_network_type is DynamicActionActorNetwork
+                else self._action_dim,
+                action_space=action_space,
+            )
+            update_target_network(self._actor_target, self._actor, tau=1)
+
+        self._critic_soft_update_tau = critic_soft_update_tau
+        if self._use_critic:
+            self._critic: nn.Module = make_critic(
+                state_dim=self._state_dim,
+                action_dim=self._action_dim,
+                hidden_dims=critic_hidden_dims,
+                use_twin_critic=use_twin_critic,
+                network_type=critic_network_type,
+            )
+            self._critic_optimizer: optim.Optimizer = optim.AdamW(
+                [
+                    {
+                        &#34;params&#34;: self._critic.parameters(),
+                        &#34;lr&#34;: critic_learning_rate,
+                        &#34;amsgrad&#34;: True,
+                    },
+                ]
+            )
+            if self._use_critic_target:
+                self._critic_target: nn.Module = make_critic(
+                    state_dim=self._state_dim,
+                    action_dim=self._action_dim,
+                    hidden_dims=critic_hidden_dims,
+                    use_twin_critic=use_twin_critic,
+                    network_type=critic_network_type,
+                )
+                update_critic_target_network(
+                    self._critic_target,
+                    self._critic,
+                    use_twin_critic,
+                    1,
+                )
+
+        self._discount_factor = discount_factor
+
+    def set_history_summarization_module(
+        self, value: HistorySummarizationModule
+    ) -&gt; None:
+        self._actor_optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+        if self._use_critic:
+            self._critic_optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+        self._history_summarization_module = value
+
+    def act(
+        self,
+        subjective_state: SubjectiveState,
+        available_action_space: ActionSpace,
+        exploit: bool = False,
+    ) -&gt; Action:
+        # Step 1: compute exploit_action
+        # (action computed by actor network; and without any exploration)
+        with torch.no_grad():
+            if self.is_action_continuous:
+                exploit_action = self._actor.sample_action(subjective_state)
+                action_probabilities = None
+            else:
+                assert isinstance(available_action_space, DiscreteActionSpace)
+                actions = self.action_representation_module(
+                    available_action_space.actions_batch
+                )
+                action_probabilities = self._actor.get_policy_distribution(
+                    state_batch=subjective_state,
+                    available_actions=actions,
+                )
+                # (action_space_size)
+                exploit_action = torch.argmax(action_probabilities)
+
+        # Step 2: return exploit action if no exploration,
+        # else pass through the exploration module
+        if exploit:
+            return exploit_action
+
+        return self._exploration_module.act(
+            exploit_action=exploit_action,
+            action_space=available_action_space,
+            subjective_state=subjective_state,
+            values=action_probabilities,
+        )
+
+    def reset(self, action_space: ActionSpace) -&gt; None:
+        self._action_space = action_space
+
+    def learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        self._critic_learn_batch(batch)  # update critic
+        self._actor_learn_batch(batch)  # update actor
+
+        if self._use_critic_target:
+            update_critic_target_network(
+                self._critic_target,
+                self._critic,
+                self._use_twin_critic,
+                self._critic_soft_update_tau,
+            )
+        if self._use_actor_target:
+            update_target_network(
+                self._actor_target,
+                self._actor,
+                self._actor_soft_update_tau,
+            )
+        return {}
+
+    @abstractmethod
+    def _actor_learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        pass
+
+    @abstractmethod
+    def _critic_learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        pass
+
+
+def make_critic(
+    state_dim: int,
+    hidden_dims: Optional[Iterable[int]],
+    use_twin_critic: bool,
+    network_type: Type[QValueNetwork],
+    action_dim: Optional[int] = None,
+) -&gt; nn.Module:
+    if use_twin_critic:
+        assert action_dim is not None
+        assert hidden_dims is not None
+        return TwinCritic(
+            state_dim=state_dim,
+            action_dim=action_dim,
+            hidden_dims=hidden_dims,
+            network_type=network_type,
+            init_fn=init_weights,
+        )
+    else:
+        if network_type == VanillaQValueNetwork:
+            # pyre-ignore[45]:
+            # Pyre does not know that `network_type` is asserted to be concrete
+            return network_type(
+                state_dim=state_dim,
+                action_dim=action_dim,
+                hidden_dims=hidden_dims,
+                output_dim=1,
+            )
+        elif network_type == VanillaValueNetwork:
+            # pyre-ignore[45]:
+            # Pyre does not know that `network_type` is asserted to be concrete
+            return network_type(
+                input_dim=state_dim, hidden_dims=hidden_dims, output_dim=1
+            )
+        else:
+            raise NotImplementedError(
+                &#34;Unknown network type. The code needs to be refactored to support this.&#34;
+            )
+
+
+def update_critic_target_network(
+    target_network: nn.Module, network: nn.Module, use_twin_critic: bool, tau: float
+) -&gt; None:
+    if use_twin_critic:
+        update_target_networks(
+            target_network._critic_networks_combined,
+            network._critic_networks_combined,
+            tau=tau,
+        )
+    else:
+        update_target_network(
+            target_network._model,
+            network._model,
+            tau=tau,
+        )
+
+
+def single_critic_state_value_update(
+    state_batch: torch.Tensor,
+    expected_target_batch: torch.Tensor,
+    optimizer: torch.optim.Optimizer,
+    critic: nn.Module,
+) -&gt; Dict[str, Any]:
+    vs = critic(state_batch)
+    # critic loss
+    criterion = torch.nn.MSELoss()
+    loss = criterion(
+        vs.reshape_as(expected_target_batch), expected_target_batch.detach()
+    )
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    return {&#34;critic_loss&#34;: loss.mean().item()}
+
+
+def twin_critic_action_value_update(
+    state_batch: torch.Tensor,
+    action_batch: torch.Tensor,
+    expected_target_batch: torch.Tensor,
+    optimizer: torch.optim.Optimizer,
+    critic: TwinCritic,
+) -&gt; Dict[str, torch.Tensor]:
+    &#34;&#34;&#34;
+    Performs an optimization step on the twin critic networks.
+
+    Args:
+        state_batch: a batch of states with shape (batch_size, state_dim)
+        action_batch: a batch of actions with shape (batch_size, action_dim)
+        expected_target: the batch of target estimates for Bellman equation.
+        optimizer: the optimizer to use for the update.
+        critic: the critic network to update.
+    Returns:
+        Dict[str, torch.Tensor]: mean loss and individual critic losses.
+    &#34;&#34;&#34;
+
+    criterion = torch.nn.MSELoss()
+    optimizer.zero_grad()
+    q_1, q_2 = critic.get_q_values(state_batch, action_batch)
+    loss = criterion(
+        q_1.reshape_as(expected_target_batch), expected_target_batch.detach()
+    ) + criterion(q_2.reshape_as(expected_target_batch), expected_target_batch.detach())
+    loss.backward()
+    optimizer.step()
+
+    return {
+        &#34;critic_mean_loss&#34;: loss.item(),
+        &#34;critic_1_values&#34;: q_1.mean().item(),
+        &#34;critic_2_values&#34;: q_2.mean().item(),
+    }</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pearl.policy_learners.sequential_decision_making.actor_critic_base.make_critic"><code class="name flex">
+<span>def <span class="ident">make_critic</span></span>(<span>state_dim: int, hidden_dims: Optional[Iterable[int]], use_twin_critic: bool, network_type: Type[<a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../../neural_networks/sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a>], action_dim: Optional[int] = None) ‑> torch.nn.modules.module.Module</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_critic(
+    state_dim: int,
+    hidden_dims: Optional[Iterable[int]],
+    use_twin_critic: bool,
+    network_type: Type[QValueNetwork],
+    action_dim: Optional[int] = None,
+) -&gt; nn.Module:
+    if use_twin_critic:
+        assert action_dim is not None
+        assert hidden_dims is not None
+        return TwinCritic(
+            state_dim=state_dim,
+            action_dim=action_dim,
+            hidden_dims=hidden_dims,
+            network_type=network_type,
+            init_fn=init_weights,
+        )
+    else:
+        if network_type == VanillaQValueNetwork:
+            # pyre-ignore[45]:
+            # Pyre does not know that `network_type` is asserted to be concrete
+            return network_type(
+                state_dim=state_dim,
+                action_dim=action_dim,
+                hidden_dims=hidden_dims,
+                output_dim=1,
+            )
+        elif network_type == VanillaValueNetwork:
+            # pyre-ignore[45]:
+            # Pyre does not know that `network_type` is asserted to be concrete
+            return network_type(
+                input_dim=state_dim, hidden_dims=hidden_dims, output_dim=1
+            )
+        else:
+            raise NotImplementedError(
+                &#34;Unknown network type. The code needs to be refactored to support this.&#34;
+            )</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.sequential_decision_making.actor_critic_base.single_critic_state_value_update"><code class="name flex">
+<span>def <span class="ident">single_critic_state_value_update</span></span>(<span>state_batch: torch.Tensor, expected_target_batch: torch.Tensor, optimizer: torch.optim.optimizer.Optimizer, critic: torch.nn.modules.module.Module) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def single_critic_state_value_update(
+    state_batch: torch.Tensor,
+    expected_target_batch: torch.Tensor,
+    optimizer: torch.optim.Optimizer,
+    critic: nn.Module,
+) -&gt; Dict[str, Any]:
+    vs = critic(state_batch)
+    # critic loss
+    criterion = torch.nn.MSELoss()
+    loss = criterion(
+        vs.reshape_as(expected_target_batch), expected_target_batch.detach()
+    )
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    return {&#34;critic_loss&#34;: loss.mean().item()}</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.sequential_decision_making.actor_critic_base.twin_critic_action_value_update"><code class="name flex">
+<span>def <span class="ident">twin_critic_action_value_update</span></span>(<span>state_batch: torch.Tensor, action_batch: torch.Tensor, expected_target_batch: torch.Tensor, optimizer: torch.optim.optimizer.Optimizer, critic: <a title="pearl.neural_networks.sequential_decision_making.twin_critic.TwinCritic" href="../../neural_networks/sequential_decision_making/twin_critic.html#pearl.neural_networks.sequential_decision_making.twin_critic.TwinCritic">TwinCritic</a>) ‑> Dict[str, torch.Tensor]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Performs an optimization step on the twin critic networks.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state_batch</code></strong></dt>
+<dd>a batch of states with shape (batch_size, state_dim)</dd>
+<dt><strong><code>action_batch</code></strong></dt>
+<dd>a batch of actions with shape (batch_size, action_dim)</dd>
+<dt><strong><code>expected_target</code></strong></dt>
+<dd>the batch of target estimates for Bellman equation.</dd>
+<dt><strong><code>optimizer</code></strong></dt>
+<dd>the optimizer to use for the update.</dd>
+<dt><strong><code>critic</code></strong></dt>
+<dd>the critic network to update.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, torch.Tensor]</code></dt>
+<dd>mean loss and individual critic losses.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def twin_critic_action_value_update(
+    state_batch: torch.Tensor,
+    action_batch: torch.Tensor,
+    expected_target_batch: torch.Tensor,
+    optimizer: torch.optim.Optimizer,
+    critic: TwinCritic,
+) -&gt; Dict[str, torch.Tensor]:
+    &#34;&#34;&#34;
+    Performs an optimization step on the twin critic networks.
+
+    Args:
+        state_batch: a batch of states with shape (batch_size, state_dim)
+        action_batch: a batch of actions with shape (batch_size, action_dim)
+        expected_target: the batch of target estimates for Bellman equation.
+        optimizer: the optimizer to use for the update.
+        critic: the critic network to update.
+    Returns:
+        Dict[str, torch.Tensor]: mean loss and individual critic losses.
+    &#34;&#34;&#34;
+
+    criterion = torch.nn.MSELoss()
+    optimizer.zero_grad()
+    q_1, q_2 = critic.get_q_values(state_batch, action_batch)
+    loss = criterion(
+        q_1.reshape_as(expected_target_batch), expected_target_batch.detach()
+    ) + criterion(q_2.reshape_as(expected_target_batch), expected_target_batch.detach())
+    loss.backward()
+    optimizer.step()
+
+    return {
+        &#34;critic_mean_loss&#34;: loss.item(),
+        &#34;critic_1_values&#34;: q_1.mean().item(),
+        &#34;critic_2_values&#34;: q_2.mean().item(),
+    }</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.sequential_decision_making.actor_critic_base.update_critic_target_network"><code class="name flex">
+<span>def <span class="ident">update_critic_target_network</span></span>(<span>target_network: torch.nn.modules.module.Module, network: torch.nn.modules.module.Module, use_twin_critic: bool, tau: float) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_critic_target_network(
+    target_network: nn.Module, network: nn.Module, use_twin_critic: bool, tau: float
+) -&gt; None:
+    if use_twin_critic:
+        update_target_networks(
+            target_network._critic_networks_combined,
+            network._critic_networks_combined,
+            tau=tau,
+        )
+    else:
+        update_target_network(
+            target_network._model,
+            network._model,
+            tau=tau,
+        )</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase"><code class="flex name class">
+<span>class <span class="ident">ActorCriticBase</span></span>
+<span>(</span><span>state_dim: int, exploration_module: <a title="pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule" href="../exploration_modules/exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule">ExplorationModule</a>, actor_hidden_dims: List[int], critic_hidden_dims: Optional[List[int]] = None, action_space: Optional[<a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>] = None, actor_learning_rate: float = 0.001, critic_learning_rate: float = 0.001, actor_network_type: Type[<a title="pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork" href="../../neural_networks/sequential_decision_making/actor_networks.html#pearl.neural_networks.sequential_decision_making.actor_networks.ActorNetwork">ActorNetwork</a>] = pearl.neural_networks.sequential_decision_making.actor_networks.VanillaActorNetwork, critic_network_type: Type[<a title="pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork" href="../../neural_networks/sequential_decision_making/q_value_network.html#pearl.neural_networks.sequential_decision_making.q_value_network.QValueNetwork">QValueNetwork</a>] = pearl.neural_networks.common.value_networks.VanillaQValueNetwork, use_actor_target: bool = False, use_critic_target: bool = False, actor_soft_update_tau: float = 0.005, critic_soft_update_tau: float = 0.005, use_twin_critic: bool = False, discount_factor: float = 0.99, training_rounds: int = 1, batch_size: int = 256, is_action_continuous: bool = False, on_policy: bool = False, action_representation_module: Optional[<a title="pearl.action_representation_modules.action_representation_module.ActionRepresentationModule" href="../../action_representation_modules/action_representation_module.html#pearl.action_representation_modules.action_representation_module.ActionRepresentationModule">ActionRepresentationModule</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A base class for all actor-critic based policy learners.
+Many components are common to actor-critic methods.
+- Actor and critic (as well as target networks) network initializations.
+- Act, reset and learn_batch methods.
+- Utility functions used by many actor-critic methods.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ActorCriticBase(PolicyLearner):
+    &#34;&#34;&#34;
+    A base class for all actor-critic based policy learners.
+    Many components are common to actor-critic methods.
+        - Actor and critic (as well as target networks) network initializations.
+        - Act, reset and learn_batch methods.
+        - Utility functions used by many actor-critic methods.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        exploration_module: ExplorationModule,
+        actor_hidden_dims: List[int],
+        critic_hidden_dims: Optional[List[int]] = None,
+        action_space: Optional[ActionSpace] = None,
+        actor_learning_rate: float = 1e-3,
+        critic_learning_rate: float = 1e-3,
+        actor_network_type: Type[ActorNetwork] = VanillaActorNetwork,
+        critic_network_type: Type[QValueNetwork] = VanillaQValueNetwork,
+        use_actor_target: bool = False,
+        use_critic_target: bool = False,
+        actor_soft_update_tau: float = 0.005,
+        critic_soft_update_tau: float = 0.005,
+        use_twin_critic: bool = False,
+        discount_factor: float = 0.99,
+        training_rounds: int = 1,
+        batch_size: int = 256,
+        is_action_continuous: bool = False,
+        on_policy: bool = False,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+    ) -&gt; None:
+        super(ActorCriticBase, self).__init__(
+            on_policy=on_policy,
+            is_action_continuous=is_action_continuous,
+            training_rounds=training_rounds,
+            batch_size=batch_size,
+            exploration_module=exploration_module,
+            action_representation_module=action_representation_module,
+            action_space=action_space,
+        )
+        self._state_dim = state_dim
+        self._use_actor_target = use_actor_target
+        self._use_critic_target = use_critic_target
+        self._use_twin_critic = use_twin_critic
+        self._use_critic: bool = critic_hidden_dims is not None
+
+        self._action_dim: int = (
+            self.action_representation_module.representation_dim
+            if self.is_action_continuous
+            else self.action_representation_module.max_number_actions
+        )
+
+        # actor network takes state as input and outputs an action vector
+        self._actor: nn.Module = actor_network_type(
+            input_dim=state_dim + self._action_dim
+            if actor_network_type is DynamicActionActorNetwork
+            else state_dim,
+            hidden_dims=actor_hidden_dims,
+            output_dim=1
+            if actor_network_type is DynamicActionActorNetwork
+            else self._action_dim,
+            action_space=action_space,
+        )
+        self._actor.apply(init_weights)
+        self._actor_optimizer = optim.AdamW(
+            [
+                {
+                    &#34;params&#34;: self._actor.parameters(),
+                    &#34;lr&#34;: actor_learning_rate,
+                    &#34;amsgrad&#34;: True,
+                },
+            ]
+        )
+        self._actor_soft_update_tau = actor_soft_update_tau
+        if self._use_actor_target:
+            self._actor_target: nn.Module = actor_network_type(
+                input_dim=state_dim + self._action_dim
+                if actor_network_type is DynamicActionActorNetwork
+                else state_dim,
+                hidden_dims=actor_hidden_dims,
+                output_dim=1
+                if actor_network_type is DynamicActionActorNetwork
+                else self._action_dim,
+                action_space=action_space,
+            )
+            update_target_network(self._actor_target, self._actor, tau=1)
+
+        self._critic_soft_update_tau = critic_soft_update_tau
+        if self._use_critic:
+            self._critic: nn.Module = make_critic(
+                state_dim=self._state_dim,
+                action_dim=self._action_dim,
+                hidden_dims=critic_hidden_dims,
+                use_twin_critic=use_twin_critic,
+                network_type=critic_network_type,
+            )
+            self._critic_optimizer: optim.Optimizer = optim.AdamW(
+                [
+                    {
+                        &#34;params&#34;: self._critic.parameters(),
+                        &#34;lr&#34;: critic_learning_rate,
+                        &#34;amsgrad&#34;: True,
+                    },
+                ]
+            )
+            if self._use_critic_target:
+                self._critic_target: nn.Module = make_critic(
+                    state_dim=self._state_dim,
+                    action_dim=self._action_dim,
+                    hidden_dims=critic_hidden_dims,
+                    use_twin_critic=use_twin_critic,
+                    network_type=critic_network_type,
+                )
+                update_critic_target_network(
+                    self._critic_target,
+                    self._critic,
+                    use_twin_critic,
+                    1,
+                )
+
+        self._discount_factor = discount_factor
+
+    def set_history_summarization_module(
+        self, value: HistorySummarizationModule
+    ) -&gt; None:
+        self._actor_optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+        if self._use_critic:
+            self._critic_optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+        self._history_summarization_module = value
+
+    def act(
+        self,
+        subjective_state: SubjectiveState,
+        available_action_space: ActionSpace,
+        exploit: bool = False,
+    ) -&gt; Action:
+        # Step 1: compute exploit_action
+        # (action computed by actor network; and without any exploration)
+        with torch.no_grad():
+            if self.is_action_continuous:
+                exploit_action = self._actor.sample_action(subjective_state)
+                action_probabilities = None
+            else:
+                assert isinstance(available_action_space, DiscreteActionSpace)
+                actions = self.action_representation_module(
+                    available_action_space.actions_batch
+                )
+                action_probabilities = self._actor.get_policy_distribution(
+                    state_batch=subjective_state,
+                    available_actions=actions,
+                )
+                # (action_space_size)
+                exploit_action = torch.argmax(action_probabilities)
+
+        # Step 2: return exploit action if no exploration,
+        # else pass through the exploration module
+        if exploit:
+            return exploit_action
+
+        return self._exploration_module.act(
+            exploit_action=exploit_action,
+            action_space=available_action_space,
+            subjective_state=subjective_state,
+            values=action_probabilities,
+        )
+
+    def reset(self, action_space: ActionSpace) -&gt; None:
+        self._action_space = action_space
+
+    def learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        self._critic_learn_batch(batch)  # update critic
+        self._actor_learn_batch(batch)  # update actor
+
+        if self._use_critic_target:
+            update_critic_target_network(
+                self._critic_target,
+                self._critic,
+                self._use_twin_critic,
+                self._critic_soft_update_tau,
+            )
+        if self._use_actor_target:
+            update_target_network(
+                self._actor_target,
+                self._actor,
+                self._actor_soft_update_tau,
+            )
+        return {}
+
+    @abstractmethod
+    def _actor_learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        pass
+
+    @abstractmethod
+    def _critic_learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.policy_learner.PolicyLearner" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner">PolicyLearner</a></li>
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.sequential_decision_making.ddpg.DeepDeterministicPolicyGradient" href="ddpg.html#pearl.policy_learners.sequential_decision_making.ddpg.DeepDeterministicPolicyGradient">DeepDeterministicPolicyGradient</a></li>
+<li><a title="pearl.policy_learners.sequential_decision_making.implicit_q_learning.ImplicitQLearning" href="implicit_q_learning.html#pearl.policy_learners.sequential_decision_making.implicit_q_learning.ImplicitQLearning">ImplicitQLearning</a></li>
+<li><a title="pearl.policy_learners.sequential_decision_making.ppo.ProximalPolicyOptimization" href="ppo.html#pearl.policy_learners.sequential_decision_making.ppo.ProximalPolicyOptimization">ProximalPolicyOptimization</a></li>
+<li><a title="pearl.policy_learners.sequential_decision_making.reinforce.REINFORCE" href="reinforce.html#pearl.policy_learners.sequential_decision_making.reinforce.REINFORCE">REINFORCE</a></li>
+<li><a title="pearl.policy_learners.sequential_decision_making.soft_actor_critic.SoftActorCritic" href="soft_actor_critic.html#pearl.policy_learners.sequential_decision_making.soft_actor_critic.SoftActorCritic">SoftActorCritic</a></li>
+<li><a title="pearl.policy_learners.sequential_decision_making.soft_actor_critic_continuous.ContinuousSoftActorCritic" href="soft_actor_critic_continuous.html#pearl.policy_learners.sequential_decision_making.soft_actor_critic_continuous.ContinuousSoftActorCritic">ContinuousSoftActorCritic</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase.act"><code class="name flex">
+<span>def <span class="ident">act</span></span>(<span>self, subjective_state: torch.Tensor, available_action_space: <a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>, exploit: bool = False) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def act(
+    self,
+    subjective_state: SubjectiveState,
+    available_action_space: ActionSpace,
+    exploit: bool = False,
+) -&gt; Action:
+    # Step 1: compute exploit_action
+    # (action computed by actor network; and without any exploration)
+    with torch.no_grad():
+        if self.is_action_continuous:
+            exploit_action = self._actor.sample_action(subjective_state)
+            action_probabilities = None
+        else:
+            assert isinstance(available_action_space, DiscreteActionSpace)
+            actions = self.action_representation_module(
+                available_action_space.actions_batch
+            )
+            action_probabilities = self._actor.get_policy_distribution(
+                state_batch=subjective_state,
+                available_actions=actions,
+            )
+            # (action_space_size)
+            exploit_action = torch.argmax(action_probabilities)
+
+    # Step 2: return exploit action if no exploration,
+    # else pass through the exploration module
+    if exploit:
+        return exploit_action
+
+    return self._exploration_module.act(
+        exploit_action=exploit_action,
+        action_space=available_action_space,
+        subjective_state=subjective_state,
+        values=action_probabilities,
+    )</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase.set_history_summarization_module"><code class="name flex">
+<span>def <span class="ident">set_history_summarization_module</span></span>(<span>self, value: <a title="pearl.history_summarization_modules.history_summarization_module.HistorySummarizationModule" href="../../history_summarization_modules/history_summarization_module.html#pearl.history_summarization_modules.history_summarization_module.HistorySummarizationModule">HistorySummarizationModule</a>) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_history_summarization_module(
+    self, value: HistorySummarizationModule
+) -&gt; None:
+    self._actor_optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+    if self._use_critic:
+        self._critic_optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+    self._history_summarization_module = value</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.policy_learners.policy_learner.PolicyLearner" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner">PolicyLearner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.learn" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner.learn">learn</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.learn_batch" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner.learn_batch">learn_batch</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.preprocess_batch" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner.preprocess_batch">preprocess_batch</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.PolicyLearner.reset" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.policy_learners.sequential_decision_making" href="index.html">pearl.policy_learners.sequential_decision_making</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pearl.policy_learners.sequential_decision_making.actor_critic_base.make_critic" href="#pearl.policy_learners.sequential_decision_making.actor_critic_base.make_critic">make_critic</a></code></li>
+<li><code><a title="pearl.policy_learners.sequential_decision_making.actor_critic_base.single_critic_state_value_update" href="#pearl.policy_learners.sequential_decision_making.actor_critic_base.single_critic_state_value_update">single_critic_state_value_update</a></code></li>
+<li><code><a title="pearl.policy_learners.sequential_decision_making.actor_critic_base.twin_critic_action_value_update" href="#pearl.policy_learners.sequential_decision_making.actor_critic_base.twin_critic_action_value_update">twin_critic_action_value_update</a></code></li>
+<li><code><a title="pearl.policy_learners.sequential_decision_making.actor_critic_base.update_critic_target_network" href="#pearl.policy_learners.sequential_decision_making.actor_critic_base.update_critic_target_network">update_critic_target_network</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase" href="#pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase">ActorCriticBase</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase.act" href="#pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase.act">act</a></code></li>
+<li><code><a title="pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase.set_history_summarization_module" href="#pearl.policy_learners.sequential_decision_making.actor_critic_base.ActorCriticBase.set_history_summarization_module">set_history_summarization_module</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

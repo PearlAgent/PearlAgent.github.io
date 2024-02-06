@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import copy
+from abc import abstractmethod
+from typing import Any, Dict, List, Optional, Type
+
+import torch
+import torch.nn.functional as F
+from pearl.action_representation_modules.action_representation_module import (
+    ActionRepresentationModule,
+)
+
+from pearl.api.action import Action
+from pearl.api.action_space import ActionSpace
+from pearl.api.state import SubjectiveState
+from pearl.history_summarization_modules.history_summarization_module import (
+    HistorySummarizationModule,
+)
+from pearl.neural_networks.common.utils import update_target_network
+from pearl.neural_networks.common.value_networks import QuantileQValueNetwork
+from pearl.policy_learners.exploration_modules.exploration_module import (
+    ExplorationModule,
+)
+from pearl.policy_learners.policy_learner import DistributionalPolicyLearner
+from pearl.replay_buffers.transition import TransitionBatch
+from pearl.safety_modules.risk_sensitive_safety_modules import (  # noqa
+    RiskNeutralSafetyModule,  # noqa
+)
+from pearl.utils.functional_utils.learning.loss_fn_utils import (
+    compute_elementwise_huber_loss,
+)
+from pearl.utils.instantiations.spaces.discrete_action import DiscreteActionSpace
+from torch import optim
+
+
+# TODO: Only support discrete action space problems for now and assumes Gym action space.
+class QuantileRegressionDeepTDLearning(DistributionalPolicyLearner):
+    &#34;&#34;&#34;
+    An Abstract Class for Quantile Regression based Deep Temporal Difference learning.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_space: ActionSpace,
+        on_policy: bool,
+        exploration_module: ExplorationModule,
+        hidden_dims: Optional[List[int]] = None,
+        num_quantiles: int = 10,
+        learning_rate: float = 5 * 0.0001,
+        discount_factor: float = 0.99,
+        training_rounds: int = 100,
+        batch_size: int = 128,
+        target_update_freq: int = 10,
+        soft_update_tau: float = 0.05,  # typical value for soft update
+        network_type: Type[
+            QuantileQValueNetwork
+        ] = QuantileQValueNetwork,  # C51 might use a different network type; add that later
+        network_instance: Optional[QuantileQValueNetwork] = None,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+    ) -&gt; None:
+        assert isinstance(action_space, DiscreteActionSpace)
+        super(QuantileRegressionDeepTDLearning, self).__init__(
+            training_rounds=training_rounds,
+            batch_size=batch_size,
+            exploration_module=exploration_module,
+            on_policy=on_policy,
+            is_action_continuous=False,
+            action_representation_module=action_representation_module,
+        )
+
+        if hidden_dims is None:
+            hidden_dims = []
+
+        self._action_space = action_space
+        self._discount_factor = discount_factor
+        self._target_update_freq = target_update_freq
+        self._soft_update_tau = soft_update_tau
+        self._num_quantiles = num_quantiles
+
+        def make_specified_network() -&gt; QuantileQValueNetwork:
+            assert hidden_dims is not None
+            return network_type(
+                state_dim=state_dim,
+                action_dim=action_space.n,  # pyre-ignore[16]
+                hidden_dims=hidden_dims,
+                num_quantiles=num_quantiles,
+            )
+
+        if network_instance is not None:
+            self._Q: QuantileQValueNetwork = network_instance
+            assert network_instance.state_dim == state_dim, (
+                &#34;input state dimension doesn&#39;t match network &#34;
+                &#34;state dimension for QuantileQValueNetwork&#34;
+            )
+            assert network_instance.action_dim == action_space.n, (
+                &#34;input action dimension doesn&#39;t match network &#34;
+                &#34;action dimension for QuantileQValueNetwork&#34;
+            )
+        else:
+            assert hidden_dims is not None
+            self._Q: QuantileQValueNetwork = make_specified_network()
+
+        self._Q_target: QuantileQValueNetwork = copy.deepcopy(self._Q)
+        self._optimizer = optim.AdamW(
+            self._Q.parameters(), lr=learning_rate, amsgrad=True
+        )
+
+    def set_history_summarization_module(
+        self, value: HistorySummarizationModule
+    ) -&gt; None:
+        self._optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+        self._history_summarization_module = value
+
+    def reset(self, action_space: ActionSpace) -&gt; None:
+        self._action_space = action_space
+
+    def act(
+        self,
+        subjective_state: SubjectiveState,
+        available_action_space: ActionSpace,
+        exploit: bool = False,
+    ) -&gt; Action:
+        assert isinstance(available_action_space, DiscreteActionSpace)
+        # Fix the available action space.
+        with torch.no_grad():
+            states_repeated = torch.repeat_interleave(
+                subjective_state.unsqueeze(0),
+                available_action_space.n,
+                dim=0,
+            )  # (action_space_size x state_dim)
+
+            actions = F.one_hot(torch.arange(0, available_action_space.n)).to(
+                subjective_state.device
+            )
+            # (action_space_size, action_dim)
+
+            # instead of using the &#39;get_q_values&#39; method of the QuantileQValueNetwork,
+            # we invoke a method from the risk sensitive safety module
+            q_values = self.safety_module.get_q_values_under_risk_metric(
+                states_repeated, actions, self._Q
+            )
+            exploit_action = torch.argmax(q_values).view((-1))
+
+        if exploit:
+            return exploit_action
+
+        return self._exploration_module.act(
+            subjective_state,
+            available_action_space,
+            exploit_action,
+            q_values,
+        )
+
+    # QR DQN, QR SAC and QR SARSA will implement this differently
+    @abstractmethod
+    def _get_next_state_quantiles(
+        self, batch: TransitionBatch, batch_size: int
+    ) -&gt; torch.Tensor:
+        pass
+
+    # learn quantiles of q value distribution using distribution temporal
+    # difference learning (specifically, quantile regression)
+    def learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Assume N is the number of quantiles.
+
+        - This is the learning update for the quantile q value network which,
+        for each (state, action) pair, computes the quantile locations
+        (theta_1(s,a), .. , theta_N(s,a)). The quantiles are fixed to be 1/N.
+        - The return distribution is represented as: Z(s, a) = (1/N) * sum_{i=1}^N theta_i (s,a),
+        where (theta_1(s,a), .. , theta_N(s,a)),
+        which represent the quantile locations, are outouts of the QuantileQValueNetwork.
+        - Loss function:
+                sum_{i=1}^N E_{j} [ rho_{tau^*_i}( T theta_j(s&#39;,a*) - theta_i(s,a) ) ] - Eq (1)
+
+            - tau^*_i is the i-th quantile midpoint ((tau_i + tau_{i-1})/2),
+            - T is the distributional Bellman operator,
+            - rho_tau(.) is the asymmetric quantile huber loss function,
+            - theta_i and theta_j are outputs of the QuantileQValueNetwork,
+              representing locations of quantiles,
+            - a* is the greedy action with respect to Q values (computed from the q value
+              distribution under some risk metric)
+
+        See the parameterization in QR DQN paper: https://arxiv.org/pdf/1710.10044.pdf for details.
+        &#34;&#34;&#34;
+
+        batch_size = batch.state.shape[0]
+
+        &#34;&#34;&#34;
+        Step 1: a forward pass through the quantile network which gives quantile locations,
+        theta(s,a), for each (state, action) pair
+        &#34;&#34;&#34;
+        # a forward pass through the quantile network which gives quantile locations
+        # for each (state, action) pair
+        quantile_state_action_values = self._Q.get_q_value_distribution(
+            state_batch=batch.state, action_batch=batch.action
+        )  # shape: (batch_size, num_quantiles)
+
+        &#34;&#34;&#34;
+        Step 2: compute Bellman target for each quantile location
+            - add a dimension to the reward and (1-done) vectors so they
+              can be broadcasted with the next state quantiles
+        &#34;&#34;&#34;
+
+        with torch.no_grad():
+            quantile_next_state_greedy_action_values = self._get_next_state_quantiles(
+                batch, batch_size
+            ) * self._discount_factor * (1 - batch.done.float()).unsqueeze(
+                -1
+            ) + batch.reward.unsqueeze(
+                -1
+            )
+
+        &#34;&#34;&#34;
+        Step 3: pairwise distributional quantile loss:
+        T theta_j(s&#39;,a*) - theta_i(s,a) for i,j in (1, .. , N)
+            - output shape: (batch_size, N, N)
+        &#34;&#34;&#34;
+        pairwise_quantile_loss = quantile_next_state_greedy_action_values.unsqueeze(
+            2
+        ) - quantile_state_action_values.unsqueeze(1)
+
+        # elementwise huber loss smoothes the quantile loss, since it is non-smooth at 0
+        huber_loss = compute_elementwise_huber_loss(pairwise_quantile_loss)
+
+        with torch.no_grad():
+            asymmetric_weight = torch.abs(
+                self._Q.quantile_midpoints - (pairwise_quantile_loss &lt; 0).float()
+            )
+
+        &#34;&#34;&#34;
+        # Step 4: compute asymmetric huber loss (also known as the quantile huber loss)
+            - output shape: (batch_size, N, N)
+        &#34;&#34;&#34;
+        quantile_huber_loss = asymmetric_weight * huber_loss
+
+        &#34;&#34;&#34;
+        Step 5: compute loss to optimize: given pairwise quantile huber loss,
+            - sum(dim=1) approximates the (sum_{i=1}^N [ .. ]) term in Equation (1),
+            - mean() takes average over the other quantile dimension (E_j [ .. ]) and over batch
+        &#34;&#34;&#34;
+        quantile_bellman_loss = quantile_huber_loss.sum(dim=1).mean()
+
+        # optimize model (parameters of quantile q network)
+        self._optimizer.zero_grad()
+        quantile_bellman_loss.backward()
+        self._optimizer.step()
+
+        # target network update
+        if (self._training_steps + 1) % self._target_update_freq == 0:
+            update_target_network(self._Q_target, self._Q, self._soft_update_tau)
+
+        return {
+            &#34;loss&#34;: torch.abs(
+                quantile_state_action_values - quantile_next_state_greedy_action_values
+            )
+            .mean()
+            .item()
+        }</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning"><code class="flex name class">
+<span>class <span class="ident">QuantileRegressionDeepTDLearning</span></span>
+<span>(</span><span>state_dim: int, action_space: <a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>, on_policy: bool, exploration_module: <a title="pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule" href="../exploration_modules/exploration_module.html#pearl.policy_learners.exploration_modules.exploration_module.ExplorationModule">ExplorationModule</a>, hidden_dims: Optional[List[int]] = None, num_quantiles: int = 10, learning_rate: float = 0.0005, discount_factor: float = 0.99, training_rounds: int = 100, batch_size: int = 128, target_update_freq: int = 10, soft_update_tau: float = 0.05, network_type: Type[<a title="pearl.neural_networks.common.value_networks.QuantileQValueNetwork" href="../../neural_networks/common/value_networks.html#pearl.neural_networks.common.value_networks.QuantileQValueNetwork">QuantileQValueNetwork</a>] = pearl.neural_networks.common.value_networks.QuantileQValueNetwork, network_instance: Optional[<a title="pearl.neural_networks.common.value_networks.QuantileQValueNetwork" href="../../neural_networks/common/value_networks.html#pearl.neural_networks.common.value_networks.QuantileQValueNetwork">QuantileQValueNetwork</a>] = None, action_representation_module: Optional[<a title="pearl.action_representation_modules.action_representation_module.ActionRepresentationModule" href="../../action_representation_modules/action_representation_module.html#pearl.action_representation_modules.action_representation_module.ActionRepresentationModule">ActionRepresentationModule</a>] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An Abstract Class for Quantile Regression based Deep Temporal Difference learning.</p>
+<p>Initializes internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class QuantileRegressionDeepTDLearning(DistributionalPolicyLearner):
+    &#34;&#34;&#34;
+    An Abstract Class for Quantile Regression based Deep Temporal Difference learning.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        state_dim: int,
+        action_space: ActionSpace,
+        on_policy: bool,
+        exploration_module: ExplorationModule,
+        hidden_dims: Optional[List[int]] = None,
+        num_quantiles: int = 10,
+        learning_rate: float = 5 * 0.0001,
+        discount_factor: float = 0.99,
+        training_rounds: int = 100,
+        batch_size: int = 128,
+        target_update_freq: int = 10,
+        soft_update_tau: float = 0.05,  # typical value for soft update
+        network_type: Type[
+            QuantileQValueNetwork
+        ] = QuantileQValueNetwork,  # C51 might use a different network type; add that later
+        network_instance: Optional[QuantileQValueNetwork] = None,
+        action_representation_module: Optional[ActionRepresentationModule] = None,
+    ) -&gt; None:
+        assert isinstance(action_space, DiscreteActionSpace)
+        super(QuantileRegressionDeepTDLearning, self).__init__(
+            training_rounds=training_rounds,
+            batch_size=batch_size,
+            exploration_module=exploration_module,
+            on_policy=on_policy,
+            is_action_continuous=False,
+            action_representation_module=action_representation_module,
+        )
+
+        if hidden_dims is None:
+            hidden_dims = []
+
+        self._action_space = action_space
+        self._discount_factor = discount_factor
+        self._target_update_freq = target_update_freq
+        self._soft_update_tau = soft_update_tau
+        self._num_quantiles = num_quantiles
+
+        def make_specified_network() -&gt; QuantileQValueNetwork:
+            assert hidden_dims is not None
+            return network_type(
+                state_dim=state_dim,
+                action_dim=action_space.n,  # pyre-ignore[16]
+                hidden_dims=hidden_dims,
+                num_quantiles=num_quantiles,
+            )
+
+        if network_instance is not None:
+            self._Q: QuantileQValueNetwork = network_instance
+            assert network_instance.state_dim == state_dim, (
+                &#34;input state dimension doesn&#39;t match network &#34;
+                &#34;state dimension for QuantileQValueNetwork&#34;
+            )
+            assert network_instance.action_dim == action_space.n, (
+                &#34;input action dimension doesn&#39;t match network &#34;
+                &#34;action dimension for QuantileQValueNetwork&#34;
+            )
+        else:
+            assert hidden_dims is not None
+            self._Q: QuantileQValueNetwork = make_specified_network()
+
+        self._Q_target: QuantileQValueNetwork = copy.deepcopy(self._Q)
+        self._optimizer = optim.AdamW(
+            self._Q.parameters(), lr=learning_rate, amsgrad=True
+        )
+
+    def set_history_summarization_module(
+        self, value: HistorySummarizationModule
+    ) -&gt; None:
+        self._optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+        self._history_summarization_module = value
+
+    def reset(self, action_space: ActionSpace) -&gt; None:
+        self._action_space = action_space
+
+    def act(
+        self,
+        subjective_state: SubjectiveState,
+        available_action_space: ActionSpace,
+        exploit: bool = False,
+    ) -&gt; Action:
+        assert isinstance(available_action_space, DiscreteActionSpace)
+        # Fix the available action space.
+        with torch.no_grad():
+            states_repeated = torch.repeat_interleave(
+                subjective_state.unsqueeze(0),
+                available_action_space.n,
+                dim=0,
+            )  # (action_space_size x state_dim)
+
+            actions = F.one_hot(torch.arange(0, available_action_space.n)).to(
+                subjective_state.device
+            )
+            # (action_space_size, action_dim)
+
+            # instead of using the &#39;get_q_values&#39; method of the QuantileQValueNetwork,
+            # we invoke a method from the risk sensitive safety module
+            q_values = self.safety_module.get_q_values_under_risk_metric(
+                states_repeated, actions, self._Q
+            )
+            exploit_action = torch.argmax(q_values).view((-1))
+
+        if exploit:
+            return exploit_action
+
+        return self._exploration_module.act(
+            subjective_state,
+            available_action_space,
+            exploit_action,
+            q_values,
+        )
+
+    # QR DQN, QR SAC and QR SARSA will implement this differently
+    @abstractmethod
+    def _get_next_state_quantiles(
+        self, batch: TransitionBatch, batch_size: int
+    ) -&gt; torch.Tensor:
+        pass
+
+    # learn quantiles of q value distribution using distribution temporal
+    # difference learning (specifically, quantile regression)
+    def learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Assume N is the number of quantiles.
+
+        - This is the learning update for the quantile q value network which,
+        for each (state, action) pair, computes the quantile locations
+        (theta_1(s,a), .. , theta_N(s,a)). The quantiles are fixed to be 1/N.
+        - The return distribution is represented as: Z(s, a) = (1/N) * sum_{i=1}^N theta_i (s,a),
+        where (theta_1(s,a), .. , theta_N(s,a)),
+        which represent the quantile locations, are outouts of the QuantileQValueNetwork.
+        - Loss function:
+                sum_{i=1}^N E_{j} [ rho_{tau^*_i}( T theta_j(s&#39;,a*) - theta_i(s,a) ) ] - Eq (1)
+
+            - tau^*_i is the i-th quantile midpoint ((tau_i + tau_{i-1})/2),
+            - T is the distributional Bellman operator,
+            - rho_tau(.) is the asymmetric quantile huber loss function,
+            - theta_i and theta_j are outputs of the QuantileQValueNetwork,
+              representing locations of quantiles,
+            - a* is the greedy action with respect to Q values (computed from the q value
+              distribution under some risk metric)
+
+        See the parameterization in QR DQN paper: https://arxiv.org/pdf/1710.10044.pdf for details.
+        &#34;&#34;&#34;
+
+        batch_size = batch.state.shape[0]
+
+        &#34;&#34;&#34;
+        Step 1: a forward pass through the quantile network which gives quantile locations,
+        theta(s,a), for each (state, action) pair
+        &#34;&#34;&#34;
+        # a forward pass through the quantile network which gives quantile locations
+        # for each (state, action) pair
+        quantile_state_action_values = self._Q.get_q_value_distribution(
+            state_batch=batch.state, action_batch=batch.action
+        )  # shape: (batch_size, num_quantiles)
+
+        &#34;&#34;&#34;
+        Step 2: compute Bellman target for each quantile location
+            - add a dimension to the reward and (1-done) vectors so they
+              can be broadcasted with the next state quantiles
+        &#34;&#34;&#34;
+
+        with torch.no_grad():
+            quantile_next_state_greedy_action_values = self._get_next_state_quantiles(
+                batch, batch_size
+            ) * self._discount_factor * (1 - batch.done.float()).unsqueeze(
+                -1
+            ) + batch.reward.unsqueeze(
+                -1
+            )
+
+        &#34;&#34;&#34;
+        Step 3: pairwise distributional quantile loss:
+        T theta_j(s&#39;,a*) - theta_i(s,a) for i,j in (1, .. , N)
+            - output shape: (batch_size, N, N)
+        &#34;&#34;&#34;
+        pairwise_quantile_loss = quantile_next_state_greedy_action_values.unsqueeze(
+            2
+        ) - quantile_state_action_values.unsqueeze(1)
+
+        # elementwise huber loss smoothes the quantile loss, since it is non-smooth at 0
+        huber_loss = compute_elementwise_huber_loss(pairwise_quantile_loss)
+
+        with torch.no_grad():
+            asymmetric_weight = torch.abs(
+                self._Q.quantile_midpoints - (pairwise_quantile_loss &lt; 0).float()
+            )
+
+        &#34;&#34;&#34;
+        # Step 4: compute asymmetric huber loss (also known as the quantile huber loss)
+            - output shape: (batch_size, N, N)
+        &#34;&#34;&#34;
+        quantile_huber_loss = asymmetric_weight * huber_loss
+
+        &#34;&#34;&#34;
+        Step 5: compute loss to optimize: given pairwise quantile huber loss,
+            - sum(dim=1) approximates the (sum_{i=1}^N [ .. ]) term in Equation (1),
+            - mean() takes average over the other quantile dimension (E_j [ .. ]) and over batch
+        &#34;&#34;&#34;
+        quantile_bellman_loss = quantile_huber_loss.sum(dim=1).mean()
+
+        # optimize model (parameters of quantile q network)
+        self._optimizer.zero_grad()
+        quantile_bellman_loss.backward()
+        self._optimizer.step()
+
+        # target network update
+        if (self._training_steps + 1) % self._target_update_freq == 0:
+            update_target_network(self._Q_target, self._Q, self._soft_update_tau)
+
+        return {
+            &#34;loss&#34;: torch.abs(
+                quantile_state_action_values - quantile_next_state_greedy_action_values
+            )
+            .mean()
+            .item()
+        }</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.policy_learner.DistributionalPolicyLearner" href="../policy_learner.html#pearl.policy_learners.policy_learner.DistributionalPolicyLearner">DistributionalPolicyLearner</a></li>
+<li><a title="pearl.policy_learners.policy_learner.PolicyLearner" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner">PolicyLearner</a></li>
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_q_learning.QuantileRegressionDeepQLearning" href="quantile_regression_deep_q_learning.html#pearl.policy_learners.sequential_decision_making.quantile_regression_deep_q_learning.QuantileRegressionDeepQLearning">QuantileRegressionDeepQLearning</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.act"><code class="name flex">
+<span>def <span class="ident">act</span></span>(<span>self, subjective_state: torch.Tensor, available_action_space: <a title="pearl.api.action_space.ActionSpace" href="../../api/action_space.html#pearl.api.action_space.ActionSpace">ActionSpace</a>, exploit: bool = False) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def act(
+    self,
+    subjective_state: SubjectiveState,
+    available_action_space: ActionSpace,
+    exploit: bool = False,
+) -&gt; Action:
+    assert isinstance(available_action_space, DiscreteActionSpace)
+    # Fix the available action space.
+    with torch.no_grad():
+        states_repeated = torch.repeat_interleave(
+            subjective_state.unsqueeze(0),
+            available_action_space.n,
+            dim=0,
+        )  # (action_space_size x state_dim)
+
+        actions = F.one_hot(torch.arange(0, available_action_space.n)).to(
+            subjective_state.device
+        )
+        # (action_space_size, action_dim)
+
+        # instead of using the &#39;get_q_values&#39; method of the QuantileQValueNetwork,
+        # we invoke a method from the risk sensitive safety module
+        q_values = self.safety_module.get_q_values_under_risk_metric(
+            states_repeated, actions, self._Q
+        )
+        exploit_action = torch.argmax(q_values).view((-1))
+
+    if exploit:
+        return exploit_action
+
+    return self._exploration_module.act(
+        subjective_state,
+        available_action_space,
+        exploit_action,
+        q_values,
+    )</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.learn_batch"><code class="name flex">
+<span>def <span class="ident">learn_batch</span></span>(<span>self, batch: <a title="pearl.replay_buffers.transition.TransitionBatch" href="../../replay_buffers/transition.html#pearl.replay_buffers.transition.TransitionBatch">TransitionBatch</a>) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Assume N is the number of quantiles.</p>
+<ul>
+<li>This is the learning update for the quantile q value network which,
+for each (state, action) pair, computes the quantile locations
+(theta_1(s,a), .. , theta_N(s,a)). The quantiles are fixed to be 1/N.</li>
+<li>The return distribution is represented as: Z(s, a) = (1/N) * sum_{i=1}^N theta_i (s,a),
+where (theta_1(s,a), .. , theta_N(s,a)),
+which represent the quantile locations, are outouts of the QuantileQValueNetwork.</li>
+<li>
+<p>Loss function:
+sum_{i=1}^N E_{j} [ rho_{tau^<em>_i}( T theta_j(s',a</em>) - theta_i(s,a) ) ] - Eq (1)</p>
+<ul>
+<li>tau^*<em i-1>i is the i-th quantile midpoint ((tau_i + tau</em>)/2),</li>
+<li>T is the distributional Bellman operator,</li>
+<li>rho_tau(.) is the asymmetric quantile huber loss function,</li>
+<li>theta_i and theta_j are outputs of the QuantileQValueNetwork,
+representing locations of quantiles,</li>
+<li>a* is the greedy action with respect to Q values (computed from the q value
+distribution under some risk metric)</li>
+</ul>
+</li>
+</ul>
+<p>See the parameterization in QR DQN paper: <a href="https://arxiv.org/pdf/1710.10044.pdf">https://arxiv.org/pdf/1710.10044.pdf</a> for details.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def learn_batch(self, batch: TransitionBatch) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Assume N is the number of quantiles.
+
+    - This is the learning update for the quantile q value network which,
+    for each (state, action) pair, computes the quantile locations
+    (theta_1(s,a), .. , theta_N(s,a)). The quantiles are fixed to be 1/N.
+    - The return distribution is represented as: Z(s, a) = (1/N) * sum_{i=1}^N theta_i (s,a),
+    where (theta_1(s,a), .. , theta_N(s,a)),
+    which represent the quantile locations, are outouts of the QuantileQValueNetwork.
+    - Loss function:
+            sum_{i=1}^N E_{j} [ rho_{tau^*_i}( T theta_j(s&#39;,a*) - theta_i(s,a) ) ] - Eq (1)
+
+        - tau^*_i is the i-th quantile midpoint ((tau_i + tau_{i-1})/2),
+        - T is the distributional Bellman operator,
+        - rho_tau(.) is the asymmetric quantile huber loss function,
+        - theta_i and theta_j are outputs of the QuantileQValueNetwork,
+          representing locations of quantiles,
+        - a* is the greedy action with respect to Q values (computed from the q value
+          distribution under some risk metric)
+
+    See the parameterization in QR DQN paper: https://arxiv.org/pdf/1710.10044.pdf for details.
+    &#34;&#34;&#34;
+
+    batch_size = batch.state.shape[0]
+
+    &#34;&#34;&#34;
+    Step 1: a forward pass through the quantile network which gives quantile locations,
+    theta(s,a), for each (state, action) pair
+    &#34;&#34;&#34;
+    # a forward pass through the quantile network which gives quantile locations
+    # for each (state, action) pair
+    quantile_state_action_values = self._Q.get_q_value_distribution(
+        state_batch=batch.state, action_batch=batch.action
+    )  # shape: (batch_size, num_quantiles)
+
+    &#34;&#34;&#34;
+    Step 2: compute Bellman target for each quantile location
+        - add a dimension to the reward and (1-done) vectors so they
+          can be broadcasted with the next state quantiles
+    &#34;&#34;&#34;
+
+    with torch.no_grad():
+        quantile_next_state_greedy_action_values = self._get_next_state_quantiles(
+            batch, batch_size
+        ) * self._discount_factor * (1 - batch.done.float()).unsqueeze(
+            -1
+        ) + batch.reward.unsqueeze(
+            -1
+        )
+
+    &#34;&#34;&#34;
+    Step 3: pairwise distributional quantile loss:
+    T theta_j(s&#39;,a*) - theta_i(s,a) for i,j in (1, .. , N)
+        - output shape: (batch_size, N, N)
+    &#34;&#34;&#34;
+    pairwise_quantile_loss = quantile_next_state_greedy_action_values.unsqueeze(
+        2
+    ) - quantile_state_action_values.unsqueeze(1)
+
+    # elementwise huber loss smoothes the quantile loss, since it is non-smooth at 0
+    huber_loss = compute_elementwise_huber_loss(pairwise_quantile_loss)
+
+    with torch.no_grad():
+        asymmetric_weight = torch.abs(
+            self._Q.quantile_midpoints - (pairwise_quantile_loss &lt; 0).float()
+        )
+
+    &#34;&#34;&#34;
+    # Step 4: compute asymmetric huber loss (also known as the quantile huber loss)
+        - output shape: (batch_size, N, N)
+    &#34;&#34;&#34;
+    quantile_huber_loss = asymmetric_weight * huber_loss
+
+    &#34;&#34;&#34;
+    Step 5: compute loss to optimize: given pairwise quantile huber loss,
+        - sum(dim=1) approximates the (sum_{i=1}^N [ .. ]) term in Equation (1),
+        - mean() takes average over the other quantile dimension (E_j [ .. ]) and over batch
+    &#34;&#34;&#34;
+    quantile_bellman_loss = quantile_huber_loss.sum(dim=1).mean()
+
+    # optimize model (parameters of quantile q network)
+    self._optimizer.zero_grad()
+    quantile_bellman_loss.backward()
+    self._optimizer.step()
+
+    # target network update
+    if (self._training_steps + 1) % self._target_update_freq == 0:
+        update_target_network(self._Q_target, self._Q, self._soft_update_tau)
+
+    return {
+        &#34;loss&#34;: torch.abs(
+            quantile_state_action_values - quantile_next_state_greedy_action_values
+        )
+        .mean()
+        .item()
+    }</code></pre>
+</details>
+</dd>
+<dt id="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.set_history_summarization_module"><code class="name flex">
+<span>def <span class="ident">set_history_summarization_module</span></span>(<span>self, value: <a title="pearl.history_summarization_modules.history_summarization_module.HistorySummarizationModule" href="../../history_summarization_modules/history_summarization_module.html#pearl.history_summarization_modules.history_summarization_module.HistorySummarizationModule">HistorySummarizationModule</a>) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_history_summarization_module(
+    self, value: HistorySummarizationModule
+) -&gt; None:
+    self._optimizer.add_param_group({&#34;params&#34;: value.parameters()})
+    self._history_summarization_module = value</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="pearl.policy_learners.policy_learner.DistributionalPolicyLearner" href="../policy_learner.html#pearl.policy_learners.policy_learner.DistributionalPolicyLearner">DistributionalPolicyLearner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="pearl.policy_learners.policy_learner.DistributionalPolicyLearner.learn" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner.learn">learn</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.DistributionalPolicyLearner.preprocess_batch" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner.preprocess_batch">preprocess_batch</a></code></li>
+<li><code><a title="pearl.policy_learners.policy_learner.DistributionalPolicyLearner.reset" href="../policy_learner.html#pearl.policy_learners.policy_learner.PolicyLearner.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.policy_learners.sequential_decision_making" href="index.html">pearl.policy_learners.sequential_decision_making</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning" href="#pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning">QuantileRegressionDeepTDLearning</a></code></h4>
+<ul class="">
+<li><code><a title="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.act" href="#pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.act">act</a></code></li>
+<li><code><a title="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.learn_batch" href="#pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.learn_batch">learn_batch</a></code></li>
+<li><code><a title="pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.set_history_summarization_module" href="#pearl.policy_learners.sequential_decision_making.quantile_regression_deep_td_learning.QuantileRegressionDeepTDLearning.set_history_summarization_module">set_history_summarization_module</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

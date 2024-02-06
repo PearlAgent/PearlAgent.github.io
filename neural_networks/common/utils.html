@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pearl.neural_networks.common.utils API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pearl.neural_networks.common.utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import logging
+from typing import Any, Dict, List, Optional, Union
+
+import torch
+import torch.nn as nn
+
+from torch.func import stack_module_state
+
+from .residual_wrapper import ResidualWrapper
+
+ACTIVATION_MAP = {
+    &#34;tanh&#34;: nn.Tanh,
+    &#34;relu&#34;: nn.ReLU,
+    &#34;leaky_relu&#34;: nn.LeakyReLU,
+    &#34;linear&#34;: nn.Identity,
+    &#34;sigmoid&#34;: nn.Sigmoid,
+    &#34;softplus&#34;: nn.Softplus,
+    &#34;softmax&#34;: nn.Softmax,
+}
+
+
+def mlp_block(
+    input_dim: int,
+    hidden_dims: Optional[List[int]],
+    output_dim: int = 1,
+    use_batch_norm: bool = False,
+    use_layer_norm: bool = False,
+    hidden_activation: str = &#34;relu&#34;,
+    last_activation: Optional[str] = None,
+    dropout_ratio: float = 0.0,
+    use_skip_connections: bool = False,
+    **kwargs: Any,
+) -&gt; nn.Module:
+    &#34;&#34;&#34;
+    A simple MLP which can be reused to create more complex networks
+    Args:
+        input_dim: dimension of the input layer
+        hidden_dims: a list of dimensions of the hidden layers
+        output_dim: dimension of the output layer
+        use_batch_norm: whether to use batch_norm or not in the hidden layers
+        hidden_activation: activation function used for hidden layers
+        last_activation: this is optional, if need activation for layer, set this input
+                        otherwise, no activation is applied on last layer
+        dropout_ratio: user needs to call nn.Module.eval to ensure dropout is ignored during act
+    Returns:
+        an nn.Sequential module consisting of mlp layers
+    &#34;&#34;&#34;
+    if hidden_dims is None:
+        hidden_dims = []
+    dims = [input_dim] + hidden_dims + [output_dim]
+    layers = []
+    for i in range(len(dims) - 2):
+        single_layers = []
+        input_dim_current_layer = dims[i]
+        output_dim_current_layer = dims[i + 1]
+        single_layers.append(
+            nn.Linear(input_dim_current_layer, output_dim_current_layer)
+        )
+        if use_layer_norm:
+            single_layers.append(nn.LayerNorm(output_dim_current_layer))
+        if dropout_ratio &gt; 0:
+            single_layers.append(nn.Dropout(p=dropout_ratio))
+        single_layers.append(ACTIVATION_MAP[hidden_activation]())
+        if use_batch_norm:
+            single_layers.append(nn.BatchNorm1d(output_dim_current_layer))
+        single_layer_model = nn.Sequential(*single_layers)
+        if use_skip_connections:
+            if input_dim_current_layer == output_dim_current_layer:
+                single_layer_model = ResidualWrapper(single_layer_model)
+            else:
+                logging.warn(
+                    &#34;Skip connections are enabled, &#34;
+                    f&#34;but layer in_dim ({input_dim_current_layer}) != out_dim &#34;
+                    f&#34;({output_dim_current_layer}).&#34;
+                    &#34;Skip connection will not be added for this layer&#34;
+                )
+        layers.append(single_layer_model)
+
+    last_layer = []
+    last_layer.append(nn.Linear(dims[-2], dims[-1]))
+    if last_activation is not None:
+        last_layer.append(ACTIVATION_MAP[last_activation]())
+    last_layer_model = nn.Sequential(*last_layer)
+    if use_skip_connections:
+        if dims[-2] == dims[-1]:
+            last_layer_model = ResidualWrapper(last_layer_model)
+        else:
+            logging.warn(
+                &#34;Skip connections are enabled, &#34;
+                f&#34;but layer in_dim ({dims[-2]}) != out_dim ({dims[-1]}). &#34;
+                &#34;Skip connection will not be added for this layer&#34;
+            )
+    layers.append(last_layer_model)
+    return nn.Sequential(*layers)
+
+
+def conv_block(
+    input_channels_count: int,
+    output_channels_list: List[int],
+    kernel_sizes: List[int],
+    strides: List[int],
+    paddings: List[int],
+    use_batch_norm: bool = False,
+) -&gt; nn.Module:
+    &#34;&#34;&#34;
+    Reminder: torch.Conv2d layers expect inputs as (batch_size, in_channels, height, width)
+    Notes: layer norm is typically not used with CNNs
+
+    Args:
+        input_channels_count: number of input channels
+        output_channels_list: a list of number of output channels for each convolutional layer
+        kernel_sizes: a list of kernel sizes for each layer
+        strides: a list of strides for each layer
+        paddings: a list of paddings for each layer
+        use_batch_norm: whether to use batch_norm or not in the convolutional layers
+    Returns:
+        an nn.Sequential module consisting of convolutional layers
+    &#34;&#34;&#34;
+    layers = []
+    for out_channels, kernel_size, stride, padding in zip(
+        output_channels_list, kernel_sizes, strides, paddings
+    ):
+        conv_layer = nn.Conv2d(
+            input_channels_count,
+            out_channels,
+            kernel_size,
+            stride=stride,
+            padding=padding,
+        )
+        layers.append(conv_layer)
+        if use_batch_norm and input_channels_count &gt; 1:
+            layers.append(
+                nn.BatchNorm2d(input_channels_count)
+            )  # input to Batchnorm 2d is the number of input channels
+        layers.append(nn.ReLU())
+        # number of input channels to next layer is number of output channels of previous layer:
+        input_channels_count = out_channels
+
+    return nn.Sequential(*layers)
+
+
+# TODO: the name of this function needs to be revised to xavier_init_weights
+def init_weights(m: nn.Module) -&gt; None:
+    if isinstance(m, nn.Linear):
+        nn.init.xavier_uniform_(m.weight)
+        m.bias.data.fill_(0.01)
+
+
+def uniform_init_weights(m: nn.Module) -&gt; None:
+    if isinstance(m, nn.Linear):
+        nn.init.uniform_(m.weight, -0.001, 0.001)
+        nn.init.uniform_(m.bias, -0.001, 0.001)
+
+
+def update_target_network(
+    target_network: nn.Module, source_network: nn.Module, tau: float
+) -&gt; None:
+    # Q_target = (1 - tao) * Q_target + tao*Q
+    for target_param, source_param in zip(
+        target_network.parameters(), source_network.parameters()
+    ):
+        if target_param is source_param:
+            # skip soft-updating when the target network shares the parameter with
+            # the network being train.
+            continue
+        new_param = tau * source_param.data + (1.0 - tau) * target_param.data
+        target_param.data.copy_(new_param)
+
+
+def ensemble_forward(
+    models: Union[nn.ModuleList, List[nn.Module]],
+    features: torch.Tensor,
+    use_for_loop: bool = True,
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Run forward pass on several models and return their outputs stacked as a tensor.
+    If use_for_loop is False, a vectorized implementation is used, which has some
+        limitations (see https://fburl.com/code/m4l2tjof):
+    1. All models must have the same structure.
+    2. Gradient backpropagation to original model parameters might not work properly.
+
+    Args:
+        models: list of models to run forward pass on. Length: num_models
+        features: features to run forward pass on. shape: (batch_size, num_models, num_features)
+        use_for_loop: whether to use for loop or vectorized implementation
+    Output:
+        A tensor of shape (batch_size, num_models)
+    &#34;&#34;&#34;
+    torch._assert(
+        features.ndim == 3,
+        &#34;Features should be of shape (batch_size, num_models, num_features)&#34;,
+    )
+    torch._assert(
+        features.shape[1] == len(models),
+        &#34;Number of models must match features.shape[1]&#34;,
+    )
+    batch_size = features.shape[0]
+
+    if use_for_loop:
+        values = [model(features[:, i, :]).flatten() for i, model in enumerate(models)]
+        return torch.stack(values, dim=-1)  # (batch_size, ensemble_size)
+    else:
+        features = features.permute((1, 0, 2))
+
+        def wrapper(
+            params: Dict[str, torch.Tensor],
+            buffers: Dict[str, torch.Tensor],
+            data: torch.Tensor,
+        ) -&gt; torch.Tensor:
+            return torch.func.functional_call(models[0], (params, buffers), data)
+
+        params, buffers = stack_module_state(models)
+        values = torch.vmap(wrapper)(params, buffers, features).view(
+            (-1, batch_size)
+        )  # (ensemble_size, batch_size)
+
+        # change shape to (batch_size, ensemble_size)
+        return values.permute(1, 0)
+
+
+def update_target_networks(
+    list_of_target_networks: Union[nn.ModuleList, List[nn.Module]],
+    list_of_source_networks: Union[nn.ModuleList, List[nn.Module]],
+    tau: float,
+) -&gt; None:
+    &#34;&#34;&#34;
+    Args:
+        list_of_target_networks: nn.ModuleList() of nn.Module()
+        list_of_source_networks: nn.ModuleList() of nn.Module()
+        tau: parameter for soft update
+    &#34;&#34;&#34;
+    # Q_target = (1 - tao) * Q_target + tao*Q
+    for target_network, source_network in zip(
+        list_of_target_networks, list_of_source_networks
+    ):
+        update_target_network(target_network, source_network, tau)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pearl.neural_networks.common.utils.conv_block"><code class="name flex">
+<span>def <span class="ident">conv_block</span></span>(<span>input_channels_count: int, output_channels_list: List[int], kernel_sizes: List[int], strides: List[int], paddings: List[int], use_batch_norm: bool = False) ‑> torch.nn.modules.module.Module</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reminder: torch.Conv2d layers expect inputs as (batch_size, in_channels, height, width)
+Notes: layer norm is typically not used with CNNs</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>input_channels_count</code></strong></dt>
+<dd>number of input channels</dd>
+<dt><strong><code>output_channels_list</code></strong></dt>
+<dd>a list of number of output channels for each convolutional layer</dd>
+<dt><strong><code>kernel_sizes</code></strong></dt>
+<dd>a list of kernel sizes for each layer</dd>
+<dt><strong><code>strides</code></strong></dt>
+<dd>a list of strides for each layer</dd>
+<dt><strong><code>paddings</code></strong></dt>
+<dd>a list of paddings for each layer</dd>
+<dt><strong><code>use_batch_norm</code></strong></dt>
+<dd>whether to use batch_norm or not in the convolutional layers</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>an nn.Sequential module consisting of convolutional layers</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def conv_block(
+    input_channels_count: int,
+    output_channels_list: List[int],
+    kernel_sizes: List[int],
+    strides: List[int],
+    paddings: List[int],
+    use_batch_norm: bool = False,
+) -&gt; nn.Module:
+    &#34;&#34;&#34;
+    Reminder: torch.Conv2d layers expect inputs as (batch_size, in_channels, height, width)
+    Notes: layer norm is typically not used with CNNs
+
+    Args:
+        input_channels_count: number of input channels
+        output_channels_list: a list of number of output channels for each convolutional layer
+        kernel_sizes: a list of kernel sizes for each layer
+        strides: a list of strides for each layer
+        paddings: a list of paddings for each layer
+        use_batch_norm: whether to use batch_norm or not in the convolutional layers
+    Returns:
+        an nn.Sequential module consisting of convolutional layers
+    &#34;&#34;&#34;
+    layers = []
+    for out_channels, kernel_size, stride, padding in zip(
+        output_channels_list, kernel_sizes, strides, paddings
+    ):
+        conv_layer = nn.Conv2d(
+            input_channels_count,
+            out_channels,
+            kernel_size,
+            stride=stride,
+            padding=padding,
+        )
+        layers.append(conv_layer)
+        if use_batch_norm and input_channels_count &gt; 1:
+            layers.append(
+                nn.BatchNorm2d(input_channels_count)
+            )  # input to Batchnorm 2d is the number of input channels
+        layers.append(nn.ReLU())
+        # number of input channels to next layer is number of output channels of previous layer:
+        input_channels_count = out_channels
+
+    return nn.Sequential(*layers)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.utils.ensemble_forward"><code class="name flex">
+<span>def <span class="ident">ensemble_forward</span></span>(<span>models: Union[torch.nn.modules.container.ModuleList, List[torch.nn.modules.module.Module]], features: torch.Tensor, use_for_loop: bool = True) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Run forward pass on several models and return their outputs stacked as a tensor.
+If use_for_loop is False, a vectorized implementation is used, which has some
+limitations (see <a href="https://fburl.com/code/m4l2tjof">https://fburl.com/code/m4l2tjof</a>):
+1. All models must have the same structure.
+2. Gradient backpropagation to original model parameters might not work properly.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>models</code></strong></dt>
+<dd>list of models to run forward pass on. Length: num_models</dd>
+<dt><strong><code>features</code></strong></dt>
+<dd>features to run forward pass on. shape: (batch_size, num_models, num_features)</dd>
+<dt><strong><code>use_for_loop</code></strong></dt>
+<dd>whether to use for loop or vectorized implementation</dd>
+</dl>
+<h2 id="output">Output</h2>
+<p>A tensor of shape (batch_size, num_models)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ensemble_forward(
+    models: Union[nn.ModuleList, List[nn.Module]],
+    features: torch.Tensor,
+    use_for_loop: bool = True,
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Run forward pass on several models and return their outputs stacked as a tensor.
+    If use_for_loop is False, a vectorized implementation is used, which has some
+        limitations (see https://fburl.com/code/m4l2tjof):
+    1. All models must have the same structure.
+    2. Gradient backpropagation to original model parameters might not work properly.
+
+    Args:
+        models: list of models to run forward pass on. Length: num_models
+        features: features to run forward pass on. shape: (batch_size, num_models, num_features)
+        use_for_loop: whether to use for loop or vectorized implementation
+    Output:
+        A tensor of shape (batch_size, num_models)
+    &#34;&#34;&#34;
+    torch._assert(
+        features.ndim == 3,
+        &#34;Features should be of shape (batch_size, num_models, num_features)&#34;,
+    )
+    torch._assert(
+        features.shape[1] == len(models),
+        &#34;Number of models must match features.shape[1]&#34;,
+    )
+    batch_size = features.shape[0]
+
+    if use_for_loop:
+        values = [model(features[:, i, :]).flatten() for i, model in enumerate(models)]
+        return torch.stack(values, dim=-1)  # (batch_size, ensemble_size)
+    else:
+        features = features.permute((1, 0, 2))
+
+        def wrapper(
+            params: Dict[str, torch.Tensor],
+            buffers: Dict[str, torch.Tensor],
+            data: torch.Tensor,
+        ) -&gt; torch.Tensor:
+            return torch.func.functional_call(models[0], (params, buffers), data)
+
+        params, buffers = stack_module_state(models)
+        values = torch.vmap(wrapper)(params, buffers, features).view(
+            (-1, batch_size)
+        )  # (ensemble_size, batch_size)
+
+        # change shape to (batch_size, ensemble_size)
+        return values.permute(1, 0)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.utils.init_weights"><code class="name flex">
+<span>def <span class="ident">init_weights</span></span>(<span>m: torch.nn.modules.module.Module) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init_weights(m: nn.Module) -&gt; None:
+    if isinstance(m, nn.Linear):
+        nn.init.xavier_uniform_(m.weight)
+        m.bias.data.fill_(0.01)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.utils.mlp_block"><code class="name flex">
+<span>def <span class="ident">mlp_block</span></span>(<span>input_dim: int, hidden_dims: Optional[List[int]], output_dim: int = 1, use_batch_norm: bool = False, use_layer_norm: bool = False, hidden_activation: str = 'relu', last_activation: Optional[str] = None, dropout_ratio: float = 0.0, use_skip_connections: bool = False, **kwargs: Any) ‑> torch.nn.modules.module.Module</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A simple MLP which can be reused to create more complex networks</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>input_dim</code></strong></dt>
+<dd>dimension of the input layer</dd>
+<dt><strong><code>hidden_dims</code></strong></dt>
+<dd>a list of dimensions of the hidden layers</dd>
+<dt><strong><code>output_dim</code></strong></dt>
+<dd>dimension of the output layer</dd>
+<dt><strong><code>use_batch_norm</code></strong></dt>
+<dd>whether to use batch_norm or not in the hidden layers</dd>
+<dt><strong><code>hidden_activation</code></strong></dt>
+<dd>activation function used for hidden layers</dd>
+<dt><strong><code>last_activation</code></strong></dt>
+<dd>this is optional, if need activation for layer, set this input
+otherwise, no activation is applied on last layer</dd>
+<dt><strong><code>dropout_ratio</code></strong></dt>
+<dd>user needs to call nn.Module.eval to ensure dropout is ignored during act</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>an nn.Sequential module consisting of mlp layers</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def mlp_block(
+    input_dim: int,
+    hidden_dims: Optional[List[int]],
+    output_dim: int = 1,
+    use_batch_norm: bool = False,
+    use_layer_norm: bool = False,
+    hidden_activation: str = &#34;relu&#34;,
+    last_activation: Optional[str] = None,
+    dropout_ratio: float = 0.0,
+    use_skip_connections: bool = False,
+    **kwargs: Any,
+) -&gt; nn.Module:
+    &#34;&#34;&#34;
+    A simple MLP which can be reused to create more complex networks
+    Args:
+        input_dim: dimension of the input layer
+        hidden_dims: a list of dimensions of the hidden layers
+        output_dim: dimension of the output layer
+        use_batch_norm: whether to use batch_norm or not in the hidden layers
+        hidden_activation: activation function used for hidden layers
+        last_activation: this is optional, if need activation for layer, set this input
+                        otherwise, no activation is applied on last layer
+        dropout_ratio: user needs to call nn.Module.eval to ensure dropout is ignored during act
+    Returns:
+        an nn.Sequential module consisting of mlp layers
+    &#34;&#34;&#34;
+    if hidden_dims is None:
+        hidden_dims = []
+    dims = [input_dim] + hidden_dims + [output_dim]
+    layers = []
+    for i in range(len(dims) - 2):
+        single_layers = []
+        input_dim_current_layer = dims[i]
+        output_dim_current_layer = dims[i + 1]
+        single_layers.append(
+            nn.Linear(input_dim_current_layer, output_dim_current_layer)
+        )
+        if use_layer_norm:
+            single_layers.append(nn.LayerNorm(output_dim_current_layer))
+        if dropout_ratio &gt; 0:
+            single_layers.append(nn.Dropout(p=dropout_ratio))
+        single_layers.append(ACTIVATION_MAP[hidden_activation]())
+        if use_batch_norm:
+            single_layers.append(nn.BatchNorm1d(output_dim_current_layer))
+        single_layer_model = nn.Sequential(*single_layers)
+        if use_skip_connections:
+            if input_dim_current_layer == output_dim_current_layer:
+                single_layer_model = ResidualWrapper(single_layer_model)
+            else:
+                logging.warn(
+                    &#34;Skip connections are enabled, &#34;
+                    f&#34;but layer in_dim ({input_dim_current_layer}) != out_dim &#34;
+                    f&#34;({output_dim_current_layer}).&#34;
+                    &#34;Skip connection will not be added for this layer&#34;
+                )
+        layers.append(single_layer_model)
+
+    last_layer = []
+    last_layer.append(nn.Linear(dims[-2], dims[-1]))
+    if last_activation is not None:
+        last_layer.append(ACTIVATION_MAP[last_activation]())
+    last_layer_model = nn.Sequential(*last_layer)
+    if use_skip_connections:
+        if dims[-2] == dims[-1]:
+            last_layer_model = ResidualWrapper(last_layer_model)
+        else:
+            logging.warn(
+                &#34;Skip connections are enabled, &#34;
+                f&#34;but layer in_dim ({dims[-2]}) != out_dim ({dims[-1]}). &#34;
+                &#34;Skip connection will not be added for this layer&#34;
+            )
+    layers.append(last_layer_model)
+    return nn.Sequential(*layers)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.utils.uniform_init_weights"><code class="name flex">
+<span>def <span class="ident">uniform_init_weights</span></span>(<span>m: torch.nn.modules.module.Module) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uniform_init_weights(m: nn.Module) -&gt; None:
+    if isinstance(m, nn.Linear):
+        nn.init.uniform_(m.weight, -0.001, 0.001)
+        nn.init.uniform_(m.bias, -0.001, 0.001)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.utils.update_target_network"><code class="name flex">
+<span>def <span class="ident">update_target_network</span></span>(<span>target_network: torch.nn.modules.module.Module, source_network: torch.nn.modules.module.Module, tau: float) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_target_network(
+    target_network: nn.Module, source_network: nn.Module, tau: float
+) -&gt; None:
+    # Q_target = (1 - tao) * Q_target + tao*Q
+    for target_param, source_param in zip(
+        target_network.parameters(), source_network.parameters()
+    ):
+        if target_param is source_param:
+            # skip soft-updating when the target network shares the parameter with
+            # the network being train.
+            continue
+        new_param = tau * source_param.data + (1.0 - tau) * target_param.data
+        target_param.data.copy_(new_param)</code></pre>
+</details>
+</dd>
+<dt id="pearl.neural_networks.common.utils.update_target_networks"><code class="name flex">
+<span>def <span class="ident">update_target_networks</span></span>(<span>list_of_target_networks: Union[torch.nn.modules.container.ModuleList, List[torch.nn.modules.module.Module]], list_of_source_networks: Union[torch.nn.modules.container.ModuleList, List[torch.nn.modules.module.Module]], tau: float) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>list_of_target_networks</code></strong></dt>
+<dd>nn.ModuleList() of nn.Module()</dd>
+<dt><strong><code>list_of_source_networks</code></strong></dt>
+<dd>nn.ModuleList() of nn.Module()</dd>
+<dt><strong><code>tau</code></strong></dt>
+<dd>parameter for soft update</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_target_networks(
+    list_of_target_networks: Union[nn.ModuleList, List[nn.Module]],
+    list_of_source_networks: Union[nn.ModuleList, List[nn.Module]],
+    tau: float,
+) -&gt; None:
+    &#34;&#34;&#34;
+    Args:
+        list_of_target_networks: nn.ModuleList() of nn.Module()
+        list_of_source_networks: nn.ModuleList() of nn.Module()
+        tau: parameter for soft update
+    &#34;&#34;&#34;
+    # Q_target = (1 - tao) * Q_target + tao*Q
+    for target_network, source_network in zip(
+        list_of_target_networks, list_of_source_networks
+    ):
+        update_target_network(target_network, source_network, tau)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pearl.neural_networks.common" href="index.html">pearl.neural_networks.common</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pearl.neural_networks.common.utils.conv_block" href="#pearl.neural_networks.common.utils.conv_block">conv_block</a></code></li>
+<li><code><a title="pearl.neural_networks.common.utils.ensemble_forward" href="#pearl.neural_networks.common.utils.ensemble_forward">ensemble_forward</a></code></li>
+<li><code><a title="pearl.neural_networks.common.utils.init_weights" href="#pearl.neural_networks.common.utils.init_weights">init_weights</a></code></li>
+<li><code><a title="pearl.neural_networks.common.utils.mlp_block" href="#pearl.neural_networks.common.utils.mlp_block">mlp_block</a></code></li>
+<li><code><a title="pearl.neural_networks.common.utils.uniform_init_weights" href="#pearl.neural_networks.common.utils.uniform_init_weights">uniform_init_weights</a></code></li>
+<li><code><a title="pearl.neural_networks.common.utils.update_target_network" href="#pearl.neural_networks.common.utils.update_target_network">update_target_network</a></code></li>
+<li><code><a title="pearl.neural_networks.common.utils.update_target_networks" href="#pearl.neural_networks.common.utils.update_target_networks">update_target_networks</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
