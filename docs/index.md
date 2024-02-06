@@ -14,6 +14,8 @@ Github Repo: <span style="color:blue">[Link](https://github.com/facebookresearch
 
 Our paper is ArXived at: <span style="color:blue">[Link](https://chs6.short.gy/pearl_paper)</span>
 
+Our NeurIPS 2023 Presentation Slides is released [here](https://pearlagent.github.io/pearl_detailed_intro.pdf).
+
 ## Overview
 Pearl is a new production-ready Reinforcement Learning AI agent library open-sourced by the Applied Reinforcement Learning team at Meta. Furthering our efforts on open AI innovation, Pearl enables researchers and practitioners to develop Reinforcement Learning AI agents. These AI agents prioritize cumulative long-term feedback over immediate feedback and can adapt to environments with limited observability, sparse feedback, and high stochasticity. We hope that Pearl offers the community a means to build state-of-the-art Reinforcement Learning AI agents that can adapt to a wide range of complex production environments.
 
@@ -69,7 +71,14 @@ while not done:
     agent.learn()
     done = action_result.done
 ```
-More detailed tutorial will be presented at NeurIPS 2023 EXPO presentation (12/10/2023, 4 pm to 6 pm). Users can replace the environment with any real-world problems.
+Users can replace the environment with any real-world problems.
+
+## Tutorials
+1. The first tutorial of Pearl focuses on recommender systems. We derived a small contrived recommender system environment using the MIND dataset (Wu et al. 2020). More details in https://github.com/facebookresearch/Pearl/tree/main/pearl/tutorials/single_item_recommender_system_example/demo.ipynb
+
+2. The second tutorial of Pearl focuses on contextual bandit algorithms and their implementation using Pearl library. We designed a contextual bandit environment based on UCI dataset and tested the performance of neural implementations of SquareCB, LinUCB, and LinTS. More details in https://github.com/facebookresearch/Pearl/tree/main/pearl/tutorials/contextual_bandits/contextual_bandits_tutorial.ipynb
+
+More tutorials coming in 2024.
 
 ## Design and Features
 ![alt](./assets/img/agent_interface.png)
